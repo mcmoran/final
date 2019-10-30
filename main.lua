@@ -8,6 +8,8 @@ function love.load()
   require "audio" -- audio.lua file
   require "text" -- text.lua file
 
+  -- player variables -> eventually we can put this in it's own file
+
 end -- load
 
 -- UPDATE FUNCTION --------------------------------------------------
