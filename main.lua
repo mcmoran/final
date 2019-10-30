@@ -1,2 +1,37 @@
--- this will be the main lua file.
--- this is a line of code.
+-- GAME START STATES --------------------------------------------------
+gamestart = false
+
+-- UPDATE FUNCTION --------------------------------------------------
+function love.load()
+  -- requirements
+  require "images" -- images.lua file
+  require "audio" -- audio.lua file
+  require "text" -- text.lua file
+
+end -- load
+
+-- UPDATE FUNCTION --------------------------------------------------
+function love.update(dt)
+
+end -- update
+
+-- UPDATE FUNCTION --------------------------------------------------
+function love.run()
+
+end -- return
+
+-- OTHER FUNCTIONS --------------------------------------------------
+
+-- key press function
+function love.keypressed(key)
+
+  -- escape the game anytime with "escape" key
+  if key == "escape" then
+    love.event.push("quit")
+  end
+
+  -- starts game with "return" key
+  if key == "return" then
+    gamestart = true
+  end
+end
