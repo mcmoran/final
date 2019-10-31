@@ -8,6 +8,9 @@ function love.load()
   require "images" -- images.lua file
   require "audio" -- audio.lua file
   require "text" -- text.lua file
+  require "player" -- player.lua file
+  require "levels" -- levels.lua file
+  require "boss" -- boss.lua file
 
   -- arena constants
   arenaWidth = 800
@@ -60,7 +63,7 @@ function love.update(dt)
 
 end -- update
 
--- UPDATE FUNCTION --------------------------------------------------
+-- DRAW FUNCTION --------------------------------------------------
 function love.draw()
 
   -- if the game hasn't started, show the splash screen text
@@ -81,12 +84,14 @@ function love.draw()
 
   end -- if else
 
-end -- return
+end -- draw
 
 -- OTHER FUNCTIONS --------------------------------------------------
 
+--[[
 -- AABB collision detection function.
---[[ Takes two objects' x, y coordinates with width and height values.
+-- Takes two objects' x, y coordinates with width and height values.
+
 function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
 
   return x1 < x2 + w2 and
@@ -94,7 +99,8 @@ function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
          y1 < y2 + h2 and
          y2 < y1 + h1
 
-end ]]-- AABB
+end -- AABB
+]]
 
 -- key press function
 function love.keypressed(key)
