@@ -12,6 +12,13 @@ function love.load()
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
 
+  -- external requirements
+  Camera = require "camera" -- camera.lua file
+
+  -- camera
+  camera = Camera(400, 300, 800, 600)
+  camera:setFollowStyle('SCREEN_BY_SCREEN')
+
   -- arena constants
   arenaWidth = 800
   arenaHeight = 600
@@ -21,7 +28,15 @@ function love.load()
   playerWidth = 30
   playerHeight = 30
 
+  -- enemy constants
+  enemySpeed = 100
+  enemyWidth = 30
+  enemyHeight = 30
+
   function reset()
+
+    -- because we always need a randomseed ...
+    math.randomseed(os.time())
 
     -- player resets
     playerX = arenaWidth / 2 - playerWidth / 2
@@ -29,10 +44,14 @@ function love.load()
     playerSpeedX = 0
     playerSpeedY = 0
 
+    -- enemy resets
+    enemyX = math.random(10, 100)
+    enemyY = math.random(10, 100)
+    enemySpeedX = 0
+    enemySpeedY = 0
+
     timer = 0
 
-    -- because we always need a randomseed ...
-    math.randomseed(os.time())
 
   end -- reset
 
@@ -45,6 +64,9 @@ function love.update(dt)
 
   -- generic timer
   timer = timer + dt
+
+  -- camera update
+  camera:update(dt)
 
   -- player movement\
   if love.keyboard.isDown('up') then
@@ -61,6 +83,9 @@ function love.update(dt)
   playerX = (playerX + playerSpeedX * dt) % arenaWidth
   playerY = (playerY + playerSpeedY * dt) % arenaHeight
 
+  -- enemy position
+
+
 end -- update
 
 -- DRAW FUNCTION --------------------------------------------------
@@ -69,19 +94,34 @@ function love.draw()
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
+    camera:attach()
+
     splashText();  -- need to get this working
 
+    camera:detach()
+    camera:draw()
   -- if the game has started, then do all this
   elseif gamestart then
 
+    -- start camera function
+    camera:attach()
+
     -- background
-    love.graphics.setColor(1, 1, 1)
+    love.graphics.setColor(.8, .8, .8)
     love.graphics.rectangle('fill', 0, 0, 800, 600)
 
     -- player
     love.graphics.setColor(1, 0, 0)
     love.graphics.rectangle('fill', playerX, playerY, playerWidth, playerHeight)
 
+    -- enemy
+    love.graphics.setColor(0, 0, 1)
+    --love.graphics.print(enemyHeight, 200, 200)
+    love.graphics.rectangle('fill', enemyX, enemyY, enemyWidth, enemyHeight)
+
+    camera:detach()
+    camera:draw() -- Call this here if you're using camera:fade,
+                  -- camera:flash or debug drawing the deadzone
   end -- if else
 
 end -- draw
@@ -112,7 +152,9 @@ function love.keypressed(key)
 
   -- starts game with "return" key
   if key == "return" then
+    camera:fade(1, {0, 0, 0, 1})
     gamestart = true
+    camera:fade(1, {0, 0, 0, 0})
   end
 
 end -- keypressed
