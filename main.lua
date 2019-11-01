@@ -24,9 +24,11 @@ function love.load()
   arenaHeight = 600
 
   -- player constants
-  playerSpeed = 100
+  playerSpeed = 200
   playerWidth = 30
   playerHeight = 30
+  weaponLong = 10
+  weaponShort = 5
 
   -- enemy constants
   enemySpeed = 100
@@ -39,10 +41,15 @@ function love.load()
     math.randomseed(os.time())
 
     -- player resets
-    playerX = arenaWidth / 2 - playerWidth / 2
-    playerY = arenaHeight / 2 - playerHeight / 2
+    playerX = arenaWidth / 2
+    playerY = arenaHeight / 2
     playerSpeedX = 0
     playerSpeedY = 0
+    playerDirection = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
+    weaponHeight = weaponLong
+    weaponWidth = weaponShort
+    weaponX = playerX
+    weaponY = playerY
 
     -- enemy resets
     enemyX = math.random(10, 100)
@@ -70,14 +77,48 @@ function love.update(dt)
 
   -- player movement\
   if love.keyboard.isDown('up') then
+      playerDirection = 1
       playerY = playerY - playerSpeed * dt
+      weaponPosition()
   elseif love.keyboard.isDown('down') then
+      playerDirection = 3
       playerY = playerY + playerSpeed * dt
+      weaponPosition()
   elseif love.keyboard.isDown('left') then
+      playerDirection = 4
       playerX = playerX - playerSpeed * dt
+      weaponPosition()
   elseif love.keyboard.isDown('right') then
+      playerDirection = 2
       playerX = playerX + playerSpeed * dt
+      weaponPosition()
   end
+
+  -- weapon position and direction
+  function weaponPosition()
+    if playerDirection == 1 then
+      weaponHeight = weaponLong
+      weaponWidth = weaponShort
+      weaponX = playerX + playerWidth / 2 - weaponWidth / 2
+      weaponY = playerY - playerHeight / 2
+    elseif playerDirection == 2 then
+      weaponHeight = weaponShort
+      weaponWidth = weaponLong
+      weaponX = playerX + playerWidth + weaponWidth / 2
+      weaponY = playerY + playerHeight / 2 - weaponHeight / 2
+    elseif playerDirection == 3 then
+      weaponHeight = weaponLong
+      weaponWidth = weaponShort
+      weaponX = playerX + playerWidth / 2 - weaponWidth / 2
+      weaponY = playerY + playerHeight + weaponHeight / 2
+    elseif playerDirection == 4 then
+      weaponHeight = weaponShort
+      weaponWidth = weaponLong
+      weaponX = playerX - playerWidth / 2 - weaponHeight / 2
+      weaponY = playerY + playerHeight / 2 - weaponHeight / 2
+    end
+  end
+
 
   -- player position - loops around screen
   playerX = (playerX + playerSpeedX * dt) % arenaWidth
@@ -113,6 +154,10 @@ function love.draw()
     -- player
     love.graphics.setColor(1, 0, 0)
     love.graphics.rectangle('fill', playerX, playerY, playerWidth, playerHeight)
+
+    -- weapon
+    love.graphics.setColor(0.5, 0, 0)
+    love.graphics.rectangle('fill', weaponX, weaponY, weaponWidth, weaponHeight)
 
     -- enemy
     love.graphics.setColor(0, 0, 1)
