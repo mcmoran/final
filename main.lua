@@ -114,7 +114,7 @@ function love.update(dt)
     elseif playerDirection == 4 then
       weaponHeight = weaponShort
       weaponWidth = weaponLong
-      weaponX = playerX - playerWidth / 2 - weaponHeight / 2
+      weaponX = playerX - playerWidth / 2 + weaponWidth / 2
       weaponY = playerY + playerHeight / 2 - weaponHeight / 2
     end
   end
