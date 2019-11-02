@@ -1,7 +1,9 @@
 -- GAME START STATES --------------------------------------------------
 gamestart = false
 
--- UPDATE FUNCTION --------------------------------------------------
+--[[ ---------------------------------------------------------------
+  LOVE.LOAD
+--------------------------------------------------------------------]]
 function love.load()
 
   -- requirements
@@ -68,7 +70,9 @@ function love.load()
 
 end -- load
 
--- UPDATE FUNCTION --------------------------------------------------
+--[[ ---------------------------------------------------------------
+  LOVE.UPDATE
+--------------------------------------------------------------------]]
 function love.update(dt)
 
   -- generic timer
@@ -140,7 +144,9 @@ function love.update(dt)
 
 end -- update
 
--- DRAW FUNCTION --------------------------------------------------
+--[[ ---------------------------------------------------------------
+  LOVE.DRAW
+--------------------------------------------------------------------]]
 function love.draw()
 
   -- if the game hasn't started, show the splash screen text
@@ -188,12 +194,13 @@ function love.draw()
 
 end -- draw
 
--- OTHER FUNCTIONS --------------------------------------------------
+--[[ ---------------------------------------------------------------
+  OTHER FUNCTIONS
+--------------------------------------------------------------------]]
 
---[[
+
 -- AABB collision detection function.
 -- Takes two objects' x, y coordinates with width and height values.
-
 function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
 
   return x1 < x2 + w2 and
@@ -202,7 +209,7 @@ function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
          y2 < y1 + h1
 
 end -- AABB
-]]
+
 
 -- key press function
 function love.keypressed(key)
