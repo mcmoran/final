@@ -184,7 +184,7 @@ function love.draw()
     love.graphics.rectangle('fill', 0, 0, 800, 600)
 
     -- player
-    love.graphics.setColor(1, 0, 0)
+    love.graphics.setColor(0, 0, 1)
     love.graphics.rectangle('fill', playerX, playerY, playerWidth, playerHeight)
 
     -- weapon
@@ -192,7 +192,7 @@ function love.draw()
     love.graphics.rectangle('fill', weaponX, weaponY, weaponWidth, weaponHeight)
 
     -- enemy
-    love.graphics.setColor(0, 0, 1)
+    love.graphics.setColor(1, 0, 0)
     --love.graphics.print(enemyHeight, 200, 200)
     love.graphics.rectangle('fill', enemyX, enemyY, enemyWidth, enemyHeight)
 
