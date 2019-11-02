@@ -14,6 +14,8 @@ function love.load()
 
   -- external requirements
   Camera = require "camera" -- camera.lua file
+  moonshine = require 'moonshine' -- moonshine
+  flux = require "flux" -- flux
 
   -- camera
   camera = Camera(400, 300, 800, 600)
@@ -75,6 +77,15 @@ function love.update(dt)
   -- camera update
   camera:update(dt)
 
+  -- flux update
+  flux.update(dt)
+
+  --[[ moonshine loader (example)
+  effect = moonshine(moonshine.effects.filmgrain)
+          .chain(moonshine.effects.vignette)
+  effect.filmgrain.size = 2
+  ]]--
+
   -- player movement\
   if love.keyboard.isDown('up') then
       playerDirection = 1
@@ -114,7 +125,7 @@ function love.update(dt)
     elseif playerDirection == 4 then
       weaponHeight = weaponShort
       weaponWidth = weaponLong
-      weaponX = playerX - playerWidth / 2 + weaponWidth / 2
+      weaponX = playerX - playerWidth / 2 - weaponHeight / 2
       weaponY = playerY + playerHeight / 2 - weaponHeight / 2
     end
   end
@@ -146,6 +157,12 @@ function love.draw()
 
     -- start camera function
     camera:attach()
+
+    --[[ monshine wrapper example
+    effect(function()
+      love.graphics.rectangle("fill", 300,200, 200,200)
+    end)
+    ]]
 
     -- background
     love.graphics.setColor(.8, .8, .8)
