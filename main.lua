@@ -52,8 +52,8 @@ function love.load()
     playerDirection = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
     weaponHeight = weaponLong
     weaponWidth = weaponShort
-    weaponX = playerX
-    weaponY = playerY
+    weaponX = playerX + playerWidth / 2 - weaponWidth / 2
+    weaponY = playerY - playerHeight / 2
 
     -- enemy resets
     enemyX = math.random(10, 100)
@@ -139,8 +139,17 @@ function love.update(dt)
   playerX = (playerX + playerSpeedX * dt) % arenaWidth
   playerY = (playerY + playerSpeedY * dt) % arenaHeight
 
-  -- enemy position
+  -- weapon collision detection
+  if AABB(weaponX, weaponY, weaponWidth, weaponHeight, enemyX, enemyY, enemyWidth, enemyHeight) then
+    enemyX = math.random(50, 750)
+    enemyY = math.random(50, 550)
+  end
 
+  -- player collision detection ends game
+  if AABB(playerX, playerY, playerWidth, playerHeight, enemyX, enemyY, enemyWidth, enemyHeight) then
+    gamestart = false
+    reset()
+  end
 
 end -- update
 
