@@ -143,6 +143,7 @@ function love.update(dt)
     if AABB(weaponShot.x, weaponShot.y, 5, 5, enemyX, enemyY, enemyWidth, enemyHeight) then
       enemyX = math.random(50, 750)
       enemyY = math.random(50, 550)
+      table.remove(weaponShots, weaponShotsIndex)
     end
   end
 
