@@ -31,10 +31,16 @@ function love.load()
   playerSpeed = 200
   playerWidth = 30
   playerHeight = 30
+
+  -- weapon constants
   weaponLong = 10
   weaponShort = 5
+  weaponSpeed = 500
+  weaponShots = {}
+  weaponTimer = 0
 
   -- enemy constants
+  enemy = {}
   enemySpeed = 100
   enemyWidth = 30
   enemyHeight = 30
@@ -77,6 +83,7 @@ function love.update(dt)
 
   -- generic timer
   timer = timer + dt
+  weaponTimer = weaponTimer + dt
 
   -- camera update
   camera:update(dt)
@@ -109,24 +116,62 @@ function love.update(dt)
       weaponPosition()
   end
 
+  -- weapon shooting
+  if love.keyboard.isDown('space') then
+    if weaponTimer >= 0.5 then
+      weaponTimer = 0
+
+      table.insert(weaponShots, {x = weaponX, y = weaponY, XDirection = weaponXDirection, YDirection = weaponYDirection, timeLeft = 4})
+    end
+  end
+
+  -- shots coming out of the weapon
+  for weaponShotsIndex = #weaponShots, 1, -1 do
+    local weaponShot = weaponShots[weaponShotsIndex]
+
+    weaponShot.timeLeft = weaponShot.timeLeft - dt
+    if weaponShot.timeLeft <= 0 then
+      table.remove(weaponShots, weaponShotsIndex)
+    else
+      local weaponSpeed = 500
+
+      weaponShot.x = (weaponShot.x + weaponShot.XDirection * weaponSpeed * dt) % arenaWidth
+      weaponShot.y = (weaponShot.y + weaponShot.YDirection * weaponSpeed * dt) % arenaHeight
+    end
+
+    -- weapon shot collision detection
+    if AABB(weaponShot.x, weaponShot.y, 5, 5, enemyX, enemyY, enemyWidth, enemyHeight) then
+      enemyX = math.random(50, 750)
+      enemyY = math.random(50, 550)
+    end
+  end
+
   -- weapon position and direction
   function weaponPosition()
     if playerDirection == 1 then
+      weaponXDirection = 0
+      weaponYDirection = -1
       weaponHeight = weaponLong
       weaponWidth = weaponShort
       weaponX = playerX + playerWidth / 2 - weaponWidth / 2
       weaponY = playerY - playerHeight / 2
     elseif playerDirection == 2 then
+      weaponXDirection = 1
+      weaponYDirection = 0
       weaponHeight = weaponShort
       weaponWidth = weaponLong
       weaponX = playerX + playerWidth + weaponWidth / 2
       weaponY = playerY + playerHeight / 2 - weaponHeight / 2
     elseif playerDirection == 3 then
+      weaponXDirection = 0
+      weaponYDirection = 1
       weaponHeight = weaponLong
       weaponWidth = weaponShort
       weaponX = playerX + playerWidth / 2 - weaponWidth / 2
       weaponY = playerY + playerHeight + weaponHeight / 2
     elseif playerDirection == 4 then
+      weaponXDirection = -1
+      weaponYDirection = 0
       weaponHeight = weaponShort
       weaponWidth = weaponLong
       weaponX = playerX - playerWidth / 2 - weaponHeight / 2
@@ -190,6 +235,11 @@ function love.draw()
     -- weapon
     love.graphics.setColor(0.5, 0, 0)
     love.graphics.rectangle('fill', weaponX, weaponY, weaponWidth, weaponHeight)
+
+    for weaponShotIndex, weaponShot in ipairs(weaponShots) do
+      love.graphics.setColor(0.5, 0, 0)
+      love.graphics.rectangle('fill', weaponShot.x, weaponShot.y, 5, 5)
+    end
 
     -- enemy
     love.graphics.setColor(1, 0, 0)
