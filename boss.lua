@@ -36,8 +36,10 @@
   --1) The "Demon" Knight
   -- Very slow enemy, has slash attacks like the player does but reaches a farther area. Shoots at the player occasionally but not a lot.
 
+
   --2) T-rex
   -- Very big and slow enemy, charges in a straight line at a the player's position.
+
 
   --3) UFO/Big Alien
   -- Big and slow enemy. Shoots at the player, charges at the player, and has an area of effect attack.
