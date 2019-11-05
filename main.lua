@@ -19,6 +19,9 @@ function love.load()
   moonshine = require 'moonshine' -- moonshine
   flux = require "flux" -- flux
 
+  -- bgMusic
+  levelOneSounds()
+
   -- camera
   camera = Camera(400, 300, 800, 600)
   camera:setFollowStyle('SCREEN_BY_SCREEN')
@@ -49,6 +52,9 @@ function love.load()
 
     -- because we always need a randomseed ...
     math.randomseed(os.time())
+
+    -- game resets
+    level = 1
 
     -- player resets
     playerX = arenaWidth / 2
@@ -199,6 +205,22 @@ function love.update(dt)
     gamestart = false
     reset()
   end
+
+--[[ this doesn't work yet
+  if enemiesShot > 4 and enemiesShot < 10 then
+    level = 2
+    quiet()
+    levelTwoSounds()
+  elseif enemiesShot > 9 and enemiesShot < 15 then
+    level = 3
+    quiet()
+    levelThreeSounds()
+  elseif enemiesShot > 14 then
+    level = 4
+    quiet()
+    levelOneSounds()
+  end
+]]
 
 end -- update
 
