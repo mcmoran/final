@@ -19,3 +19,13 @@ function splashText()
   love.graphics.print("Space button shoots", arenaWidth / 2 - 100, arenaHeight / 2 + 120)
 
 end -- splashText
+
+-- score record
+function scoreText()
+
+  love.graphics.setColor(0, 0, 0)
+  love.graphics.setFont(defaultFont)
+  love.graphics.print("Enemies Shot:", 10, 10)
+  love.graphics.print(enemiesShot, 120, 10)
+
+end

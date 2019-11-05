@@ -66,6 +66,7 @@ function love.load()
     enemyY = math.random(10, 100)
     enemySpeedX = 0
     enemySpeedY = 0
+    enemiesShot = 0
 
     timer = 0
 
@@ -144,6 +145,7 @@ function love.update(dt)
       enemyX = math.random(50, 750)
       enemyY = math.random(50, 550)
       table.remove(weaponShots, weaponShotsIndex)
+      enemiesShot = enemiesShot + 1
     end
   end
 
@@ -189,6 +191,7 @@ function love.update(dt)
   if AABB(weaponX, weaponY, weaponWidth, weaponHeight, enemyX, enemyY, enemyWidth, enemyHeight) then
     enemyX = math.random(50, 750)
     enemyY = math.random(50, 550)
+    enemiesShot = enemiesShot + 1
   end
 
   -- player collision detection ends game
@@ -246,6 +249,9 @@ function love.draw()
     love.graphics.setColor(1, 0, 0)
     --love.graphics.print(enemyHeight, 200, 200)
     love.graphics.rectangle('fill', enemyX, enemyY, enemyWidth, enemyHeight)
+
+
+    scoreText()
 
     camera:detach()
     camera:draw() -- Call this here if you're using camera:fade,
