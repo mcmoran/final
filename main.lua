@@ -20,7 +20,7 @@ function love.load()
   MAX_WINDOW_X = SCREEN_X * 2
   MAX_WINDOW_Y = SCREEN_Y * 2
 
-  bg = love.graphics.newImage('bg.png')
+  bg = love.graphics.newImage('bg.jpg')
   --love.graphics.setDefaultFilter('nearest', 'nearest')
   love.window.setMode(SCREEN_X, SCREEN_Y)
 
@@ -43,9 +43,9 @@ function love.load()
   flux = require "flux" -- flux
 
   -- camera
-  camera = Camera(player.x, player.y, SCREEN_X, SCREEN_Y)
+  camera = Camera(player.x + player.w / 2, player.y + player.h / 2, SCREEN_X, SCREEN_Y)
     camera:setFollowStyle('SCREEN_BY_SCREEN')
-    --camera:setFollowLerp(0.2)
+    camera:setFollowLerp(0.2)
     --camera:setFollowLead(0)
     camera:setBounds(0, 0, MAX_WINDOW_X, MAX_WINDOW_Y)
 
@@ -134,7 +134,7 @@ function love.update(dt)
   if love.keyboard.isDown('space') then
     if weaponTimer >= 0.5 then
       weaponTimer = 0
-      table.insert(shots, {x = weapon.x, y = weapon.y, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
+      table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
     end
   end
 
@@ -151,7 +151,7 @@ function love.update(dt)
     end
 
     -- weapon shot collision detection
-    if AABB(shot.x, shot.y, 5, 5, enemy.x, enemy.y, enemy.w, enemy.h) then
+    if AABB(shot.x, shot.y, shot.w, shot.h, enemy.x, enemy.y, enemy.w, enemy.h) then
       enemy.x = math.random(50, 750)
       enemy.y = math.random(50, 550)
       table.remove(shots, shotsIndex)
@@ -208,12 +208,12 @@ function love.draw()
       love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
 
       -- weapon
-      love.graphics.setColor(0.5, 0, 0)
+      love.graphics.setColor(1, 1, 0)
       love.graphics.rectangle('fill', weapon.x, weapon.y, weapon.w, weapon.h)
 
       for shotIndex, shot in ipairs(shots) do
-        love.graphics.setColor(0.5, 0, 0)
-        love.graphics.rectangle('fill', shot.x, shot.y, 5, 5)
+        love.graphics.setColor(1, 1, 0)
+        love.graphics.rectangle('fill', shot.x, shot.y, weapon.w, weapon.h)
       end
 
       -- enemy
