@@ -1,7 +1,7 @@
 -- GAME START STATES --------------------------------------------------
 gamestart = false
 
---[[ ---------------------------------------------------------------
+--[[----------------------------------------------------------------
   LOVE.LOAD
 --------------------------------------------------------------------]]
 function love.load()
@@ -14,39 +14,40 @@ function love.load()
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
 
-  -- external requirements
-  Camera = require "camera" -- camera.lua file
+  -- gamescreen constants
+  SCREEN_X = 800
+  SCREEN_Y = 600
+  MAX_WINDOW_X = SCREEN_X * 2
+  MAX_WINDOW_Y = SCREEN_Y * 2
+
+  bg = love.graphics.newImage('bg.png')
+  --love.graphics.setDefaultFilter('nearest', 'nearest')
+  love.window.setMode(SCREEN_X, SCREEN_Y)
+
+  -- player
+  player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 50, h = 50,
+            speedX = 0, speedY = 0, maxSpeed = 300,
+            dir = 1, dirX = 0, dirY = 0 }
+
+  -- weapon
+  weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 10, h = 10,
+            speedX = 0, speedY = 0, maxSpeed = 600,
+            dir = 1, dirX = 0, dirY = 0}
+
+  -- enemy
+  enemy = {x = 0, y = 0, w = 30, h = 30, speed = 100}
+
+  -- 3rd party
+  Camera = require "camera" -- camera
   moonshine = require 'moonshine' -- moonshine
   flux = require "flux" -- flux
 
-  -- bgMusic
-  levelOneSounds()
-
   -- camera
-  camera = Camera(400, 300, 800, 600)
-  camera:setFollowStyle('SCREEN_BY_SCREEN')
-
-  -- arena constants
-  arenaWidth = 800
-  arenaHeight = 600
-
-  -- player constants
-  playerSpeed = 200
-  playerWidth = 30
-  playerHeight = 30
-
-  -- weapon constants
-  weaponLong = 10
-  weaponShort = 5
-  weaponSpeed = 500
-  weaponShots = {}
-  weaponTimer = 0
-
-  -- enemy constants
-  enemy = {}
-  enemySpeed = 100
-  enemyWidth = 30
-  enemyHeight = 30
+  camera = Camera(player.x, player.y, SCREEN_X, SCREEN_Y)
+    camera:setFollowStyle('SCREEN_BY_SCREEN')
+    --camera:setFollowLerp(0.2)
+    --camera:setFollowLead(0)
+    camera:setBounds(0, 0, MAX_WINDOW_X, MAX_WINDOW_Y)
 
   function reset()
 
@@ -57,25 +58,26 @@ function love.load()
     level = 1
 
     -- player resets
-    playerX = arenaWidth / 2
-    playerY = arenaHeight / 2
-    playerSpeedX = 0
-    playerSpeedY = 0
-    playerDirection = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
-    weaponHeight = weaponLong
-    weaponWidth = weaponShort
-    weaponX = playerX + playerWidth / 2 - weaponWidth / 2
-    weaponY = playerY - playerHeight / 2
+    player.x = SCREEN_X / 2
+    player.y = SCREEN_Y / 2
+    player.speedX = 0
+    player.speedY = 0
+    player.dir = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
 
     -- enemy resets
-    enemyX = math.random(10, 100)
-    enemyY = math.random(10, 100)
-    enemySpeedX = 0
-    enemySpeedY = 0
+    enemy.x = math.random(10, 790)
+    enemy.y = math.random(10, 590)
+    enemy.speedX = 0
+    enemy.speedY = 0
     enemiesShot = 0
 
-    timer = 0
+    -- weapon stuff
+    weapon.x = player.x + player.w / 2
+    weapon.y = player.y + player.h / 2
+    weaponTimer = 0
+    shots = {}
 
+    timer = 0
 
   end -- reset
 
@@ -83,148 +85,105 @@ function love.load()
 
 end -- load
 
---[[ ---------------------------------------------------------------
+--[[----------------------------------------------------------------
   LOVE.UPDATE
 --------------------------------------------------------------------]]
 function love.update(dt)
 
-  -- generic timer
+  -- timers
   timer = timer + dt
   weaponTimer = weaponTimer + dt
 
-  -- camera update
+  -- library updates
   camera:update(dt)
-
-  -- flux update
+  camera:follow(player.x, player.y)
   flux.update(dt)
 
-  --[[ moonshine loader (example)
-  effect = moonshine(moonshine.effects.filmgrain)
-          .chain(moonshine.effects.vignette)
-  effect.filmgrain.size = 2
-  ]]--
-
-  -- player movement\
+  -- player movement
   if love.keyboard.isDown('up') then
-      playerDirection = 1
-      playerY = playerY - playerSpeed * dt
-      weaponPosition()
-  elseif love.keyboard.isDown('down') then
-      playerDirection = 3
-      playerY = playerY + playerSpeed * dt
-      weaponPosition()
-  elseif love.keyboard.isDown('left') then
-      playerDirection = 4
-      playerX = playerX - playerSpeed * dt
-      weaponPosition()
+      player.dir = 1
+      weapon.dirX = 0
+      weapon.dirY = -1
+      player.y = player.y - player.maxSpeed * dt
+      weapon.y = player.y - weapon.w
+      weapon.x = player.x + player.w / 2 - weapon.w / 2
   elseif love.keyboard.isDown('right') then
-      playerDirection = 2
-      playerX = playerX + playerSpeed * dt
-      weaponPosition()
+      player.dir = 2
+      weapon.dirX = 1
+      weapon.dirY = 0
+      player.x = player.x + player.maxSpeed * dt
+      weapon.x = player.x + player.w
+      weapon.y = player.y + player.h / 2 - weapon.h / 2
+  elseif love.keyboard.isDown('down') then
+      player.dir = 3
+      weapon.dirX = 0
+      weapon.dirY = 1
+      player.y = player.y + player.maxSpeed * dt
+      weapon.y = player.y + player.h
+      weapon.x = player.x + player.w / 2 - weapon.w / 2
+  elseif love.keyboard.isDown('left') then
+      player.dir = 4
+      weapon.dirX = -1
+      weapon.dirY = 0
+      player.x = player.x - player.maxSpeed * dt
+      weapon.x = player.x - weapon.w
+      weapon.y = player.y + player.h / 2 - weapon.h / 2
   end
 
   -- weapon shooting
   if love.keyboard.isDown('space') then
     if weaponTimer >= 0.5 then
       weaponTimer = 0
-
-      table.insert(weaponShots, {x = weaponX, y = weaponY, XDirection = weaponXDirection, YDirection = weaponYDirection, timeLeft = 4})
+      table.insert(shots, {x = weapon.x, y = weapon.y, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
     end
   end
 
-  -- shots coming out of the weapon
-  for weaponShotsIndex = #weaponShots, 1, -1 do
-    local weaponShot = weaponShots[weaponShotsIndex]
+  -- weapon shooting
+  for shotsIndex = #shots, 1, -1 do
+    local shot = shots[shotsIndex]
 
-    weaponShot.timeLeft = weaponShot.timeLeft - dt
-    if weaponShot.timeLeft <= 0 then
-      table.remove(weaponShots, weaponShotsIndex)
+    shot.timeLeft = shot.timeLeft - dt
+    if shot.timeLeft <= 0 then
+      table.remove(shots, shotsIndex)
     else
-      local weaponSpeed = 500
-
-      weaponShot.x = (weaponShot.x + weaponShot.XDirection * weaponSpeed * dt) % arenaWidth
-      weaponShot.y = (weaponShot.y + weaponShot.YDirection * weaponSpeed * dt) % arenaHeight
+      shot.x = (shot.x + shot.dirX * weapon.maxSpeed * dt)
+      shot.y = (shot.y + shot.dirY * weapon.maxSpeed * dt)
     end
 
     -- weapon shot collision detection
-    if AABB(weaponShot.x, weaponShot.y, 5, 5, enemyX, enemyY, enemyWidth, enemyHeight) then
-      enemyX = math.random(50, 750)
-      enemyY = math.random(50, 550)
-      table.remove(weaponShots, weaponShotsIndex)
+    if AABB(shot.x, shot.y, 5, 5, enemy.x, enemy.y, enemy.w, enemy.h) then
+      enemy.x = math.random(50, 750)
+      enemy.y = math.random(50, 550)
+      table.remove(shots, shotsIndex)
       enemiesShot = enemiesShot + 1
     end
   end
 
-  -- weapon position and direction
-  function weaponPosition()
-    if playerDirection == 1 then
-      weaponXDirection = 0
-      weaponYDirection = -1
-      weaponHeight = weaponLong
-      weaponWidth = weaponShort
-      weaponX = playerX + playerWidth / 2 - weaponWidth / 2
-      weaponY = playerY - playerHeight / 2
-    elseif playerDirection == 2 then
-      weaponXDirection = 1
-      weaponYDirection = 0
-      weaponHeight = weaponShort
-      weaponWidth = weaponLong
-      weaponX = playerX + playerWidth + weaponWidth / 2
-      weaponY = playerY + playerHeight / 2 - weaponHeight / 2
-    elseif playerDirection == 3 then
-      weaponXDirection = 0
-      weaponYDirection = 1
-      weaponHeight = weaponLong
-      weaponWidth = weaponShort
-      weaponX = playerX + playerWidth / 2 - weaponWidth / 2
-      weaponY = playerY + playerHeight + weaponHeight / 2
-    elseif playerDirection == 4 then
-      weaponXDirection = -1
-      weaponYDirection = 0
-      weaponHeight = weaponShort
-      weaponWidth = weaponLong
-      weaponX = playerX - playerWidth / 2 - weaponHeight / 2
-      weaponY = playerY + playerHeight / 2 - weaponHeight / 2
-    end
-  end
-
-
   -- player position - loops around screen
-  playerX = (playerX + playerSpeedX * dt) % arenaWidth
-  playerY = (playerY + playerSpeedY * dt) % arenaHeight
+  player.x = (player.x + player.speedX * dt) --% arenaWidth
+  player.y = (player.y + player.speedY * dt) --% arenaHeight
+
 
   -- weapon collision detection
-  if AABB(weaponX, weaponY, weaponWidth, weaponHeight, enemyX, enemyY, enemyWidth, enemyHeight) then
-    enemyX = math.random(50, 750)
-    enemyY = math.random(50, 550)
+  if AABB(weapon.x, weapon.y, weapon.w, weapon.h, enemy.x, enemy.y, enemy.w, enemy.h) then
+    enemy.x = math.random(50, 750)
+    enemy.y = math.random(50, 550)
     enemiesShot = enemiesShot + 1
   end
 
   -- player collision detection ends game
-  if AABB(playerX, playerY, playerWidth, playerHeight, enemyX, enemyY, enemyWidth, enemyHeight) then
+  if AABB(player.x, player.y, player.w, player.h, enemy.x, enemy.y, enemy.w, enemy.h) then
     gamestart = false
     reset()
   end
 
---[[ this doesn't work yet
-  if enemiesShot > 4 and enemiesShot < 10 then
+  if enemiesShot == 5 then
     level = 2
-    quiet()
-    levelTwoSounds()
-  elseif enemiesShot > 9 and enemiesShot < 15 then
-    level = 3
-    quiet()
-    levelThreeSounds()
-  elseif enemiesShot > 14 then
-    level = 4
-    quiet()
-    levelOneSounds()
   end
-]]
 
 end -- update
 
---[[ ---------------------------------------------------------------
+--[[----------------------------------------------------------------
   LOVE.DRAW
 --------------------------------------------------------------------]]
 function love.draw()
@@ -232,63 +191,47 @@ function love.draw()
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
-    camera:attach()
+    --camera:attach()
+      splashText();  -- need to get this working
+    --camera:detach()
 
-    splashText();  -- need to get this working
-
-    camera:detach()
-    camera:draw()
   -- if the game has started, then do all this
   elseif gamestart then
 
-    -- start camera function
     camera:attach()
+      -- background
+      love.graphics.setColor(1, 1, 1)
+      love.graphics.draw(bg, 0, 0)
 
-    --[[ monshine wrapper example
-    effect(function()
-      love.graphics.rectangle("fill", 300,200, 200,200)
-    end)
-    ]]
+      -- player
+      love.graphics.setColor(0, 0, 1)
+      love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
 
-    -- background
-    love.graphics.setColor(.8, .8, .8)
-    love.graphics.rectangle('fill', 0, 0, 800, 600)
-
-    -- player
-    love.graphics.setColor(0, 0, 1)
-    love.graphics.rectangle('fill', playerX, playerY, playerWidth, playerHeight)
-
-    -- weapon
-    love.graphics.setColor(0.5, 0, 0)
-    love.graphics.rectangle('fill', weaponX, weaponY, weaponWidth, weaponHeight)
-
-    for weaponShotIndex, weaponShot in ipairs(weaponShots) do
+      -- weapon
       love.graphics.setColor(0.5, 0, 0)
-      love.graphics.rectangle('fill', weaponShot.x, weaponShot.y, 5, 5)
-    end
+      love.graphics.rectangle('fill', weapon.x, weapon.y, weapon.w, weapon.h)
 
-    -- enemy
-    love.graphics.setColor(1, 0, 0)
-    --love.graphics.print(enemyHeight, 200, 200)
-    love.graphics.rectangle('fill', enemyX, enemyY, enemyWidth, enemyHeight)
+      for shotIndex, shot in ipairs(shots) do
+        love.graphics.setColor(0.5, 0, 0)
+        love.graphics.rectangle('fill', shot.x, shot.y, 5, 5)
+      end
 
+      -- enemy
+      love.graphics.setColor(1, 0, 0)
+      love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
-    scoreText()
+      scoreText()
 
     camera:detach()
-    camera:draw() -- Call this here if you're using camera:fade,
-                  -- camera:flash or debug drawing the deadzone
   end -- if else
 
 end -- draw
 
---[[ ---------------------------------------------------------------
+--[[----------------------------------------------------------------
   OTHER FUNCTIONS
 --------------------------------------------------------------------]]
 
-
 -- AABB collision detection function.
--- Takes two objects' x, y coordinates with width and height values.
 function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
 
   return x1 < x2 + w2 and
@@ -297,7 +240,6 @@ function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
          y2 < y1 + h1
 
 end -- AABB
-
 
 -- key press function
 function love.keypressed(key)

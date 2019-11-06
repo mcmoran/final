@@ -12,11 +12,11 @@ function splashText()
   love.graphics.rectangle('fill', 0, 0, 800, 600)
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(defaultFont)
-  love.graphics.print("1. Press Return to start the game.", arenaWidth / 2 - 100, arenaHeight / 2)
-  love.graphics.print("2. Press escape to leave the game", arenaWidth / 2 - 100, arenaHeight / 2 + 20)
-  love.graphics.print("GAME CONTROLS:", arenaWidth / 2 - 100, arenaHeight / 2 + 80)
-  love.graphics.print("Arrow keys move the player around", arenaWidth / 2 - 100, arenaHeight / 2 + 100)
-  love.graphics.print("Space button shoots", arenaWidth / 2 - 100, arenaHeight / 2 + 120)
+  love.graphics.print("1. Press Return to start the game.", SCREEN_X / 2 - 100, SCREEN_Y / 2)
+  love.graphics.print("2. Press escape to leave the game", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 20)
+  love.graphics.print("GAME CONTROLS:", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 80)
+  love.graphics.print("Arrow keys move the player around", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 100)
+  love.graphics.print("Space button shoots", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 120)
 
 end -- splashText
 
@@ -29,5 +29,9 @@ function scoreText()
   love.graphics.print(enemiesShot, 120, 10)
   love.graphics.print("Current Level:", 10, 30)
   love.graphics.print(level, 120, 30)
+  love.graphics.print("Player X: ", 10, 50)
+  love.graphics.print(player.x, 120, 50)
+  love.graphics.print("Player Y: ", 10, 70)
+  love.graphics.print(player.y, 120, 70)
 
 end
