@@ -20,7 +20,7 @@ function love.load()
   MAX_WINDOW_X = SCREEN_X * 2
   MAX_WINDOW_Y = SCREEN_Y * 2
 
-  bg = love.graphics.newImage('bg.jpg')
+  bg = love.graphics.newImage('bg.png')
   --love.graphics.setDefaultFilter('nearest', 'nearest')
   love.window.setMode(SCREEN_X, SCREEN_Y)
 
@@ -65,8 +65,8 @@ function love.load()
     player.dir = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
 
     -- enemy resets
-    enemy.x = math.random(10, 790)
-    enemy.y = math.random(10, 590)
+    enemy.x = math.random(10, 1590)
+    enemy.y = math.random(10, 1190)
     enemy.speedX = 0
     enemy.speedY = 0
     enemiesShot = 0
@@ -152,8 +152,8 @@ function love.update(dt)
 
     -- weapon shot collision detection
     if AABB(shot.x, shot.y, shot.w, shot.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-      enemy.x = math.random(50, 750)
-      enemy.y = math.random(50, 550)
+      enemy.x = math.random(50, 1550)
+      enemy.y = math.random(50, 1150)
       table.remove(shots, shotsIndex)
       enemiesShot = enemiesShot + 1
     end
@@ -220,9 +220,11 @@ function love.draw()
       love.graphics.setColor(1, 0, 0)
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
-      scoreText()
 
     camera:detach()
+
+    scoreText()
+
   end -- if else
 
 end -- draw
