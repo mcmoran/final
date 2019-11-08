@@ -9,7 +9,7 @@ defaultFont = love.graphics.newFont(14)
 function splashText()
 
   love.graphics.setColor(1, 1, 1)
-  love.graphics.rectangle('fill', 0, 0, 800, 600)
+  love.graphics.rectangle('fill', 0, 0, SCREEN_X, SCREEN_Y)
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(defaultFont)
   love.graphics.print("1. Press Return to start the game.", SCREEN_X / 2 - 100, SCREEN_Y / 2)
