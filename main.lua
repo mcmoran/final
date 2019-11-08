@@ -23,8 +23,9 @@ function love.load()
   -- world creation
   world = bump.newWorld()
   --blocks variable for the items in the world that have collisions
-  blocks = {}
+  blocks1 = {}
   blocks2 = {}
+  blocks3 = {}
 
   -- gamescreen constants
   SCREEN_X = 960
@@ -95,8 +96,8 @@ function love.load()
     player.dir = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
 
     -- enemy resets
-    enemy.x = math.random(10, 1590)
-    enemy.y = math.random(10, 1190)
+    enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
+    enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
     enemy.speedX = 0
     enemy.speedY = 0
     enemiesShot = 0
@@ -147,6 +148,8 @@ function love.update(dt)
       end
     end
     change = false
+    player.x = MAX_WINDOW_X / 2
+    player.y = MAX_WINDOW_Y / 2
   end
 
   -- draw level 2
@@ -163,6 +166,8 @@ function love.update(dt)
       end
     end
     change = false
+    player.x = MAX_WINDOW_X / 2
+    player.y = MAX_WINDOW_Y / 2
   end
 
   -- draw level 3
@@ -179,6 +184,8 @@ function love.update(dt)
       end
     end
     change = false
+    player.x = MAX_WINDOW_X / 2
+    player.y = MAX_WINDOW_Y / 2
   end
 
   -- weapon shoots
@@ -203,8 +210,8 @@ function love.update(dt)
 
     -- weapon shot collision detection
     if AABB(shot.x, shot.y, shot.w, shot.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-      enemy.x = math.random(50, 1550)
-      enemy.y = math.random(50, 1150)
+      enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
+      enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
       table.remove(shots, shotsIndex)
       enemiesShot = enemiesShot + 1
     end
@@ -212,8 +219,8 @@ function love.update(dt)
 
   -- weapon collision detection
   if AABB(weapon.x, weapon.y, weapon.w, weapon.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-    enemy.x = math.random(50, 750)
-    enemy.y = math.random(50, 550)
+    enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
+    enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
     enemiesShot = enemiesShot + 1
   end
 
@@ -266,7 +273,7 @@ function love.draw()
       end
 
       -- enemy
-      love.graphics.setColor(0.5, 0.5, 0.5)
+      love.graphics.setColor(1, 0, 0)
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
 
@@ -329,25 +336,35 @@ function addBlock(x, y, w, h)
   --local block = {x = x, y = y, w = w, h = h}
   if level == 1 then
     local block = {x = x, y = y, w = w, h = h}
-    blocks[#blocks + 1] = block
+    blocks1[#blocks1 + 1] = block
     world:add(block, x, y, w, h)
 
   elseif level == 2 then
     local block = {x = x, y = y, w = w, h = h}
     blocks2[#blocks2 + 1] = block
     world:add(block, x, y, w, h)
+
+  elseif level == 3 then
+    local block = {x = x, y = y, w = w, h = h}
+    blocks3[#blocks3 + 1] = block
+    world:add(block, x, y, w, h)
   end
 end
 
 function removeBlocks()
+  if level == 3 then
+    for i = 1, #blocks2 do
+      world:remove(blocks2[i])
+    end
+  end
   if level == 2 then
-    for i = 1, #blocks do
-      world:remove(blocks[i])
+    for i = 1, #blocks1 do
+      world:remove(blocks1[i])
     end
   end
   if level == 1 then
-    for i = 1, #blocks2 do
-      world:remove(blocks2[i])
+    for i = 1, #blocks1 do
+      world:remove(blocks1[i])
     end
   end
 end
