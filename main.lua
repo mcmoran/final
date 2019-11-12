@@ -34,7 +34,7 @@ function love.load()
   MAX_WINDOW_X = SCREEN_X * 4
   MAX_WINDOW_Y = SCREEN_Y * 1
   -- tile sizes
-  TILE_SIZE = 64
+  TILE_SIZE = 32
 
   --levels
   level = 1
@@ -42,7 +42,7 @@ function love.load()
 
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
-            speedX = 0, speedY = 0, maxSpeed = 300,
+            speedX = 0, speedY = 0, maxSpeed = 600,
             dir = 1, dirX = 0, dirY = 0 }
 
   -- weapon
@@ -166,8 +166,6 @@ function love.update(dt)
       end
     end
     change = false
-    player.x = MAX_WINDOW_X / 2
-    player.y = MAX_WINDOW_Y / 2
   end
 
   -- draw level 3
@@ -184,8 +182,6 @@ function love.update(dt)
       end
     end
     change = false
-    player.x = MAX_WINDOW_X / 2
-    player.y = MAX_WINDOW_Y / 2
   end
 
   -- weapon shoots
@@ -231,8 +227,11 @@ function love.update(dt)
   end
 
   -- testing levels
-  if enemiesShot == 5 then
+  if enemiesShot == 2 then
     level = 2
+    player.x = 1000
+    player.y = 1000
+    enemiesShot = 0
   end
 
   if enemiesShot == 10 then
@@ -362,11 +361,11 @@ function removeBlocks()
       world:remove(blocks1[i])
     end
   end
-  if level == 1 then
+  --[[if level == 1 then
     for i = 1, #blocks1 do
       world:remove(blocks1[i])
     end
-  end
+  end]]
 end
 
 -- AABB collision detection function.
