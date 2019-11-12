@@ -34,7 +34,7 @@ function love.load()
   MAX_WINDOW_X = SCREEN_X * 4
   MAX_WINDOW_Y = SCREEN_Y * 1
   -- tile sizes
-  TILE_SIZE = 32
+  TILE_SIZE = 64
 
   --levels
   level = 1
@@ -231,6 +231,8 @@ function love.update(dt)
     level = 2
     player.x = 1000
     player.y = 1000
+    camera:follow(player.x, player.y)
+
     enemiesShot = 0
   end
 
