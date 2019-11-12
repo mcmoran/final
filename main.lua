@@ -34,7 +34,7 @@ function love.load()
   MAX_WINDOW_X = SCREEN_X * 4
   MAX_WINDOW_Y = SCREEN_Y * 1
   -- tile sizes
-  TILE_SIZE = 64
+  TILE_SIZE = 32
 
   --levels
   level = 1

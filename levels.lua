@@ -102,7 +102,7 @@ function drawLevels()
           love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
         elseif levelMap1[j][k] == 0 then --if the tile is 0 it's white.
           love.graphics.setColor(1, 1, 1)
-          love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+          love.graphics.draw(grass, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
         end -- if
       end -- for
     end -- for
