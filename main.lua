@@ -184,6 +184,22 @@ function love.update(dt)
     change = false
   end
 
+  -- draw level 3
+  if level == 4 and change then
+    removeBlocks()
+
+    for j = 1, #levelMap4 do
+      local row = levelMap4[j]
+      for k = 1, #row do
+        if levelMap4[j][k] == 1 or levelMap4[j][k] == 2 then -- if the tile is a 1 then we add it to the bump world in this example.
+          --love tables start at 1 but the window dimensions start at 0, so we minus 1 to start at 0. it's weird but that's how it goes.
+          addBlock((k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+        end
+      end
+    end
+    change = false
+  end
+
   -- weapon shoots
   if love.keyboard.isDown('space') then
     if weaponTimer >= 0.5 then
@@ -236,6 +252,11 @@ function love.update(dt)
 
   if enemiesShot == 2 and level == 2 then
     level = 3
+    levelReset()
+  end
+
+  if enemiesShot == 3 and level == 3 then
+    level = 4
     levelReset()
   end
 
@@ -360,10 +381,20 @@ function addBlock(x, y, w, h)
     local block = {x = x, y = y, w = w, h = h}
     blocks3[#blocks3 + 1] = block
     world:add(block, x, y, w, h)
+
+  elseif level == 4 then
+    local block = {x = x, y = y, w = w, h = h}
+    blocks4[#blocks4 + 1] = block
+    world:add(block, x, y, w, h)
   end
 end
 
 function removeBlocks()
+  if level == 4 then
+    for i = 1, #blocks3 do
+      world:remove(blocks3[i])
+    end
+  end
   if level == 3 then
     for i = 1, #blocks2 do
       world:remove(blocks2[i])
