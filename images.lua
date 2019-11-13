@@ -7,4 +7,6 @@ image manipulations like sprites
 
 -- exampleImage = love.graphics.newImage("imagename.png")
 grass = love.graphics.newImage("bg-grass.png")
+
+tempLeftPlayer = love.graphics.newImage("knightTemp.png")
 -- this is a new comment

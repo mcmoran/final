@@ -229,18 +229,14 @@ function love.update(dt)
   -- testing levels
   if enemiesShot == 2 and level == 1 then
     level = 2
-    player.x = 100
-    player.y = 100
-    camera:follow(player.x, player.y)
+    levelReset()
 
     enemiesShot = 0
   end
 
   if enemiesShot == 2 and level == 2 then
     level = 3
-    player.x = 100
-    player.y = 100
-    enemiesShot = 0
+    levelReset()
   end
 
 end -- update
@@ -263,8 +259,9 @@ function love.draw()
       drawLevels()
 
       -- player
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
+      love.graphics.setColor(1, 1, 1)
+      love.graphics.draw(tempLeftPlayer, player.x, player.y)
+      --love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
 
       -- weapon
       love.graphics.setColor(0, 0, 0)
@@ -293,6 +290,17 @@ end -- draw
   OTHER FUNCTIONS
 --------------------------------------------------------------------]]
 
+-- levelReset function
+
+function levelReset()
+
+  player.x = 100
+  player.y = 100
+  weapon.x = player.x + player.w / 2
+  weapon.y = player.y + player.h / 2
+  enemiesShot = 0
+
+end
 -- player drawing
 function updatePlayer(dt)
   local speed = player.speed
