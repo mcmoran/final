@@ -227,17 +227,20 @@ function love.update(dt)
   end
 
   -- testing levels
-  if enemiesShot == 2 then
+  if enemiesShot == 2 and level == 1 then
     level = 2
-    player.x = 1000
-    player.y = 1000
+    player.x = 100
+    player.y = 100
     camera:follow(player.x, player.y)
 
     enemiesShot = 0
   end
 
-  if enemiesShot == 10 then
+  if enemiesShot == 2 and level == 2 then
     level = 3
+    player.x = 100
+    player.y = 100
+    enemiesShot = 0
   end
 
 end -- update
