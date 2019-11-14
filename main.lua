@@ -49,13 +49,10 @@ function love.load()
   gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
   gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
 
-  robotIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
-  robotWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
-
   playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
   playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
 
-  --robot = {x = 80, y = 80, w = 64, h = 58, speed = 600, idle = true, dir = 1}
+  --robot = {x = 80, y = 80, w = 64, h = 58, speed = 600, idle = true, dir =
   -- weapon
   weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 12, h = 12,
             speedX = 0, speedY = 0, maxSpeed = 600,
@@ -63,12 +60,6 @@ function love.load()
 
   -- enemy
   enemy = {x = 0, y = 0, w = 32, h = 32, speed = 100}
-
-
-
-  --bg = love.graphics.newImage('bg.png')
-  --love.graphics.setDefaultFilter('nearest', 'nearest')
-  --love.window.setMode(SCREEN_X, SCREEN_Y)
 
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
   love.graphics.setDefaultFilter('nearest', 'nearest')
@@ -408,7 +399,7 @@ function updatePlayer(dt)
   end
   if love.keyboard.isDown('down') then
     player.idle = false
-    player.dir = 3
+    player.dir = 1
     weapon.dirX = 0
     weapon.dirY = 1
     weapon.y = player.y + player.h
