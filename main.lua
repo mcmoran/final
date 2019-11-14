@@ -44,15 +44,18 @@ function love.load()
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
             speedX = 0, speedY = 0, maxSpeed = 600,
-            dir = 1, dirX = 0, dirY = 0 }
+            dir = 1, dirX = 0, dirY = 0, idle = true }
 
-  gridIdle = anim8.newGrid(70, 56, robotIdleImage:getWidth(), robotIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
-  gridWalk = anim8.newGrid(70, 60, robotWalkImage:getWidth(), robotWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
+  gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
+  gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
 
   robotIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
   robotWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
 
-  robot = {x = 80, y = 80, w = 64, h = 58, speed = 250, idle = true, dir = 1}
+  playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
+  playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
+
+  --robot = {x = 80, y = 80, w = 64, h = 58, speed = 600, idle = true, dir = 1}
   -- weapon
   weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 12, h = 12,
             speedX = 0, speedY = 0, maxSpeed = 600,
@@ -70,7 +73,7 @@ function love.load()
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
   love.graphics.setDefaultFilter('nearest', 'nearest')
   world:add(player, player.x, player.y, player.w, player.h)
-  world:add(robot, robot.x, robot.y, robot.w, robot.h)
+  --world:add(robot, robot.x, robot.y, robot.w, robot.h)
 
   for j = 1, #levelMap1 do
     local row = levelMap1[j]
@@ -133,7 +136,7 @@ function love.update(dt)
   -- library updates
   camera:update(dt)
   camera:follow(player.x, player.y)
-  camera:follow(robot.x, robot.y)
+  --camera:follow(robot.x, robot.y)
 
   -- timers
   timer = timer + dt
@@ -143,9 +146,8 @@ function love.update(dt)
 
   collision_length = 0
   updatePlayer(dt)
-  updateRobot(dt)
-  robotIdle:update(dt) --updates the animations.
-  robotWalk:update(dt)
+  playerIdle:update(dt) --updates the animations.
+  playerWalk:update(dt)
 
   -- draw level 1
   if level == 1 and change then
@@ -256,19 +258,19 @@ function love.update(dt)
   end
 
   -- testing levels
-  if enemiesShot == 2 and level == 1 then
+  if enemiesShot == 4 and level == 1 then
     level = 2
     levelReset()
 
     enemiesShot = 0
   end
 
-  if enemiesShot == 2 and level == 2 then
+  if enemiesShot == 4 and level == 2 then
     level = 3
     levelReset()
   end
 
-  if enemiesShot == 3 and level == 3 then
+  if enemiesShot == 4 and level == 3 then
     level = 4
     levelReset()
   end
@@ -292,21 +294,21 @@ function love.draw()
 
       drawLevels()
 
-      if robot.idle then
+      if player.idle then
         love.graphics.setColor(0, 0, 0, 0.3)
-        love.graphics.rectangle('fill', (robot.x + robot.w / 2) - 40, robot.y + 45, robot.w + 18, (robot.h - 16) / 2) --shadow
+        love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2) --shadow
         love.graphics.setColor(1, 1, 1)
-        robotIdle:draw(robotIdleImage, robot.x + robot.w / 2, robot.y, 0, robot.dir, 1, robot.w / 2, 0) --notice the x, y and robot.w offset
+        playerIdle:draw(playerIdleImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0) --notice the x, y and robot.w offset
       else
         love.graphics.setColor(0, 0, 0, 0.3)
-        love.graphics.rectangle('fill', (robot.x + robot.w / 2) - 40, robot.y + 45, robot.w + 18, (robot.h - 16) / 2)
+        love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
         love.graphics.setColor(1, 1, 1)
-        robotWalk:draw(robotWalkImage, robot.x + robot.w / 2, robot.y, 0, robot.dir, 1, robot.w / 2, 0)
+        playerWalk:draw(playerWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
       end
 
       -- player
-      love.graphics.setColor(1, 1, 1)
-      love.graphics.draw(tempLeftPlayer, player.x, player.y)
+      --love.graphics.setColor(1, 1, 1)
+      --love.graphics.draw(playerIdleImage, player.x, player.y)
       --love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
 
       -- weapon
@@ -388,14 +390,16 @@ function updatePlayer(dt)
 
   local dx, dy = 0, 0
   if love.keyboard.isDown('right') then
-    player.dir = 2
+    player.idle = false
+    player.dir = 1 --2
     weapon.dirX = 1
     weapon.dirY = 0
     weapon.x = player.x + player.w
     weapon.y = player.y + player.h / 2 - weapon.h / 2
     dx = player.maxSpeed * dt
   elseif love.keyboard.isDown('left') then
-    player.dir = 4
+    player.idle = false
+    player.dir = -1 -- 4
     weapon.dirX = -1
     weapon.dirY = 0
     weapon.x = player.x - weapon.w
@@ -403,6 +407,7 @@ function updatePlayer(dt)
     dx = -player.maxSpeed * dt
   end
   if love.keyboard.isDown('down') then
+    player.idle = false
     player.dir = 3
     weapon.dirX = 0
     weapon.dirY = 1
@@ -410,6 +415,7 @@ function updatePlayer(dt)
     weapon.x = player.x + player.w / 2 - weapon.w / 2
     dy = player.maxSpeed * dt
   elseif love.keyboard.isDown('up') then
+    player.idle = false
     player.dir = 1
     weapon.dirX = 0
     weapon.dirY = -1
@@ -424,32 +430,6 @@ function updatePlayer(dt)
   end
 end
 
-function updateRobot(dt)
-  local speed = robot.speed
-
-  local dx, dy = 0, 0
-  if love.keyboard.isDown('right') then
-    dx = speed * dt
-    robot.dir = 1
-    robot.idle = false
-  elseif love.keyboard.isDown('left') then
-    dx = -speed * dt
-    robot.dir = -1
-    robot.idle = false
-  end
-  if love.keyboard.isDown('down') then
-    dy = speed * dt
-    robot.idle = false
-  elseif love.keyboard.isDown('up') then
-    dy = -speed * dt
-    robot.idle = false
-  end
-
-  if dx ~= 0 or dy ~= 0 then
-    --local collisions, actualX, actualY
-    robot.x, robot.y, collisions, collision_length = world:move(robot, robot.x + dx, robot.y + dy)
-  end
-end
 
 -- Block functions
 function addBlock(x, y, w, h)
@@ -528,6 +508,6 @@ end -- keypressed
 
 function love.keyreleased(key)
   if key == 'up' or key == 'down' or key == 'left' or key == 'right' then
-    robot.idle = true
+    player.idle = true
   end
 end

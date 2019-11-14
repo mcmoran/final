@@ -9,9 +9,9 @@ image manipulations like sprites
 grass = love.graphics.newImage("bg-grass.png")
 bridge = love.graphics.newImage("bridge.png")
 
--- from teacher's assets 
-robotIdleImage = love.graphics.newImage('robotIdle.png') --the master sprite sheets of the animation.
-robotWalkImage = love.graphics.newImage('robotWalk.png')
+-- from teacher's assets
+playerIdleImage = love.graphics.newImage('robotIdle.png') --the master sprite sheets of the animation.
+playerWalkImage = love.graphics.newImage('robotWalk.png')
 
-tempLeftPlayer = love.graphics.newImage("knightTemp.png")
+--tempLeftPlayer = love.graphics.newImage("knightTemp.png")
 -- this is a new comment
