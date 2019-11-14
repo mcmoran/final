@@ -132,7 +132,7 @@ function drawLevels()
           love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
         elseif levelMap2[j][k] == 0 then --if the tile is 0 it's yellow.
           love.graphics.setColor(1, 1, 1)
-          love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+          love.graphics.draw(bridge, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
         end -- if
       end -- for
     end -- for
