@@ -7,7 +7,10 @@
 --1) Fae
 
   --a) Wisps
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   wisps = {}
   wisps.x = 1800
   wisps.y = 300
@@ -21,8 +24,13 @@
 
   --a) Raptor
   raptor = {}
+<<<<<<< HEAD
   raptor.x = 0
   raptor.y = 0
+=======
+  raptor.x = 1800
+  raptor.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   raptor.speedx = 200
   raptor.speedy = 200
   raptorHitsToKill = 1
@@ -30,8 +38,13 @@
 
   --b) Stegosaurus
   stego = {}
+<<<<<<< HEAD
   stego.x = 0
   stego.y = 0
+=======
+  stego.x = 800
+  stego.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   stego.speedx = 70
   stego.speedy = 70
   stegoHitsToKill = 3
@@ -39,10 +52,17 @@
 
   --c) Spinosaurus
   spino = {}
+<<<<<<< HEAD
   spino.x = 0
   spino.y = 0
   spino.speedx = 0
   spino.speedy = 0
+=======
+  spino.x = 2000
+  spino.y = 300
+  spino.speedx = 50
+  spino.speedy = 50
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   spinoHitsToKill = 3
   -- Slow enemy, hunts down the player around the map.Take 3 hits to kill.
 
@@ -51,8 +71,13 @@
 
   --a) Soldier
   soldier = {}
+<<<<<<< HEAD
   soldier.x = 0
   soldier.y = 0
+=======
+  soldier.x = 600
+  soldier.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   soldier.speedx = 0
   soldier.speedy = 0
   soldierHitsToKill = 3
@@ -60,8 +85,13 @@
 
   --b) Fodder
   fodder = {}
+<<<<<<< HEAD
   fodder.x = 0
   fodder.y = 0
+=======
+  fodder.x = 300
+  fodder.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   fodder.speedx = 150
   fodder.speedy = 150
   fodderHitsToKill = 1
@@ -72,8 +102,13 @@
 
   --1) The "Demon" Knight
   demon = {}
+<<<<<<< HEAD
   demon.x = 0
   demon.y = 0
+=======
+  demon.x = 3600
+  demon.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   demon.speedx = 50
   demon.speedy = 50
   demonHitsToKill = 10
@@ -82,8 +117,13 @@
 
   --2) T-rex
   trex = {}
+<<<<<<< HEAD
   trex.x = 0
   trex.y = 0
+=======
+  trex.x = 3000
+  trex.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   trex.speedx = 50
   trex.speedy = 50
   trexHitsToKill = 10
@@ -92,8 +132,13 @@
 
   --3) UFO/Big Alien
   alien = {}
+<<<<<<< HEAD
   alien.x = 0
   alien.y = 0
+=======
+  alien.x = 3300
+  alien.y = 300
+>>>>>>> 2cfd1c33b45a25176b76294e5eaf23fb3c463718
   alien.speedx = 50
   alien.speedy = 50
   alienHitsToKill = 10
