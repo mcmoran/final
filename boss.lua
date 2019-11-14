@@ -7,7 +7,6 @@
 --1) Fae
 
   --a) Wisps
-if level == 1 and change then
   wisps = {}
   wisps.x = 1800
   wisps.y = 300
@@ -21,8 +20,8 @@ if level == 1 and change then
 
   --a) Raptor
   raptor = {}
-  raptor.x =
-  raptor.y =
+  raptor.x = 1800
+  raptor.y = 300
   raptor.speedx = 200
   raptor.speedy = 200
   raptorHitsToKill = 1
@@ -30,8 +29,8 @@ if level == 1 and change then
 
   --b) Stegosaurus
   stego = {}
-  stego.x =
-  stego.y =
+  stego.x = 800
+  stego.y = 300
   stego.speedx = 70
   stego.speedy = 70
   stegoHitsToKill = 3
@@ -39,10 +38,10 @@ if level == 1 and change then
 
   --c) Spinosaurus
   spino = {}
-  spino.x =
-  spino.y =
-  spino.speedx =
-  spino.speedy =
+  spino.x = 2000
+  spino.y = 300
+  spino.speedx = 50
+  spino.speedy = 50
   spinoHitsToKill = 3
   -- Slow enemy, hunts down the player around the map.Take 3 hits to kill.
 
@@ -51,8 +50,8 @@ if level == 1 and change then
 
   --a) Soldier
   soldier = {}
-  soldier.x =
-  soldier.y =
+  soldier.x = 600
+  soldier.y = 300
   soldier.speedx = 0
   soldier.speedy = 0
   soldierHitsToKill = 3
@@ -60,8 +59,8 @@ if level == 1 and change then
 
   --b) Fodder
   fodder = {}
-  fodder.x =
-  fodder.y =
+  fodder.x = 300
+  fodder.y = 300
   fodder.speedx = 150
   fodder.speedy = 150
   fodderHitsToKill = 1
@@ -72,8 +71,8 @@ if level == 1 and change then
 
   --1) The "Demon" Knight
   demon = {}
-  demon.x =
-  demon.y =
+  demon.x = 3600
+  demon.y = 300
   demon.speedx = 50
   demon.speedy = 50
   demonHitsToKill = 10
@@ -82,8 +81,8 @@ if level == 1 and change then
 
   --2) T-rex
   trex = {}
-  trex.x =
-  trex.y =
+  trex.x = 3000
+  trex.y = 300
   trex.speedx = 50
   trex.speedy = 50
   trexHitsToKill = 10
@@ -92,8 +91,8 @@ if level == 1 and change then
 
   --3) UFO/Big Alien
   alien = {}
-  alien.x =
-  alien.y =
+  alien.x = 3300
+  alien.y = 300
   alien.speedx = 50
   alien.speedy = 50
   alienHitsToKill = 10

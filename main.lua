@@ -299,7 +299,7 @@ function love.draw()
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
       --wisps
-      love.graphics.setcolor (1, 1, 0)
+      love.graphics.setColor (1, 1, 0)
       love.graphics.rectangle('fill', wisps.x, wisps.y, 32, 32)
 
       --raptor
@@ -319,7 +319,7 @@ function love.draw()
       love.graphics.rectangle('fill', soldier.x, soldier.y, 64, 32)
 
       --alien fodder
-      love.graphics.setColor('fill', 0, 1, 0)
+      love.graphics.setColor(0, 1, 0)
       love.graphics.rectangle('fill', fodder.x, fodder.y, 32, 32)
 
       --The "Demon" Knight
