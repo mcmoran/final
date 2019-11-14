@@ -15,6 +15,7 @@ function love.load()
   require "boss" -- boss.lua file
 
   -- 3rd party
+  anim8 = require 'anim8'
   bump = require "bump" -- bump
   camera = require "camera" -- camera
   moonshine = require 'moonshine' -- moonshine
@@ -44,6 +45,9 @@ function love.load()
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
             speedX = 0, speedY = 0, maxSpeed = 600,
             dir = 1, dirX = 0, dirY = 0 }
+
+  gridIdle = anim8.newGrid(70, 56, robotIdleImage:getWidth(), robotIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
+  gridWalk = anim8.newGrid(70, 60, robotWalkImage:getWidth(), robotWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
 
   -- weapon
   weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 12, h = 12,
