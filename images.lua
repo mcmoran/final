@@ -6,8 +6,15 @@ image manipulations like sprites
 -- image loading
 
 -- background images
-grass = love.graphics.newImage("bg-grass.png")
+grass = love.graphics.newImage("grass base.png")
+grassv1 = love.graphics.newImage("bg-grass.png")
 bridge = love.graphics.newImage("bridge.png")
+grassv2 = love.graphics.newImage("grass v2.png")
+grassv3 = love.graphics.newImage("grass v3 rocks.png")
+grassv4 = love.graphics.newImage("grass v4 flowers.png")
+rockwall = love.graphics.newImage("rockwall.png")
+rockwallGrass = love.graphics.newImage("rockwall edge grass.png")
+
 
 -- player images
 --knightWalkImage = love.graphics.newImage("knight.png") -- the sprite for the knight
