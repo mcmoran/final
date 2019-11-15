@@ -44,13 +44,21 @@ function love.load()
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
             speedX = 0, speedY = 0, maxSpeed = 600,
-            dir = 1, dirX = 0, dirY = 0, idle = true }
+            dir = 1, facing = 'right', dirX = 0, dirY = 0, idle = true }
 
-  gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
-  gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
+  spriteKnightRight = anim8.newGrid(64, 64, knightRightWalkImage:getWidth(), knightRightWalkImage:getHeight())
+  spriteKnightLeft = anim8.newGrid(64, 64, knightLeftWalkImage:getWidth(), knightLeftWalkImage:getHeight())
+  spriteKnightFront = anim8.newGrid(64, 64, knightFrontWalkImage:getWidth(), knightFrontWalkImage:getHeight())
+  spriteKnightBack = anim8.newGrid(64, 64, knightBackWalkImage:getWidth(), knightBackWalkImage:getHeight())
+  --gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
+  --gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
 
-  playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
-  playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
+  knightWalkRight = anim8.newAnimation(spriteKnightRight('1 - 9', 1), 0.2)
+  knightWalkLeft = anim8.newAnimation(spriteKnightLeft('1 - 9', 1), 0.2)
+  knightWalkBack = anim8.newAnimation(spriteKnightBack('1 - 3', 1), 0.2)
+  knightWalkFront = anim8.newAnimation(spriteKnightFront('1 - 3', 1), 0.2)
+  --playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
+  --playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
 
   --robot = {x = 80, y = 80, w = 64, h = 58, speed = 600, idle = true, dir =
   -- weapon
@@ -137,8 +145,12 @@ function love.update(dt)
 
   collision_length = 0
   updatePlayer(dt)
-  playerIdle:update(dt) --updates the animations.
-  playerWalk:update(dt)
+  --playerIdle:update(dt) --updates the animations.
+  --playerWalk:update(dt)
+  knightWalkRight:update(dt)
+  knightWalkLeft:update(dt)
+  knightWalkFront:update(dt)
+  knightWalkBack:update(dt)
 
   -- draw level 1
   if level == 1 and change then
@@ -286,15 +298,31 @@ function love.draw()
       drawLevels()
 
       if player.idle then
-        love.graphics.setColor(0, 0, 0, 0.3)
-        love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2) --shadow
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2) --shadow
         love.graphics.setColor(1, 1, 1)
-        playerIdle:draw(playerIdleImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0) --notice the x, y and robot.w offset
-      else
-        love.graphics.setColor(0, 0, 0, 0.3)
-        love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.draw(knightStandImage, player.x, player.y)
+        --playerIdle:draw(KnightWalkRight, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0) --notice the x, y and robot.w offset
+      elseif player.facing == 'right' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
         love.graphics.setColor(1, 1, 1)
-        playerWalk:draw(playerWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        knightWalkRight:draw(knightRightWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      elseif player.facing == 'left' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkLeft:draw(knightLeftWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      elseif player.facing == 'up' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkBack:draw(knightBackWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      elseif player.facing == 'down' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkFront:draw(knightFrontWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
       end
 
       -- player
@@ -382,7 +410,8 @@ function updatePlayer(dt)
   local dx, dy = 0, 0
   if love.keyboard.isDown('right') then
     player.idle = false
-    player.dir = 1 --2
+    player.facing = 'right'
+    player.dir = 1
     weapon.dirX = 1
     weapon.dirY = 0
     weapon.x = player.x + player.w
@@ -390,7 +419,8 @@ function updatePlayer(dt)
     dx = player.maxSpeed * dt
   elseif love.keyboard.isDown('left') then
     player.idle = false
-    player.dir = -1 -- 4
+    player.facing = 'left'
+    player.dir = -1
     weapon.dirX = -1
     weapon.dirY = 0
     weapon.x = player.x - weapon.w
@@ -399,6 +429,7 @@ function updatePlayer(dt)
   end
   if love.keyboard.isDown('down') then
     player.idle = false
+    player.facing = 'down'
     player.dir = 1
     weapon.dirX = 0
     weapon.dirY = 1
@@ -407,6 +438,7 @@ function updatePlayer(dt)
     dy = player.maxSpeed * dt
   elseif love.keyboard.isDown('up') then
     player.idle = false
+    player.facing = 'up'
     player.dir = 1
     weapon.dirX = 0
     weapon.dirY = -1
@@ -463,11 +495,6 @@ function removeBlocks()
       world:remove(blocks1[i])
     end
   end
-  --[[if level == 1 then
-    for i = 1, #blocks1 do
-      world:remove(blocks1[i])
-    end
-  end]]
 end
 
 -- AABB collision detection function.
