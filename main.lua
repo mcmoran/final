@@ -43,7 +43,7 @@ function love.load()
 
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
-            speedX = 0, speedY = 0, maxSpeed = 600,
+            speedX = 0, speedY = 0, maxSpeed = 300,
             dir = 1, facing = 'right', dirX = 0, dirY = 0, idle = true }
 
   spriteKnightRight = anim8.newGrid(64, 64, knightRightWalkImage:getWidth(), knightRightWalkImage:getHeight())
@@ -53,10 +53,10 @@ function love.load()
   --gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
   --gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
 
-  knightWalkRight = anim8.newAnimation(spriteKnightRight('1 - 9', 1), 0.2)
-  knightWalkLeft = anim8.newAnimation(spriteKnightLeft('1 - 9', 1), 0.2)
-  knightWalkBack = anim8.newAnimation(spriteKnightBack('1 - 3', 1), 0.2)
-  knightWalkFront = anim8.newAnimation(spriteKnightFront('1 - 3', 1), 0.2)
+  knightWalkRight = anim8.newAnimation(spriteKnightRight('1 - 9', 1), 0.05)
+  knightWalkLeft = anim8.newAnimation(spriteKnightLeft('1 - 9', 1), 0.05)
+  knightWalkBack = anim8.newAnimation(spriteKnightBack('1 - 3', 1), 0.1)
+  knightWalkFront = anim8.newAnimation(spriteKnightFront('1 - 3', 1), 0.1)
   --playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
   --playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
 
