@@ -5,7 +5,8 @@ image manipulations like sprites
 
 -- image loading
 
--- background images
+-- BACKGROUND IMAGES --
+--level 1
 grass = love.graphics.newImage("grass base.png")
 grassv1 = love.graphics.newImage("bg-grass.png")
 bridge = love.graphics.newImage("bridge.png")
@@ -14,6 +15,13 @@ grassv3 = love.graphics.newImage("grass v3 rocks.png")
 grassv4 = love.graphics.newImage("grass v4 flowers.png")
 rockwall = love.graphics.newImage("rockwall.png")
 rockwallGrass = love.graphics.newImage("rockwall edge grass.png")
+
+--level 2
+futureWall_a1 = love.graphics.newImage("future-wall_a1.png")
+futureWall_a2 = love.graphics.newImage("future-wall_a2.png")
+futureWall_a3 = love.graphics.newImage("future-wall_a3.png")
+futureWall_a4 = love.graphics.newImage("future-wall_a4.png")
+futureWall_a5 = love.graphics.newImage("future-wall_a5.png")
 
 
 -- player images
