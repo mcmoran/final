@@ -367,7 +367,13 @@ end
 if level == 2 then
       --raptor
       love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor.x, raptor.y, 64, 64)
+      love.graphics.rectangle('fill', raptor1.x, raptor1.y, 64, 64)
+
+      love.graphics.setColor(0, 0, 1)
+      love.graphics.rectangle('fill', raptor2.x, raptor2.y, 64, 64)
+
+      love.graphics.setColor(0, 0, 1)
+      love.graphics.rectangle('fill', raptor3.x, raptor3.y, 64, 64)
 
       --stegosaurus
       love.graphics.setColor(0, 1, 1)

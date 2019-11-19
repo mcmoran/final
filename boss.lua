@@ -6,6 +6,7 @@
 
 --1) Fae
 
+<<<<<<< HEAD
 wisp = {}
 
 for i = 1, 4 do
@@ -24,16 +25,61 @@ wisp[3].y = 320
 wisp[4].x = 2600
 wisp[4].y = 200
 
+=======
+  --a) Wisps
+  wisp1 = {}
+  wisp1.x = 1200
+  wisp1.y = 190
+  wisp1.speedX = 100
+  wisp1.speedY = 100
+  wisp1HitsToKill = 1
+  -- Have already around the map and will chase player when they get close. Take 1 hit to kill.
+
+  wisp2 = {}
+  wisp2.x = 1600
+  wisp2.y = 400
+  wisp2.speedX = 100
+  wisp2.speedY = 100
+  wisp2HitsToKill = 1
+
+  wisp3 = {}
+  wisp3.x = 2200
+  wisp3.y = 320
+  wisp3.speedX = 100
+  wisp3.speedY = 100
+  wisp3HitsToKill = 1
+
+  wisp4 = {}
+  wisp4.x = 2600
+  wisp4.y = 200
+  wisp4.speedX = 100
+  wisp4.speedY = 100
+  wisp4HitsToKill = 1
+>>>>>>> 5ae72807c84c0e96bd1000b37072f1831594a92e
 
 --2) Dinosaurs
 
   --a) Raptor
-  raptor = {}
-  raptor.x = 1800
-  raptor.y = 300
-  raptor.speedx = 200
-  raptor.speedy = 200
-  raptorHitsToKill = 1
+  raptor1 = {}
+  raptor1.x = 1350
+  raptor1.y = 300
+  raptor1.speedx = 200
+  raptor1.speedy = 200
+  raptor1HitsToKill = 1
+
+  raptor2 = {}
+  raptor2.x = 1450
+  raptor2.y = 350
+  raptor2.speedx = 200
+  raptor2.speedy = 200
+  raptor2HitsToKill = 1
+
+  raptor3 = {}
+  raptor3.x = 1550
+  raptor3.y = 400
+  raptor3.speedx = 200
+  raptor3.speedy = 200
+  raptor3HitsToKill = 1
   -- Fast enemy, spread around the map, chases player when they get close. Take 1 hit to kill.
 
   --b) Stegosaurus

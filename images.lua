@@ -16,6 +16,16 @@ grassv4 = love.graphics.newImage("grass v4 flowers.png")
 rockwall = love.graphics.newImage("rockwall.png")
 rockwallGrass = love.graphics.newImage("rockwall edge grass.png")
 
+dirtpath1 = love.graphics.newImage("dirtpath1.jpg")
+dirtpath2 = love.graphics.newImage("dirtpath2.jpg")
+dirtpath3 = love.graphics.newImage("dirtpath3.jpg")
+dirtpath4 = love.graphics.newImage("dirtpath4.jpg")
+dirtpath5 = love.graphics.newImage("dirtpath5.jpg")
+dirtpath6 = love.graphics.newImage("dirtpath6.jpg")
+dirtpathedge = love.graphics.newImage("dirtpathedge.jpg")
+
+
+
 --level 2
 futureWall_a1 = love.graphics.newImage("future-wall_a1.png")
 futureWall_a2 = love.graphics.newImage("future-wall_a2.png")
