@@ -22,6 +22,9 @@ futureWall_a2 = love.graphics.newImage("future-wall_a2.png")
 futureWall_a3 = love.graphics.newImage("future-wall_a3.png")
 futureWall_a4 = love.graphics.newImage("future-wall_a4.png")
 futureWall_a5 = love.graphics.newImage("future-wall_a5.png")
+futureWall_b1 = love.graphics.newImage("future-wall_b1.png")
+futureWall_b2 = love.graphics.newImage("future-wall_b2.png")
+
 
 
 -- player images
