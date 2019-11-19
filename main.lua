@@ -40,6 +40,7 @@ function love.load()
   --levels
   level = 1
   change = false
+  fadeLevel = false
 
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
@@ -152,6 +153,11 @@ function love.update(dt)
   knightWalkFront:update(dt)
   knightWalkBack:update(dt)
 
+  -- fade levels
+  if fadeLevel then
+    camera:fade(0.25, {0, 0, 0, 2})
+  end
+
   -- draw level 1
   if level == 1 and change then
     removeBlocks()
@@ -166,6 +172,7 @@ function love.update(dt)
       end
     end
     change = false
+    fadeLevel = false
     player.x = MAX_WINDOW_X / 2
     player.y = MAX_WINDOW_Y / 2
   end
@@ -249,8 +256,8 @@ function love.update(dt)
 
   -- weapon collision detection
   if AABB(weapon.x, weapon.y, weapon.w, weapon.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-    enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
-    enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
+    --enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
+    --enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
     enemiesShot = enemiesShot + 1
   end
 
@@ -261,21 +268,24 @@ function love.update(dt)
   end
 
   -- testing levels
-  if enemiesShot == 4 and level == 1 then
+  if enemiesShot == 2 and level == 1 then
     level = 2
+    fadeLevel = true
     levelReset()
-
-    enemiesShot = 0
   end
 
-  if enemiesShot == 4 and level == 2 then
+  if enemiesShot == 2 and level == 2 then
     level = 3
+    fadeLevel = true
     levelReset()
+    fadeLevel = false
   end
 
-  if enemiesShot == 4 and level == 3 then
+  if enemiesShot == 2 and level == 3 then
     level = 4
+    fadeLevel = true
     levelReset()
+    fadeLevel = false
   end
 
 end -- update
@@ -345,18 +355,10 @@ function love.draw()
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 if level == 1 then
       --wisps
-      love.graphics.setColor (1, 1, 0)
-      love.graphics.rectangle('fill', wisp1.x, wisp1.y, 32, 32)
-
-      love.graphics.setColor (1, 1, 0)
-      love.graphics.rectangle('fill', wisp2.x, wisp2.y, 32, 32)
-
-      love.graphics.setColor (1, 1, 0)
-      love.graphics.rectangle('fill', wisp3.x, wisp3.y, 32, 32)
-
-      love.graphics.setColor (1, 1, 0)
-      love.graphics.rectangle('fill', wisp4.x, wisp4.y, 32, 32)
-
+      for i = 1, #wisp do
+        love.graphics.setColor(1, 1, 0)
+        love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
+      end 
       --The "Demon" Knight
       love.graphics.setColor(0, 0, 0)
       love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
@@ -411,6 +413,7 @@ end -- draw
 
 function levelReset()
 
+  fadeLevel = true
   player.x = 100
   player.y = 100
   weapon.x = player.x + player.w / 2

@@ -6,35 +6,24 @@
 
 --1) Fae
 
-  --a) Wisps
-  wisp1 = {}
-  wisp1.x = 1200
-  wisp1.y = 190
-  wisp1.speedX = 100
-  wisp1.speedY = 100
-  wispsHitsToKill = 1
-  -- Have already around the map and will chase player when they get close. Take 1 hit to kill.
+wisp = {}
 
-  wisp2 = {}
-  wisp2.x = 1600
-  wisp2.y = 400
-  wisp2.speedX = 100
-  wisp2.speedY = 100
-  wispsHitsToKill = 1
+for i = 1, 4 do
+  table.insert(wisp, {x = 0, y = 0, h = 32, w = 32, speedX = 1200, speedY = 100, shotsToKill = 1})
+end
 
-  wisp3 = {}
-  wisp3.x = 2200
-  wisp3.y = 320
-  wisp3.speedX = 100
-  wisp3.speedY = 100
-  wispsHitsToKill = 1
+wisp[1].x = 1200
+wisp[1].y = 900
 
-  wisp4 = {}
-  wisp4.x = 2600
-  wisp4.y = 200
-  wisp4.speedX = 100
-  wisp4.speedY = 100
-  wispsHitsToKill = 1
+wisp[2].x = 1600
+wisp[2].y = 400
+
+wisp[3].x = 2200
+wisp[3].y = 320
+
+wisp[4].x = 2600
+wisp[4].y = 200
+
 
 --2) Dinosaurs
 
