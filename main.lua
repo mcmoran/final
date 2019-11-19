@@ -13,7 +13,7 @@ function love.load()
   require "player" -- player.lua file
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
-
+  
   -- 3rd party
   bump = require "bump" -- bump
   camera = require "camera" -- camera
