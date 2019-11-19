@@ -52,7 +52,7 @@ levelMap2 = {  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 -- level 3
 levelMap3 = {  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-              { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+              { 1, 6, 5, 5, 4, 5, 3, 7, 7, 7, 6, 5, 8, 5, 4, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 5, 5, 4, 5, 3, 7, 7, 7, 6, 5, 8, 5, 4, 3, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
               { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
               { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
               { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -157,7 +157,28 @@ function drawLevels()
           love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
         elseif levelMap3[j][k] == 0 then --if the tile is 0 it's yellow.
           love.graphics.setColor(1, 1, 1)
-          love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+          love.graphics.draw(rockwall, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 3 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_a1, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 4 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_a2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 5 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_a3, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 6 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_a4, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 7 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_a5, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 8 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_b1, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap1[j][k] == 9 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(futureWall_b2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
         end -- if
       end -- for
     end -- for
