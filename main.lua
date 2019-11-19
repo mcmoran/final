@@ -15,6 +15,7 @@ function love.load()
   require "boss" -- boss.lua file
   
   -- 3rd party
+  anim8 = require 'anim8'
   bump = require "bump" -- bump
   camera = require "camera" -- camera
   moonshine = require 'moonshine' -- moonshine
@@ -34,7 +35,7 @@ function love.load()
   MAX_WINDOW_X = SCREEN_X * 4
   MAX_WINDOW_Y = SCREEN_Y * 1
   -- tile sizes
-  TILE_SIZE = 64
+  TILE_SIZE = 32
 
   --levels
   level = 1
@@ -43,8 +44,23 @@ function love.load()
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
             speedX = 0, speedY = 0, maxSpeed = 300,
-            dir = 1, dirX = 0, dirY = 0 }
+            dir = 1, facing = 'right', dirX = 0, dirY = 0, idle = true }
 
+  spriteKnightRight = anim8.newGrid(64, 64, knightRightWalkImage:getWidth(), knightRightWalkImage:getHeight())
+  spriteKnightLeft = anim8.newGrid(64, 64, knightLeftWalkImage:getWidth(), knightLeftWalkImage:getHeight())
+  spriteKnightFront = anim8.newGrid(64, 64, knightFrontWalkImage:getWidth(), knightFrontWalkImage:getHeight())
+  spriteKnightBack = anim8.newGrid(64, 64, knightBackWalkImage:getWidth(), knightBackWalkImage:getHeight())
+  --gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
+  --gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
+
+  knightWalkRight = anim8.newAnimation(spriteKnightRight('1 - 9', 1), 0.05)
+  knightWalkLeft = anim8.newAnimation(spriteKnightLeft('1 - 9', 1), 0.05)
+  knightWalkBack = anim8.newAnimation(spriteKnightBack('1 - 3', 1), 0.1)
+  knightWalkFront = anim8.newAnimation(spriteKnightFront('1 - 3', 1), 0.1)
+  --playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
+  --playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
+
+  --robot = {x = 80, y = 80, w = 64, h = 58, speed = 600, idle = true, dir =
   -- weapon
   weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 12, h = 12,
             speedX = 0, speedY = 0, maxSpeed = 600,
@@ -53,15 +69,10 @@ function love.load()
   -- enemy
   enemy = {x = 0, y = 0, w = 32, h = 32, speed = 100}
 
-
-
-  --bg = love.graphics.newImage('bg.png')
-  --love.graphics.setDefaultFilter('nearest', 'nearest')
-  --love.window.setMode(SCREEN_X, SCREEN_Y)
-
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
   love.graphics.setDefaultFilter('nearest', 'nearest')
   world:add(player, player.x, player.y, player.w, player.h)
+  --world:add(robot, robot.x, robot.y, robot.w, robot.h)
 
   for j = 1, #levelMap1 do
     local row = levelMap1[j]
@@ -124,6 +135,7 @@ function love.update(dt)
   -- library updates
   camera:update(dt)
   camera:follow(player.x, player.y)
+  --camera:follow(robot.x, robot.y)
 
   -- timers
   timer = timer + dt
@@ -133,6 +145,12 @@ function love.update(dt)
 
   collision_length = 0
   updatePlayer(dt)
+  --playerIdle:update(dt) --updates the animations.
+  --playerWalk:update(dt)
+  knightWalkRight:update(dt)
+  knightWalkLeft:update(dt)
+  knightWalkFront:update(dt)
+  knightWalkBack:update(dt)
 
   -- draw level 1
   if level == 1 and change then
@@ -166,8 +184,6 @@ function love.update(dt)
       end
     end
     change = false
-    player.x = MAX_WINDOW_X / 2
-    player.y = MAX_WINDOW_Y / 2
   end
 
   -- draw level 3
@@ -184,8 +200,22 @@ function love.update(dt)
       end
     end
     change = false
-    player.x = MAX_WINDOW_X / 2
-    player.y = MAX_WINDOW_Y / 2
+  end
+
+  -- draw level 3
+  if level == 4 and change then
+    removeBlocks()
+
+    for j = 1, #levelMap4 do
+      local row = levelMap4[j]
+      for k = 1, #row do
+        if levelMap4[j][k] == 1 or levelMap4[j][k] == 2 then -- if the tile is a 1 then we add it to the bump world in this example.
+          --love tables start at 1 but the window dimensions start at 0, so we minus 1 to start at 0. it's weird but that's how it goes.
+          addBlock((k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+        end
+      end
+    end
+    change = false
   end
 
   -- weapon shoots
@@ -231,12 +261,21 @@ function love.update(dt)
   end
 
   -- testing levels
-  if enemiesShot == 5 then
+  if enemiesShot == 4 and level == 1 then
     level = 2
+    levelReset()
+
+    enemiesShot = 0
   end
 
-  if enemiesShot == 10 then
+  if enemiesShot == 4 and level == 2 then
     level = 3
+    levelReset()
+  end
+
+  if enemiesShot == 4 and level == 3 then
+    level = 4
+    levelReset()
   end
 
 end -- update
@@ -258,9 +297,38 @@ function love.draw()
 
       drawLevels()
 
+      if player.idle then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2) --shadow
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.draw(knightStandImage, player.x, player.y)
+        --playerIdle:draw(KnightWalkRight, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0) --notice the x, y and robot.w offset
+      elseif player.facing == 'right' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkRight:draw(knightRightWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      elseif player.facing == 'left' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkLeft:draw(knightLeftWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      elseif player.facing == 'up' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkBack:draw(knightBackWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      elseif player.facing == 'down' then
+        --love.graphics.setColor(0, 0, 0, 0.3)
+        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
+        love.graphics.setColor(1, 1, 1)
+        knightWalkFront:draw(knightFrontWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      end
+
       -- player
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
+      --love.graphics.setColor(1, 1, 1)
+      --love.graphics.draw(playerIdleImage, player.x, player.y)
+      --love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
 
       -- weapon
       love.graphics.setColor(0, 0, 0)
@@ -276,6 +344,41 @@ function love.draw()
       love.graphics.setColor(1, 0, 0)
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
+      --wisps
+      love.graphics.setColor (1, 1, 0)
+      love.graphics.rectangle('fill', wisps.x, wisps.y, 32, 32)
+
+      --raptor
+      love.graphics.setColor(0, 0, 1)
+      love.graphics.rectangle('fill', raptor.x, raptor.y, 64, 64)
+
+      --stegosaurus
+      love.graphics.setColor(0, 1, 1)
+      love.graphics.rectangle('fill', stego.x, stego.y, 128, 64)
+
+      --spinosaurus
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', spino.x, spino.y, 128, 64)
+
+      --alien soldier
+      love.graphics.setColor(0, 1, 0)
+      love.graphics.rectangle('fill', soldier.x, soldier.y, 64, 32)
+
+      --alien fodder
+      love.graphics.setColor(0, 1, 0)
+      love.graphics.rectangle('fill', fodder.x, fodder.y, 32, 32)
+
+      --The "Demon" Knight
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
+
+      --T-Rex
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', trex.x, trex.y, 192, 128)
+
+      --UFO/Big Alien
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', alien.x, alien.y, 64, 128)
 
     camera:detach()
 
@@ -289,20 +392,35 @@ end -- draw
   OTHER FUNCTIONS
 --------------------------------------------------------------------]]
 
+-- levelReset function
+
+function levelReset()
+
+  player.x = 100
+  player.y = 100
+  weapon.x = player.x + player.w / 2
+  weapon.y = player.y + player.h / 2
+  enemiesShot = 0
+
+end
 -- player drawing
 function updatePlayer(dt)
   local speed = player.speed
 
   local dx, dy = 0, 0
   if love.keyboard.isDown('right') then
-    player.dir = 2
+    player.idle = false
+    player.facing = 'right'
+    player.dir = 1
     weapon.dirX = 1
     weapon.dirY = 0
     weapon.x = player.x + player.w
     weapon.y = player.y + player.h / 2 - weapon.h / 2
     dx = player.maxSpeed * dt
   elseif love.keyboard.isDown('left') then
-    player.dir = 4
+    player.idle = false
+    player.facing = 'left'
+    player.dir = -1
     weapon.dirX = -1
     weapon.dirY = 0
     weapon.x = player.x - weapon.w
@@ -310,13 +428,17 @@ function updatePlayer(dt)
     dx = -player.maxSpeed * dt
   end
   if love.keyboard.isDown('down') then
-    player.dir = 3
+    player.idle = false
+    player.facing = 'down'
+    player.dir = 1
     weapon.dirX = 0
     weapon.dirY = 1
     weapon.y = player.y + player.h
     weapon.x = player.x + player.w / 2 - weapon.w / 2
     dy = player.maxSpeed * dt
   elseif love.keyboard.isDown('up') then
+    player.idle = false
+    player.facing = 'up'
     player.dir = 1
     weapon.dirX = 0
     weapon.dirY = -1
@@ -330,6 +452,7 @@ function updatePlayer(dt)
     player.x, player.y, collisions, collision_length = world:move(player, player.x + dx, player.y + dy)
   end
 end
+
 
 -- Block functions
 function addBlock(x, y, w, h)
@@ -348,21 +471,26 @@ function addBlock(x, y, w, h)
     local block = {x = x, y = y, w = w, h = h}
     blocks3[#blocks3 + 1] = block
     world:add(block, x, y, w, h)
+
+  elseif level == 4 then
+    local block = {x = x, y = y, w = w, h = h}
+    blocks4[#blocks4 + 1] = block
+    world:add(block, x, y, w, h)
   end
 end
 
 function removeBlocks()
+  if level == 4 then
+    for i = 1, #blocks3 do
+      world:remove(blocks3[i])
+    end
+  end
   if level == 3 then
     for i = 1, #blocks2 do
       world:remove(blocks2[i])
     end
   end
   if level == 2 then
-    for i = 1, #blocks1 do
-      world:remove(blocks1[i])
-    end
-  end
-  if level == 1 then
     for i = 1, #blocks1 do
       world:remove(blocks1[i])
     end
@@ -395,3 +523,9 @@ function love.keypressed(key)
   end
 
 end -- keypressed
+
+function love.keyreleased(key)
+  if key == 'up' or key == 'down' or key == 'left' or key == 'right' then
+    player.idle = true
+  end
+end
