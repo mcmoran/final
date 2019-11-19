@@ -343,11 +343,17 @@ function love.draw()
       -- enemy
       love.graphics.setColor(1, 0, 0)
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
-
+if level == 1 then
       --wisps
       love.graphics.setColor (1, 1, 0)
       love.graphics.rectangle('fill', wisps.x, wisps.y, 32, 32)
 
+      --The "Demon" Knight
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
+end
+
+if level == 2 then
       --raptor
       love.graphics.setColor(0, 0, 1)
       love.graphics.rectangle('fill', raptor.x, raptor.y, 64, 64)
@@ -360,6 +366,13 @@ function love.draw()
       love.graphics.setColor(0, 0, 0)
       love.graphics.rectangle('fill', spino.x, spino.y, 128, 64)
 
+      --T-Rex
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', trex.x, trex.y, 192, 128)
+
+end
+
+if level == 3 then
       --alien soldier
       love.graphics.setColor(0, 1, 0)
       love.graphics.rectangle('fill', soldier.x, soldier.y, 64, 32)
@@ -368,17 +381,10 @@ function love.draw()
       love.graphics.setColor(0, 1, 0)
       love.graphics.rectangle('fill', fodder.x, fodder.y, 32, 32)
 
-      --The "Demon" Knight
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
-
-      --T-Rex
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', trex.x, trex.y, 192, 128)
-
       --UFO/Big Alien
       love.graphics.setColor(0, 0, 0)
       love.graphics.rectangle('fill', alien.x, alien.y, 64, 128)
+end
 
     camera:detach()
 

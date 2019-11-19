@@ -7,7 +7,6 @@
 --1) Fae
 
   --a) Wisps
-
   wisps = {}
   wisps.x = 1800
   wisps.y = 300
