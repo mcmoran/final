@@ -6,7 +6,7 @@
 
 --1) Fae
 
-<<<<<<< HEAD
+--<<<<<<< HEAD
 wisp = {}
 
 for i = 1, 4 do
@@ -14,7 +14,7 @@ for i = 1, 4 do
 end
 
 wisp[1].x = 1200
-wisp[1].y = 900
+wisp[1].y = 200
 
 wisp[2].x = 1600
 wisp[2].y = 400
@@ -25,7 +25,7 @@ wisp[3].y = 320
 wisp[4].x = 2600
 wisp[4].y = 200
 
-=======
+--=======
   --a) Wisps
   wisp1 = {}
   wisp1.x = 1200
@@ -55,7 +55,7 @@ wisp[4].y = 200
   wisp4.speedX = 100
   wisp4.speedY = 100
   wisp4HitsToKill = 1
->>>>>>> 5ae72807c84c0e96bd1000b37072f1831594a92e
+-->>>>>>> 5ae72807c84c0e96bd1000b37072f1831594a92e
 
 --2) Dinosaurs
 
