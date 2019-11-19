@@ -7,14 +7,34 @@
 --1) Fae
 
   --a) Wisps
-  wisps = {}
-  wisps.x = 1800
-  wisps.y = 300
-  wisps.speedX = 100
-  wisps.speedY = 100
+  wisp1 = {}
+  wisp1.x = 1200
+  wisp1.y = 190
+  wisp1.speedX = 100
+  wisp1.speedY = 100
   wispsHitsToKill = 1
   -- Have already around the map and will chase player when they get close. Take 1 hit to kill.
 
+  wisp2 = {}
+  wisp2.x = 1600
+  wisp2.y = 400
+  wisp2.speedX = 100
+  wisp2.speedY = 100
+  wispsHitsToKill = 1
+
+  wisp3 = {}
+  wisp3.x = 2200
+  wisp3.y = 320
+  wisp3.speedX = 100
+  wisp3.speedY = 100
+  wispsHitsToKill = 1
+
+  wisp4 = {}
+  wisp4.x = 2600
+  wisp4.y = 200
+  wisp4.speedX = 100
+  wisp4.speedY = 100
+  wispsHitsToKill = 1
 
 --2) Dinosaurs
 

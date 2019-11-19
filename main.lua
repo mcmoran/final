@@ -346,7 +346,16 @@ function love.draw()
 if level == 1 then
       --wisps
       love.graphics.setColor (1, 1, 0)
-      love.graphics.rectangle('fill', wisps.x, wisps.y, 32, 32)
+      love.graphics.rectangle('fill', wisp1.x, wisp1.y, 32, 32)
+
+      love.graphics.setColor (1, 1, 0)
+      love.graphics.rectangle('fill', wisp2.x, wisp2.y, 32, 32)
+
+      love.graphics.setColor (1, 1, 0)
+      love.graphics.rectangle('fill', wisp3.x, wisp3.y, 32, 32)
+
+      love.graphics.setColor (1, 1, 0)
+      love.graphics.rectangle('fill', wisp4.x, wisp4.y, 32, 32)
 
       --The "Demon" Knight
       love.graphics.setColor(0, 0, 0)
@@ -426,7 +435,7 @@ function updatePlayer(dt)
   elseif love.keyboard.isDown('left') then
     player.idle = false
     player.facing = 'left'
-    player.dir = -1
+    player.dir = 1
     weapon.dirX = -1
     weapon.dirY = 0
     weapon.x = player.x - weapon.w
