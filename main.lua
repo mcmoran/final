@@ -358,7 +358,7 @@ if level == 1 then
       for i = 1, #wisp do
         love.graphics.setColor(1, 1, 0)
         love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
-      end 
+      end
       --The "Demon" Knight
       love.graphics.setColor(0, 0, 0)
       love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
@@ -366,14 +366,10 @@ end
 
 if level == 2 then
       --raptor
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor1.x, raptor1.y, 64, 64)
-
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor2.x, raptor2.y, 64, 64)
-
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor3.x, raptor3.y, 64, 64)
+      for i = 1, #raptor do
+        love.graphics.setColor(0, 0, 1)
+        love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+      end
 
       --stegosaurus
       love.graphics.setColor(0, 1, 1)

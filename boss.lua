@@ -10,7 +10,7 @@
 wisp = {}
 
 for i = 1, 4 do
-  table.insert(wisp, {x = 0, y = 0, h = 32, w = 32, speedX = 1200, speedY = 100, shotsToKill = 1})
+  table.insert(wisp, {x = 0, y = 0, h = 32, w = 32, speedX = 100, speedY = 100, shotsToKill = 1})
 end
 
 wisp[1].x = 1200
@@ -58,6 +58,19 @@ wisp[4].y = 200
 -->>>>>>> 5ae72807c84c0e96bd1000b37072f1831594a92e
 
 --2) Dinosaurs
+raptor = {}
+for i = 1, 3 do
+  table.insert(raptor, {x = 0, y = 0, h = 64, w = 64, speedX = 200, speedY = 200, shotsToKill = 1})
+end
+
+raptor[1].x = 1300
+raptor[1].y = 200
+
+raptor[2].x = 1500
+raptor[2].y = 300
+
+raptor[3].x = 1700
+raptor[3].y = 400
 
   --a) Raptor
   raptor1 = {}
