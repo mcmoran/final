@@ -353,54 +353,65 @@ function love.draw()
       -- enemy
       love.graphics.setColor(1, 0, 0)
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
+
 if level == 1 then
       --wisps
       for i = 1, #wisp do
-        love.graphics.setColor(1, 1, 0)
+        love.graphics.setColor(1, 1, 1)
         love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
-      end 
-      --The "Demon" Knight
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
+      end
+      --demon knight
+      for i = 1, #demon do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
+      end
 end
 
 if level == 2 then
       --raptor
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor1.x, raptor1.y, 64, 64)
-
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor2.x, raptor2.y, 64, 64)
-
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor3.x, raptor3.y, 64, 64)
+      for i = 1, #raptor do
+        love.graphics.setColor(0, 0, 1)
+        love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+      end
 
       --stegosaurus
-      love.graphics.setColor(0, 1, 1)
-      love.graphics.rectangle('fill', stego.x, stego.y, 128, 64)
+      for i = 1, #stego do
+        love.graphics.setColor(0, 1, 1)
+        love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+      end
 
       --spinosaurus
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', spino.x, spino.y, 128, 64)
+      for i = 1, #spino do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+      end
 
       --T-Rex
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', trex.x, trex.y, 192, 128)
+      for i = 1, #trex do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+      end
 
 end
 
 if level == 3 then
       --alien soldier
-      love.graphics.setColor(0, 1, 0)
-      love.graphics.rectangle('fill', soldier.x, soldier.y, 64, 32)
+      for i = 1, #soldier do
+        love.graphics.setColor(0, 1, 0)
+        love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
+      end
 
       --alien fodder
-      love.graphics.setColor(0, 1, 0)
-      love.graphics.rectangle('fill', fodder.x, fodder.y, 32, 32)
+      for i = 1, #fodder do
+        love.graphics.setColor(0, 1, 0)
+        love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
+      end
 
       --UFO/Big Alien
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', alien.x, alien.y, 64, 128)
+      for i = 1, #alien do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
+      end
 end
 
     camera:detach()
