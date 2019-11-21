@@ -1,5 +1,4 @@
-function collision ()
-
+function shooting (dt)
 
   -- weapon shoots
   if love.keyboard.isDown('space') then
@@ -9,7 +8,7 @@ function collision ()
     end
   end
 
-  -- shot location
+  -- shot location & collision detection
   for shotsIndex = #shots, 1, -1 do
     local shot = shots[shotsIndex]
 
@@ -30,6 +29,11 @@ function collision ()
     end
   end
 
+end
+
+function collision (dt)
+
+
   -- weapon collision detection
   if AABB(weapon.x, weapon.y, weapon.w, weapon.h, enemy.x, enemy.y, enemy.w, enemy.h) then
     --enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
@@ -43,4 +47,4 @@ function collision ()
     reset()
   end
 
-end -- end function 
+end -- end function

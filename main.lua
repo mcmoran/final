@@ -226,7 +226,10 @@ function love.update(dt)
     change = false
   end
 
-  collision()
+  -- game play functions
+
+  shooting(dt)
+  collision(dt)
 
   -- testing levels
   if enemiesShot == 2 and level == 1 then
