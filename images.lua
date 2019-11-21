@@ -26,7 +26,7 @@ dirtpathedge = love.graphics.newImage("dirtpathedge.jpg")
 
 
 
---level 2
+--level 3
 futureWall_a1 = love.graphics.newImage("future-wall_a1.png")
 futureWall_a2 = love.graphics.newImage("future-wall_a2.png")
 futureWall_a3 = love.graphics.newImage("future-wall_a3.png")
@@ -34,6 +34,16 @@ futureWall_a4 = love.graphics.newImage("future-wall_a4.png")
 futureWall_a5 = love.graphics.newImage("future-wall_a5.png")
 futureWall_b1 = love.graphics.newImage("future-wall_b1.png")
 futureWall_b2 = love.graphics.newImage("future-wall_b2.png")
+
+futurefloor1 = love.graphics.newImage("futurefloora1.png")
+futurefloor2 = love.graphics.newImage("futurefloora2.png")
+futurefloor3 = love.graphics.newImage("futurefloora3.png")
+futurefloor4 = love.graphics.newImage("futurefloora4.png")
+futurefloor5 = love.graphics.newImage("futurefloora5.png")
+futurefloor6 = love.graphics.newImage("futurefloorb1.png")
+futurefloor7 = love.graphics.newImage("futurefloorb2.png")
+futurefloor8 = love.graphics.newImage("futurefloorb3.png")
+
 
 
 
