@@ -321,11 +321,17 @@ if level == 1 then
         love.graphics.setColor(1, 1, 1)
         love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
       end
+<<<<<<< HEAD
+      --The "Demon" Knight
+      love.graphics.setColor(0, 0, 0)
+      love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
+=======
       --demon knight
       for i = 1, #demon do
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
       end
+>>>>>>> ce17133a565f640ee3a3d7dcf9a30000160eeddc
 end
 
 if level == 2 then
