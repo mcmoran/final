@@ -12,6 +12,7 @@ soldierCount = 4
 fodderCount = 4
 alienCount = 1
 
+
 -- all the enemy creations are set up as tables with specific parameters for reaches
 
 -- FAE

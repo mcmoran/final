@@ -319,9 +319,10 @@ function love.draw()
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
 if level == 1 then
-      --wisps
+      love.graphics.setColor(1, 1, 1)
+      --wisp
       for i = 1, #wisp do
-        love.graphics.setColor(1, 1, 1)
+        love.graphics.setColor(1, 0, 1)
         love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
       end
 
