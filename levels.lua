@@ -158,25 +158,25 @@ function drawLevels()
         elseif levelMap3[j][k] == 0 then --if the tile is 0 it's yellow.
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(rockwall, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 3 then --if the tile is .
+        elseif levelMap3[j][k] == 3 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_a1, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 4 then --if the tile is .
+        elseif levelMap3[j][k] == 4 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_a2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 5 then --if the tile is .
+        elseif levelMap3[j][k] == 5 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_a3, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 6 then --if the tile is .
+        elseif levelMap3[j][k] == 6 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_a4, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 7 then --if the tile is .
+        elseif levelMap3[j][k] == 7 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_a5, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 8 then --if the tile is .
+        elseif levelMap3[j][k] == 8 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_b1, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-        elseif levelMap1[j][k] == 9 then --if the tile is .
+        elseif levelMap3[j][k] == 9 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(futureWall_b2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
         end -- if
