@@ -42,7 +42,7 @@ function collision (dt)
 
   -- player collision detection ends game
   if AABB(player.x, player.y, player.w, player.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-    gamestart = false
+    --gamestart = false
     reset()
   end
 
@@ -51,7 +51,7 @@ function collision (dt)
   -- collision detection for wisps
   for i = 1, #wisp do
     if AABB(player.x, player.y, player.w, player.h, wisp[i].x, wisp[i].y, wisp[i].w, wisp[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -59,7 +59,7 @@ function collision (dt)
   -- collision detection for demon
   for i = 1, #demon do
     if AABB(player.x, player.y, player.w, player.h, demon[i].x, demon[i].y, demon[i].w, demon[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -67,7 +67,7 @@ function collision (dt)
   -- collision detection for raptor
   for i = 1, #raptor do
     if AABB(player.x, player.y, player.w, player.h, raptor[i].x, raptor[i].y, raptor[i].w, raptor[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -75,7 +75,7 @@ function collision (dt)
   -- collision detection for stego
   for i = 1, #stego do
     if AABB(player.x, player.y, player.w, player.h, stego[i].x, stego[i].y, stego[i].w, stego[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -83,7 +83,7 @@ function collision (dt)
   -- collision detection for spino
   for i = 1, #spino do
     if AABB(player.x, player.y, player.w, player.h, spino[i].x, spino[i].y, spino[i].w, spino[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -91,7 +91,7 @@ function collision (dt)
   -- collision detection for trex
   for i = 1, #trex do
     if AABB(player.x, player.y, player.w, player.h, trex[i].x, trex[i].y, trex[i].w, trex[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -99,7 +99,7 @@ function collision (dt)
   -- collision detection for soldier
   for i = 1, #soldier do
     if AABB(player.x, player.y, player.w, player.h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
-      gamestart = false
+      --gamestart = false
       reset()
     end
   end
@@ -107,7 +107,7 @@ function collision (dt)
   -- collision detection for fodder
   for i = 1, #fodder do
     if AABB(player.x, player.y, player.w, player.h, fodder[i].x, fodder[i].y, fodder[i].w, fodder[i].h) then
-    gamestart = false
+    --gamestart = false
     reset()
     end
   end
@@ -115,7 +115,7 @@ function collision (dt)
   -- collision detection for alien
   for i = 1, #alien do
     if AABB(player.x, player.y, player.w, player.h, alien[i].x, alien[i].y, alien[i].w, alien[i].h) then
-    gamestart = false
+    --gamestart = false
     reset()
     end
   end
