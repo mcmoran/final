@@ -517,7 +517,7 @@ function love.keypressed(key)
   end
 
   -- starts game with "return" key
-  if key == "enter" then
+  if key == "return" then
     camera:fade(1, {0, 0, 0, 1})
     gamestart = true
     camera:fade(1, {0, 0, 0, 0})
