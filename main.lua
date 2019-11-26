@@ -524,6 +524,10 @@ function love.keypressed(key)
     camera:fade(1, {0, 0, 0, 0})
   end
 
+  if key == "f" then
+    level = level + 1
+  end
+
 end -- keypressed
 
 function love.keyreleased(key)
