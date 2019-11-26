@@ -44,6 +44,8 @@ futurefloor6 = love.graphics.newImage("futurefloorb1.png")
 futurefloor7 = love.graphics.newImage("futurefloorb2.png")
 futurefloor8 = love.graphics.newImage("futurefloorb3.png")
 
+futurePool1 = love.graphics.newImage("future-PuddleEdge.png")
+futurePool2 = love.graphics.newImage("future-PuddlePool.png")
 
 
 
