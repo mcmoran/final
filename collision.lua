@@ -20,13 +20,13 @@ function shooting (dt)
       shot.y = (shot.y + shot.dirY * weapon.maxSpeed * dt)
     end
 
-    -- weapon shot collision detection
+    --[[ weapon shot collision detection
     if AABB(shot.x, shot.y, shot.w, shot.h, enemy.x, enemy.y, enemy.w, enemy.h) then
       enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
       enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
       table.remove(shots, shotsIndex)
       enemiesShot = enemiesShot + 1
-    end
+    end ]]
   end
 
 end
@@ -35,8 +35,6 @@ function collision (dt)
 
   -- weapon collision detection
   if AABB(weapon.x, weapon.y, weapon.w, weapon.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-    --enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
-    --enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
     enemiesShot = enemiesShot + 1
   end
 

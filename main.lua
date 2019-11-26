@@ -315,8 +315,8 @@ function love.draw()
       end
 
       -- enemy
-      love.graphics.setColor(1, 0, 0)
-      love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
+      --love.graphics.setColor(1, 0, 0)
+      --love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
 if level == 1 then
       --wisp
@@ -517,10 +517,10 @@ function love.keypressed(key)
   end
 
   -- starts game with "return" key
-  if key == "enter" then
-    camera:fade(1, {0, 0, 0, 1})
+  if key == "return" then
+    --camera:fade(1, {0, 0, 0, 1})
     gamestart = true
-    camera:fade(1, {0, 0, 0, 0})
+    --camera:fade(1, {0, 0, 0, 0})
   end
 
 end -- keypressed
