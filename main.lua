@@ -23,6 +23,9 @@ function love.load()
   moonshine = require 'moonshine' -- moonshine
   flux = require "flux" -- flux
 
+  fadeLevel = false
+  changeTimer = 1
+
   -- world creation
   world = bump.newWorld()
   --blocks variable for the items in the world that have collisions
@@ -155,9 +158,21 @@ function love.update(dt)
   knightWalkFront:update(dt)
   knightWalkBack:update(dt)
 
-  -- fade levels
   if fadeLevel then
-    camera:fade(0.25, {0, 0, 0, 2})
+    changeTimer = changeTimer - dt
+    camera:fade(0.25, {0, 0, 0, 1})
+  end
+
+  if changeTimer <= 0 then
+    changeTimer = 1
+    camera:fade(1, {0, 0, 0, 0})
+    fadeLevel = false
+    change = true
+    levelReset()
+    enemiesShot = 0
+    if level < 3 then
+      level = level + 1
+    end
   end
 
   -- draw level 1
@@ -234,23 +249,15 @@ function love.update(dt)
 
   -- testing levels
   if enemiesShot == 2 and level == 1 then
-    level = 2
     fadeLevel = true
-    levelReset()
   end
 
   if enemiesShot == 2 and level == 2 then
-    level = 3
     fadeLevel = true
-    levelReset()
-    fadeLevel = false
   end
 
   if enemiesShot == 2 and level == 3 then
-    level = 4
     fadeLevel = true
-    levelReset()
-    fadeLevel = false
   end
 
 end -- update
