@@ -24,6 +24,27 @@ dirtpath5 = love.graphics.newImage("images/dirtpath5.jpg")
 dirtpath6 = love.graphics.newImage("images/dirtpath6.jpg")
 dirtpathedge = love.graphics.newImage("images/dirtpathedge.jpg")
 
+--level 2
+swamp1 = love.graphics.newImage("images/swamp1.jpg")
+swamp2 = love.graphics.newImage("images/swamp2.jpg")
+swamp3 = love.graphics.newImage("images/swamp3.jpg")
+swamp4 = love.graphics.newImage("images/swamp4.jpg")
+swamp5 = love.graphics.newImage("images/swamp5.jpg")
+swamp6 = love.graphics.newImage("images/swamp6.jpg")
+swamp7 = love.graphics.newImage("images/swamp7.jpg")
+swamp8 = love.graphics.newImage("images/swamp8.jpg")
+swamp9 = love.graphics.newImage("images/swamp9.jpg")
+swamp10 = love.graphics.newImage("images/swamp10.jpg")
+swamp11 = love.graphics.newImage("images/swamp11.jpg")
+
+swampclutter1 = love.graphics.newImage("images/swampclutter1.png")
+swampclutter2 = love.graphics.newImage("images/swampclutter2.png")
+swampclutter3 = love.graphics.newImage("images/swampclutter3.png")
+swampclutter4 = love.graphics.newImage("images/swampclutter4.png")
+swampclutter5 = love.graphics.newImage("images/swampclutter5.png")
+
+
+
 
 
 --level 3
@@ -46,7 +67,16 @@ futurefloor8 = love.graphics.newImage("images/futurefloorb3.png")
 
 futurePool1 = love.graphics.newImage("images/future-PuddleEdge.png")
 futurePool2 = love.graphics.newImage("images/future-PuddlePool.png")
+futurePuddle1 = love.graphics.newImage("images/future-puddle.png")
+futurePuddle2 = love.graphics.newImage("images/future-puddling.png")
+futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
+
+--Cinematics
+--opening = love.graphics.newVideo("videos/Opening Cinematic.avi")
+--video:play()
+--ending = love.graphics.newVideo("videos/Ending Cinematic.avi")
+--video:play()
 
 
 -- player images
@@ -56,6 +86,14 @@ knightLeftWalkImage = love.graphics.newImage("images/knightLeft.png")
 knightBackWalkImage = love.graphics.newImage("images/knightBack.png")
 knightFrontWalkImage = love.graphics.newImage("images/knightFront.png")
 knightStandImage = love.graphics.newImage("images/knightStand.png")
+
+--Stage 2 Knight
+knightLVL2Attack = love.graphics.newImage("images/KnightSpriteSheet Stage 2 Attack 88px.png")
+knightLVL2Walk = love.graphics.newImage("images/KnightSpriteSheet Stage 2 walking 64px.png")
+
+--Stage 3 Knight
+knightLVL3Attack = love.graphics.newImage("images/KnightSpriteSheet Stage 3 Attack 88px.png")
+knightLVL3Walk = love.graphics.newImage("images/KnightSpriteSheet Stage 3 walking 88px.png")
 
 
 -- from teacher's assets
