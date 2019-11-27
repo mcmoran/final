@@ -21,7 +21,7 @@ wisp = {}
 
 for i = 1, wispCount do
   table.insert(wisp, {
-    x = math.random(300, 2600),
+    x = math.random(1000, 2600),
     y = math.random(64, 544),
     h = 32, w = 32,
     speedX = 100, speedY = 100,

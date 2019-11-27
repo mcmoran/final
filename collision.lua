@@ -47,7 +47,7 @@ function collision (dt)
   end
 
   -- COLLISION FOR ENEMIES
-
+if level == 1 then
   -- collision detection for wisps
   for i = 1, #wisp do
     if AABB(player.x, player.y, player.w, player.h, wisp[i].x, wisp[i].y, wisp[i].w, wisp[i].h) then
@@ -63,8 +63,10 @@ function collision (dt)
       reset()
     end
   end
+end
 
   -- collision detection for raptor
+if level == 2 then
   for i = 1, #raptor do
     if AABB(player.x, player.y, player.w, player.h, raptor[i].x, raptor[i].y, raptor[i].w, raptor[i].h) then
       --gamestart = false
@@ -95,8 +97,9 @@ function collision (dt)
       reset()
     end
   end
-
+end
   -- collision detection for soldier
+if level == 3 then
   for i = 1, #soldier do
     if AABB(player.x, player.y, player.w, player.h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
       --gamestart = false
@@ -119,5 +122,5 @@ function collision (dt)
     reset()
     end
   end
-
+end
 end -- end function
