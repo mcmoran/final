@@ -220,16 +220,28 @@ function drawLevels()
     for j = 1, #levelMap4 do
       local row = levelMap4[j]
       for k = 1, #row do
-        if levelMap4[j][k] == 1 then -- if the tile is a 1 then we color it green in this example.
-          love.graphics.setColor(0.5, 0.5, 0.5)
-          --love tables start at 1 but the window dimensions start at 0, so we minus 1 to start at 0. it's weird but that's how it goes.
-          love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
-        elseif levelMap4[j][k] == 2 then --if the tile is 0 it's yellow.
-          love.graphics.setColor(0, 0, 0)
-          love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
-        elseif levelMap4[j][k] == 0 then --if the tile is 0 it's yellow.
+        if levelMap4[j][k] == 1 then -- if the tile is a 1 then we color its rockwall.
           love.graphics.setColor(1, 1, 1)
-          love.graphics.rectangle('fill', (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
+          --love tables start at 1 but the window dimensions start at 0, so we minus 1 to start at 0. it's weird but that's how it goes.
+          love.graphics.draw(rockwallGrass, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap4[j][k] == 2 then --if the tile is 2 it's black.
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(rockwall, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap4[j][k] == 0 then --if the tile is 0 it's green.
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(grass, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap4[j][k] == 3 then --if the tile is 3 it's grassv2.
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(grassv2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap4[j][k] == 4 then --if the tile is 3 it's grassv1.
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(grassv1, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap4[j][k] == 5 then --if the tile is 0 it's grassv3 (w/pebbles).
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(grassv3, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap4[j][k] == 6 then --if the tile is 0 it's grassv4 (w/flowers).
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(grassv4, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
         end -- if
       end -- for
     end -- for
