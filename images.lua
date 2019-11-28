@@ -73,10 +73,10 @@ futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
 
 --Cinematics
---opening = love.graphics.newVideo("videos/Opening Cinematic.avi")
---video:play()
---ending = love.graphics.newVideo("videos/Ending Cinematic.avi")
---video:play()
+opening = love.graphics.newVideo("videos/Opening Cinematic.ogg")
+opening:play()
+ending = love.graphics.newVideo("videos/Ending Cinematic.ogg")
+ending:play()
 
 
 -- player images
