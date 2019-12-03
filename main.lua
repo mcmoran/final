@@ -23,9 +23,6 @@ function love.load()
   moonshine = require 'moonshine' -- moonshine
   flux = require "flux" -- flux
 
-  fadeLevel = false
-  changeTimer = 1
-
   -- world creation
   world = bump.newWorld()
   --blocks variable for the items in the world that have collisions
@@ -46,6 +43,7 @@ function love.load()
   level = 1
   change = false
   fadeLevel = false
+  changeTimer = 1
 
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
@@ -170,7 +168,7 @@ function love.update(dt)
     change = true
     levelReset()
     enemiesShot = 0
-    if level < 3 then
+    if level < 4 then
       level = level + 1
     end
   end
@@ -189,7 +187,6 @@ function love.update(dt)
       end
     end
     change = false
-    fadeLevel = false
     player.x = MAX_WINDOW_X / 2
     player.y = MAX_WINDOW_Y / 2
   end
@@ -389,6 +386,7 @@ if level == 3 then
 end
 
     camera:detach()
+    camera:draw()
 
     scoreText()
 
@@ -403,14 +401,11 @@ end -- draw
 -- levelReset function
 
 function levelReset()
-
-  fadeLevel = true
   player.x = 100
   player.y = 100
   weapon.x = player.x + player.w / 2
   weapon.y = player.y + player.h / 2
   enemiesShot = 0
-
 end
 -- player drawing
 function updatePlayer(dt)
