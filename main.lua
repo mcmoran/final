@@ -88,6 +88,9 @@ function love.load()
     end
   end
 
+
+  levelOneSounds()
+
   -- camera parameters
   camera = camera(player.x, player.y, SCREEN_X, SCREEN_Y)
   camera:setFollowStyle('SCREEN_BY_SCREEN')
@@ -167,10 +170,6 @@ function love.update(dt)
     fadeLevel = false
     change = true
     levelReset()
-    enemiesShot = 0
-    if level < 4 then
-      level = level + 1
-    end
   end
 
   -- draw level 1
@@ -244,16 +243,19 @@ function love.update(dt)
   shooting(dt)
   collision(dt)
 
-  -- testing levels
+  -- level conditionals
   if enemiesShot == 2 and level == 1 then
     fadeLevel = true
+    bgMusic1:stop()
   end
 
   if enemiesShot == 2 and level == 2 then
+    bgMusic2:stop()
     fadeLevel = true
   end
 
   if enemiesShot == 2 and level == 3 then
+    bgMusic3:stop()
     fadeLevel = true
   end
 
@@ -406,6 +408,14 @@ function levelReset()
   weapon.x = player.x + player.w / 2
   weapon.y = player.y + player.h / 2
   enemiesShot = 0
+  if level < 4 then
+    level = level + 1
+  end
+  if level == 2 then
+    levelTwoSounds()
+  elseif level == 3 then
+    levelThreeSounds()
+  end
 end
 -- player drawing
 function updatePlayer(dt)
