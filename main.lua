@@ -1,3 +1,4 @@
+
 -- GAME START STATES --------------------------------------------------
 gamestart = false
 
@@ -13,7 +14,12 @@ function love.load()
   require "player" -- player.lua file
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
+<<<<<<< HEAD
   
+=======
+  require "collision" -- collision.lua file
+
+>>>>>>> 23993208be973813dd0e5cd7b7ef6228d819f5ff
   -- 3rd party
   anim8 = require 'anim8'
   bump = require "bump" -- bump
@@ -40,6 +46,8 @@ function love.load()
   --levels
   level = 1
   change = false
+  fadeLevel = false
+  changeTimer = 1
 
   -- player
   player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
@@ -83,6 +91,9 @@ function love.load()
       end
     end
   end
+
+
+  levelOneSounds()
 
   -- camera parameters
   camera = camera(player.x, player.y, SCREEN_X, SCREEN_Y)
@@ -152,6 +163,19 @@ function love.update(dt)
   knightWalkFront:update(dt)
   knightWalkBack:update(dt)
 
+  if fadeLevel then
+    changeTimer = changeTimer - dt
+    camera:fade(0.25, {0, 0, 0, 1})
+  end
+
+  if changeTimer <= 0 then
+    changeTimer = 1
+    camera:fade(1, {0, 0, 0, 0})
+    fadeLevel = false
+    change = true
+    levelReset()
+  end
+
   -- draw level 1
   if level == 1 and change then
     removeBlocks()
@@ -218,64 +242,25 @@ function love.update(dt)
     change = false
   end
 
-  -- weapon shoots
-  if love.keyboard.isDown('space') then
-    if weaponTimer >= 0.5 then
-      weaponTimer = 0
-      table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
-    end
+  -- game play functions
+
+  shooting(dt)
+  collision(dt)
+
+  -- level conditionals
+  if enemiesShot == 2 and level == 1 then
+    fadeLevel = true
+    bgMusic1:stop()
   end
 
-  -- shot location
-  for shotsIndex = #shots, 1, -1 do
-    local shot = shots[shotsIndex]
-
-    shot.timeLeft = shot.timeLeft - dt
-    if shot.timeLeft <= 0 then
-      table.remove(shots, shotsIndex)
-    else
-      shot.x = (shot.x + shot.dirX * weapon.maxSpeed * dt)
-      shot.y = (shot.y + shot.dirY * weapon.maxSpeed * dt)
-    end
-
-    -- weapon shot collision detection
-    if AABB(shot.x, shot.y, shot.w, shot.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-      enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
-      enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
-      table.remove(shots, shotsIndex)
-      enemiesShot = enemiesShot + 1
-    end
+  if enemiesShot == 2 and level == 2 then
+    bgMusic2:stop()
+    fadeLevel = true
   end
 
-  -- weapon collision detection
-  if AABB(weapon.x, weapon.y, weapon.w, weapon.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-    enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
-    enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
-    enemiesShot = enemiesShot + 1
-  end
-
-  -- player collision detection ends game
-  if AABB(player.x, player.y, player.w, player.h, enemy.x, enemy.y, enemy.w, enemy.h) then
-    gamestart = false
-    reset()
-  end
-
-  -- testing levels
-  if enemiesShot == 4 and level == 1 then
-    level = 2
-    levelReset()
-
-    enemiesShot = 0
-  end
-
-  if enemiesShot == 4 and level == 2 then
-    level = 3
-    levelReset()
-  end
-
-  if enemiesShot == 4 and level == 3 then
-    level = 4
-    levelReset()
+  if enemiesShot == 2 and level == 3 then
+    bgMusic3:stop()
+    fadeLevel = true
   end
 
 end -- update
@@ -344,43 +329,70 @@ function love.draw()
       love.graphics.setColor(1, 0, 0)
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
-      --wisps
-      love.graphics.setColor (1, 1, 0)
-      love.graphics.rectangle('fill', wisps.x, wisps.y, 32, 32)
+if level == 1 then
+      --wisp
+      for i = 1, #wisp do
+        love.graphics.setColor(1, 0, 1)
+        love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
+      end
 
+      --demon knight
+      for i = 1, #demon do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
+      end
+
+end
+
+if level == 2 then
       --raptor
-      love.graphics.setColor(0, 0, 1)
-      love.graphics.rectangle('fill', raptor.x, raptor.y, 64, 64)
+      for i = 1, #raptor do
+        love.graphics.setColor(0, 0, 1)
+        love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+      end
 
       --stegosaurus
-      love.graphics.setColor(0, 1, 1)
-      love.graphics.rectangle('fill', stego.x, stego.y, 128, 64)
+      for i = 1, #stego do
+        love.graphics.setColor(0, 1, 1)
+        love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+      end
 
       --spinosaurus
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', spino.x, spino.y, 128, 64)
-
-      --alien soldier
-      love.graphics.setColor(0, 1, 0)
-      love.graphics.rectangle('fill', soldier.x, soldier.y, 64, 32)
-
-      --alien fodder
-      love.graphics.setColor(0, 1, 0)
-      love.graphics.rectangle('fill', fodder.x, fodder.y, 32, 32)
-
-      --The "Demon" Knight
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', demon.x, demon.y, 128, 128)
+      for i = 1, #spino do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+      end
 
       --T-Rex
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', trex.x, trex.y, 192, 128)
+      for i = 1, #trex do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+      end
+
+end
+
+if level == 3 then
+      --alien soldier
+      for i = 1, #soldier do
+        love.graphics.setColor(0, 1, 0)
+        love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
+      end
+
+      --alien fodder
+      for i = 1, #fodder do
+        love.graphics.setColor(0, 1, 0)
+        love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
+      end
 
       --UFO/Big Alien
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', alien.x, alien.y, 64, 128)
+      for i = 1, #alien do
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
+      end
+end
 
     camera:detach()
+    camera:draw()
 
     scoreText()
 
@@ -395,13 +407,19 @@ end -- draw
 -- levelReset function
 
 function levelReset()
-
   player.x = 100
   player.y = 100
   weapon.x = player.x + player.w / 2
   weapon.y = player.y + player.h / 2
   enemiesShot = 0
-
+  if level < 4 then
+    level = level + 1
+  end
+  if level == 2 then
+    levelTwoSounds()
+  elseif level == 3 then
+    levelThreeSounds()
+  end
 end
 -- player drawing
 function updatePlayer(dt)
@@ -420,7 +438,7 @@ function updatePlayer(dt)
   elseif love.keyboard.isDown('left') then
     player.idle = false
     player.facing = 'left'
-    player.dir = -1
+    player.dir = 1
     weapon.dirX = -1
     weapon.dirY = 0
     weapon.x = player.x - weapon.w
@@ -520,6 +538,10 @@ function love.keypressed(key)
     camera:fade(1, {0, 0, 0, 1})
     gamestart = true
     camera:fade(1, {0, 0, 0, 0})
+  end
+
+  if key == "f" then
+    level = level + 1
   end
 
 end -- keypressed
