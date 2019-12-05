@@ -27,7 +27,17 @@ dirtpathedge = love.graphics.newImage("images/dirtpathedge.jpg")
 --level 2
 swamp1 = love.graphics.newImage("images/swamp1.jpg")
 swamp2 = love.graphics.newImage("images/swamp2.jpg")
-swamp3 = love.graphics.newImage("images/swamp3.jpg")
+
+swampground = love.graphics.newImage("images/swampground.jpg")
+
+
+swampwater = love.graphics.newImage("images/swampwater.jpg")
+swampshoreup = love.graphics.newImage("images/swampshoreup.jpg")
+swampshoredown = love.graphics.newImage("images/swampshoredown.jpg")
+swampshoreleft = love.graphics.newImage("images/swampshoreleft.jpg")
+swampshoreright = love.graphics.newImage("images/swampshoreright.jpg")
+
+
 swamp4 = love.graphics.newImage("images/swamp4.jpg")
 swamp5 = love.graphics.newImage("images/swamp5.jpg")
 swamp6 = love.graphics.newImage("images/swamp6.jpg")
