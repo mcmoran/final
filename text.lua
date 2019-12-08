@@ -9,14 +9,14 @@ defaultFont = love.graphics.newFont(14)
 function splashText()
 
   love.graphics.setColor(1, 1, 1)
-  love.graphics.rectangle('fill', 0, 0, SCREEN_X, SCREEN_Y)
+  love.graphics.draw(splash, 0, 0)
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(defaultFont)
-  love.graphics.print("1. Press Return to start the game.", SCREEN_X / 2 - 100, SCREEN_Y / 2)
-  love.graphics.print("2. Press escape to leave the game", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 20)
-  love.graphics.print("GAME CONTROLS:", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 80)
-  love.graphics.print("Arrow keys move the player around", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 100)
-  love.graphics.print("Space button shoots", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 120)
+  --love.graphics.print("1. Press Return to start the game.", SCREEN_X / 2 - 100, SCREEN_Y / 2)
+  --love.graphics.print("2. Press escape to leave the game", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 20)
+  --love.graphics.print("GAME CONTROLS:", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 80)
+  --love.graphics.print("Arrow keys move the player around", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 100)
+  --love.graphics.print("Space button shoots", SCREEN_X / 2 - 100, SCREEN_Y / 2 + 120)
 
 end -- splashText
 

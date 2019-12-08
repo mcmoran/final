@@ -394,7 +394,7 @@ if level == 2 then
         -- need to create behavior
         love.graphics.setColor(0, 0, 1)
         love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
-        world.add(raptor[i].name, raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+        --world.add(raptor[i].name, raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
       end
 
       --stegosaurus
@@ -402,7 +402,7 @@ if level == 2 then
         -- need to create behavior
         love.graphics.setColor(0, 1, 1)
         love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
-        world:add(stego[i].name, stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+        --world:add(stego[i].name, stego[i].x, stego[i].y, stego[i].h, stego[i].w)
       end
 
       --spinosaurus
@@ -410,7 +410,7 @@ if level == 2 then
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
-        world:add(spino[i], spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+        --world:add(spino[i], spino[i].x, spino[i].y, spino[i].h, spino[i].w)
       end
 
       --T-Rex
@@ -418,7 +418,7 @@ if level == 2 then
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
-        world:add(trex[i], trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+        --world:add(trex[i], trex[i].x, trex[i].y, trex[i].h, trex[i].w)
       end
 
 end
@@ -429,7 +429,7 @@ if level == 3 then
         -- need to create behavior
         love.graphics.setColor(0, 1, 0)
         love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
-        world:add(soldier[i], soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
+        --world:add(soldier[i], soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
       end
 
       --alien fodder
@@ -437,7 +437,7 @@ if level == 3 then
         -- need to create behavior
         love.graphics.setColor(0, 1, 0)
         love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
-        world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
+        --world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
       end
 
       --UFO/Big Alien
@@ -445,7 +445,7 @@ if level == 3 then
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
-        world:add(alien[i], alien[i].x, alien[i].y, alien[i].h, alien[i].w)
+        --world:add(alien[i], alien[i].x, alien[i].y, alien[i].h, alien[i].w)
       end
 end
 
@@ -614,3 +614,7 @@ end
 function getDistance(x1,y1, x2,y2)
   return ((x2-x1)^2+(y2-y1)^2)^0.5
 end
+
+-- what happens when the game ends
+function gameOver()
+end 

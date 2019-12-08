@@ -5,6 +5,9 @@ image manipulations like sprites
 
 -- image loading
 
+logo = love.graphics.newImage("images/logo.png")
+splash = love.graphics.newImage("images/splash960.png")
+
 -- BACKGROUND IMAGES --
 
 --level 1
