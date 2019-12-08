@@ -14,8 +14,12 @@ function love.load()
   require "player" -- player.lua file
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
+--<<<<<<< HEAD
+
+--=======
   require "collision" -- collision.lua file
 
+-->>>>>>> 23993208be973813dd0e5cd7b7ef6228d819f5ff
   -- 3rd party
   anim8 = require 'anim8'
   bump = require "bump" -- bump
