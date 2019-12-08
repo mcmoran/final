@@ -6,6 +6,7 @@ image manipulations like sprites
 -- image loading
 
 -- BACKGROUND IMAGES --
+
 --level 1
 grass = love.graphics.newImage("images/grass base.png")
 grassv1 = love.graphics.newImage("images/bg-grass.png")
@@ -27,17 +28,12 @@ dirtpathedge = love.graphics.newImage("images/dirtpathedge.jpg")
 --level 2
 swamp1 = love.graphics.newImage("images/swamp1.jpg")
 swamp2 = love.graphics.newImage("images/swamp2.jpg")
-
 swampground = love.graphics.newImage("images/swampground.jpg")
-
-
 swampwater = love.graphics.newImage("images/swampwater.jpg")
 swampshoreup = love.graphics.newImage("images/swampshoreup.jpg")
 swampshoredown = love.graphics.newImage("images/swampshoredown.jpg")
 swampshoreleft = love.graphics.newImage("images/swampshoreleft.jpg")
 swampshoreright = love.graphics.newImage("images/swampshoreright.jpg")
-
-
 swamp4 = love.graphics.newImage("images/swamp4.jpg")
 swamp5 = love.graphics.newImage("images/swamp5.jpg")
 swamp6 = love.graphics.newImage("images/swamp6.jpg")
@@ -46,16 +42,11 @@ swamp8 = love.graphics.newImage("images/swamp8.jpg")
 swamp9 = love.graphics.newImage("images/swamp9.jpg")
 swamp10 = love.graphics.newImage("images/swamp10.jpg")
 swamp11 = love.graphics.newImage("images/swamp11.jpg")
-
 swampclutter1 = love.graphics.newImage("images/swampclutter1.png")
 swampclutter2 = love.graphics.newImage("images/swampclutter2.png")
 swampclutter3 = love.graphics.newImage("images/swampclutter3.png")
 swampclutter4 = love.graphics.newImage("images/swampclutter4.png")
 swampclutter5 = love.graphics.newImage("images/swampclutter5.png")
-
-
-
-
 
 --level 3
 futureWall_a1 = love.graphics.newImage("images/future-wall_a1.png")
@@ -81,13 +72,11 @@ futurePuddle1 = love.graphics.newImage("images/future-puddle.png")
 futurePuddle2 = love.graphics.newImage("images/future-puddling.png")
 futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
-
 --Cinematics
 opening = love.graphics.newVideo("videos/Opening Cinematic.ogg")
 opening:play()
 ending = love.graphics.newVideo("videos/Ending Cinematic.ogg")
 ending:play()
-
 
 -- player images
 --knightWalkImage = love.graphics.newImage("knight.png") -- the sprite for the knight
@@ -104,7 +93,6 @@ knightLVL2Walk = love.graphics.newImage("images/KnightSpriteSheet Stage 2 walkin
 --Stage 3 Knight
 knightLVL3Attack = love.graphics.newImage("images/KnightSpriteSheet Stage 3 Attack 88px.png")
 knightLVL3Walk = love.graphics.newImage("images/KnightSpriteSheet Stage 3 walking 88px.png")
-
 
 -- from teacher's assets
 playerIdleImage = love.graphics.newImage('images/robotIdle.png') --the master sprite sheets of the animation.

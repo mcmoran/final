@@ -7,6 +7,9 @@ gamestart = false
 --------------------------------------------------------------------]]
 function love.load()
 
+
+  bump = require "bump" -- bump
+
   -- requirements
   require "images" -- images.lua file
   require "audio" -- audio.lua file
@@ -14,21 +17,17 @@ function love.load()
   require "player" -- player.lua file
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
---<<<<<<< HEAD
-
---=======
   require "collision" -- collision.lua file
 
--->>>>>>> 23993208be973813dd0e5cd7b7ef6228d819f5ff
   -- 3rd party
   anim8 = require 'anim8'
-  bump = require "bump" -- bump
   camera = require "camera" -- camera
   moonshine = require 'moonshine' -- moonshine
   flux = require "flux" -- flux
 
-  -- world creation
+  -- world creation (bump)
   world = bump.newWorld()
+
   --blocks variable for the items in the world that have collisions
   blocks1 = {}
   blocks2 = {}
@@ -37,53 +36,55 @@ function love.load()
   -- gamescreen constants
   SCREEN_X = 960
   SCREEN_Y = 640
-  -- these are the level 1 sizes
+  -- these are the level sizes
   MAX_WINDOW_X = SCREEN_X * 4
   MAX_WINDOW_Y = SCREEN_Y * 1
   -- tile sizes
   TILE_SIZE = 32
 
-  --levels
+  --level setting
   level = 1
   change = false
   fadeLevel = false
   changeTimer = 1
 
-  -- player
-  world:add (player, player.x = SCREEN_X / 2, player.y = SCREEN_Y / 2, player.w = 64, player.h = 64,
-            player.speedX = 0, player.speedY = 0, player.maxSpeed = 300,
-            player.dir = 1, player.dirX = 0, player.dirY = 0, player.idle = true)
+  -- player specs
+  test = {}
+  player = {x = (SCREEN_X / 2), y = (SCREEN_Y / 2), w = (TILE_SIZE * 2), h = (TILE_SIZE * 2),
+            speedX = 0, speedY = 0, maxSpeed = 300,
+            dir = 1, facing = ('right'), dirX = 0, dirY = 0, idle = true}
 
+  -- setting the knight sprite animation
   spriteKnightRight = anim8.newGrid(64, 64, knightRightWalkImage:getWidth(), knightRightWalkImage:getHeight())
   spriteKnightLeft = anim8.newGrid(64, 64, knightLeftWalkImage:getWidth(), knightLeftWalkImage:getHeight())
   spriteKnightFront = anim8.newGrid(64, 64, knightFrontWalkImage:getWidth(), knightFrontWalkImage:getHeight())
   spriteKnightBack = anim8.newGrid(64, 64, knightBackWalkImage:getWidth(), knightBackWalkImage:getHeight())
-  --gridIdle = anim8.newGrid(70, 56, playerIdleImage:getWidth(), playerIdleImage:getHeight()) --this is a must. Tells Love2d the quad slices
-  --gridWalk = anim8.newGrid(70, 60, playerWalkImage:getWidth(), playerWalkImage:getHeight()) --of the animation frames. The first 2 numbers width/height of the frame sizes.
 
+  -- animating the knight walking
   knightWalkRight = anim8.newAnimation(spriteKnightRight('1 - 9', 1), 0.05)
   knightWalkLeft = anim8.newAnimation(spriteKnightLeft('1 - 9', 1), 0.05)
   knightWalkBack = anim8.newAnimation(spriteKnightBack('1 - 3', 1), 0.1)
   knightWalkFront = anim8.newAnimation(spriteKnightFront('1 - 3', 1), 0.1)
-  --playerIdle = anim8.newAnimation(gridIdle('1 - 4', 1), 0.2) --the actual defining of the animation.  The 1 - number are the frames from the sprite sheet.
-  --playerWalk = anim8.newAnimation(gridWalk('1 - 6', 1), 0.1)
 
-  --robot = {x = 80, y = 80, w = 64, h = 58, speed = 600, idle = true, dir =
   -- weapon
   weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 12, h = 12,
             speedX = 0, speedY = 0, maxSpeed = 600,
             dir = 1, dirX = 0, dirY = 0}
 
-  -- enemy
-  world:add(enemy, enemy.x = 0, enemy.y = 0, enemy.w = 32, enemy.h = 32, enemy.speed = 100, enemy.timer = 0.5, enemy.path = math.random(1, 6), enemy.state = 'patrol', enemy.angle = 0)
+  -- enemies
+  enemies = {}
+  enemy = {x = 0, y = 0, w = 32, h = 32, speed = 100,
+          timer = 0.5, path = math.random(1, 6), state = 'patrol', angle = 0}
 
-
-
+  -- setting window mode
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
   love.graphics.setDefaultFilter('nearest', 'nearest')
-  world:add(player, player.x, player.y, player.w, player.h)
-  --world:add(robot, robot.x, robot.y, robot.w, robot.h)
 
+  -- adding player and testing enemy for bump
+  world:add (player, player.x, player.y, player.w, player.h)
+  world:add (enemy, enemy.x, enemy.y, enemy.w, enemy.h)
+
+  -- creating the level map based on what is in levels.lua
   for j = 1, #levelMap1 do
     local row = levelMap1[j]
     for k = 1, #row do
@@ -94,7 +95,7 @@ function love.load()
     end
   end
 
-
+  -- grabbing sounds from audio.lua
   levelOneSounds()
 
   -- camera parameters
@@ -104,6 +105,7 @@ function love.load()
   camera:setFollowLead(0)
   camera:setBounds(0, 0, MAX_WINDOW_X, MAX_WINDOW_Y)
 
+  -- resetting things for new games
   function reset()
 
     -- because we always need a randomseed ...
@@ -119,15 +121,10 @@ function love.load()
     player.speedY = 0
     player.dir = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
 
-    -- enemy resets
+    -- testing enemy reset
     enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
     enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
-    enemy.speedX = 0
-    enemy.speedY = 0
-    enemy.timer = 0.5
-    enemy.path = math.random(1, 6)
     enemy.state = 'patrol'
-    enemy.angle = 0
     enemiesShot = 0
 
     distance = 250
@@ -154,13 +151,13 @@ function love.update(dt)
   -- library updates
   camera:update(dt)
   camera:follow(player.x, player.y)
-  --camera:follow(robot.x, robot.y)
 
   -- timers
   timer = timer + dt
   weaponTimer = weaponTimer + dt
   enemy.timer = enemy.timer - dt
 
+  -- flux update
   flux.update(dt)
 
   collision_length = 0
@@ -172,13 +169,17 @@ function love.update(dt)
   knightWalkFront:update(dt)
   knightWalkBack:update(dt)
 
+  -- checking the distance between the player and the testing enemy
   local detect = getDistance(player.x + player.w / 2, player.y + player.h / 2, enemy.x + enemy.w / 2, enemy.y + enemy.h / 2)
+
+  -- enemy behavior based on distance
   if detect <= distance then
     enemy.state = 'charge'
   else
     enemy.state = 'patrol'
   end
 
+  -- dx and dy?
   local dx, dy = 0, 0
   if enemy.state == 'patrol' then
     if enemy.timer <= 0 then
@@ -197,16 +198,19 @@ function love.update(dt)
     dy = (dy + math.sin(enemy.angle) * 2 * enemy.speed * dt)
   end
 
+  -- if the distance for x and y isn't zero then the enemy can move
   if dx ~= 0 or dy ~= 0 then
     local collisions
     enemy.x, enemy.y, collisions, collision_length = world:move(enemy, enemy.x + dx, enemy.y + dy)
   end
 
+  -- fade level conditional
   if fadeLevel then
     changeTimer = changeTimer - dt
     camera:fade(0.25, {0, 0, 0, 1})
   end
 
+  -- helping with the level fade and reset
   if changeTimer <= 0 then
     changeTimer = 1
     camera:fade(1, {0, 0, 0, 0})
@@ -229,8 +233,8 @@ function love.update(dt)
       end
     end
     change = false
-    player.x = MAX_WINDOW_X / 2
-    player.y = MAX_WINDOW_Y / 2
+    player.x = SCREEN_X / 2
+    player.y = SCREEN_Y / 2
   end
 
   -- draw level 2
@@ -247,6 +251,8 @@ function love.update(dt)
       end
     end
     change = false
+    player.x = SCREEN_X / 2
+    player.y = SCREEN_Y / 2
   end
 
   -- draw level 3
@@ -263,9 +269,11 @@ function love.update(dt)
       end
     end
     change = false
+    player.x = SCREEN_X / 2
+    player.y = SCREEN_Y / 2
   end
 
-  -- draw level 3
+  -- draw level 4
   if level == 4 and change then
     removeBlocks()
 
@@ -279,6 +287,8 @@ function love.update(dt)
       end
     end
     change = false
+    player.x = SCREEN_X / 2
+    player.y = SCREEN_Y / 2
   end
 
   -- game play functions
@@ -302,6 +312,9 @@ function love.update(dt)
     fadeLevel = true
   end
 
+
+
+
 end -- update
 
 --[[----------------------------------------------------------------
@@ -321,38 +334,20 @@ function love.draw()
 
       drawLevels()
 
+      -- player walking animation and movement
+
+      love.graphics.setColor(1, 1, 1)
       if player.idle then
-        --love.graphics.setColor(0, 0, 0, 0.3)
-        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2) --shadow
-        love.graphics.setColor(1, 1, 1)
         love.graphics.draw(knightStandImage, player.x, player.y)
-        --playerIdle:draw(KnightWalkRight, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0) --notice the x, y and robot.w offset
       elseif player.facing == 'right' then
-        --love.graphics.setColor(0, 0, 0, 0.3)
-        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
-        love.graphics.setColor(1, 1, 1)
         knightWalkRight:draw(knightRightWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
       elseif player.facing == 'left' then
-        --love.graphics.setColor(0, 0, 0, 0.3)
-        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
-        love.graphics.setColor(1, 1, 1)
         knightWalkLeft:draw(knightLeftWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
       elseif player.facing == 'up' then
-        --love.graphics.setColor(0, 0, 0, 0.3)
-        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
-        love.graphics.setColor(1, 1, 1)
         knightWalkBack:draw(knightBackWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
       elseif player.facing == 'down' then
-        --love.graphics.setColor(0, 0, 0, 0.3)
-        --love.graphics.rectangle('fill', (player.x + player.w / 2) - 40, player.y + 45, player.w + 18, (player.h - 16) / 2)
-        love.graphics.setColor(1, 1, 1)
         knightWalkFront:draw(knightFrontWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
       end
-
-      -- player
-      --love.graphics.setColor(1, 1, 1)
-      --love.graphics.draw(playerIdleImage, player.x, player.y)
-      --love.graphics.rectangle('fill', player.x, player.y, player.w, player.h)
 
       -- weapon
       love.graphics.setColor(0, 0, 0)
@@ -364,7 +359,7 @@ function love.draw()
         love.graphics.rectangle('fill', shot.x, shot.y, weapon.w, weapon.h)
       end
 
-      -- enemy
+      -- test enemy
       love.graphics.setColor(1, 0, 0)
       if enemy.state == 'patrol' then
         love.graphics.setColor(1, 0, 0)
@@ -373,15 +368,20 @@ function love.draw()
       end
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
+-- draw enemies for each level
+
 if level == 1 then
       --wisp
       for i = 1, #wisp do
+        -- need to create behavior
         love.graphics.setColor(1, 0, 1)
         love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
+        --world.add(wisp[i].name, wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
       end
 
       --demon knight
       for i = 1, #demon do
+        -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
       end
@@ -391,26 +391,34 @@ end
 if level == 2 then
       --raptor
       for i = 1, #raptor do
+        -- need to create behavior
         love.graphics.setColor(0, 0, 1)
         love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+        world.add(raptor[i].name, raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
       end
 
       --stegosaurus
       for i = 1, #stego do
+        -- need to create behavior
         love.graphics.setColor(0, 1, 1)
         love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+        world:add(stego[i].name, stego[i].x, stego[i].y, stego[i].h, stego[i].w)
       end
 
       --spinosaurus
       for i = 1, #spino do
+        -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+        world:add(spino[i], spino[i].x, spino[i].y, spino[i].h, spino[i].w)
       end
 
       --T-Rex
       for i = 1, #trex do
+        -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+        world:add(trex[i], trex[i].x, trex[i].y, trex[i].h, trex[i].w)
       end
 
 end
@@ -418,20 +426,26 @@ end
 if level == 3 then
       --alien soldier
       for i = 1, #soldier do
+        -- need to create behavior
         love.graphics.setColor(0, 1, 0)
         love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
+        world:add(soldier[i], soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
       end
 
       --alien fodder
       for i = 1, #fodder do
+        -- need to create behavior
         love.graphics.setColor(0, 1, 0)
         love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
+        world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
       end
 
       --UFO/Big Alien
       for i = 1, #alien do
+        -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
+        world:add(alien[i], alien[i].x, alien[i].y, alien[i].h, alien[i].w)
       end
 end
 

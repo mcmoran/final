@@ -21,6 +21,7 @@ wisp = {}
 
 for i = 1, wispCount do
   table.insert(wisp, {
+    name = ("wisp" .. i),
     x = math.random(1000, 2600),
     y = math.random(64, 544),
     h = 32, w = 32,
@@ -34,6 +35,7 @@ demon = {}
 
 for i = 1, demonCount do
   table.insert(demon, {
+    name = ("demon" .. i),
     x = math.random(3600, 3600), y = math.random(300, 300),
     h = 128, w = 128,
     speedX = 50, speedY = 50,
@@ -48,6 +50,7 @@ raptor = {}
 
 for i = 1, raptorCount do
   table.insert(raptor, {
+    name = ("raptor" .. i),
     x = math.random(1350, 1550), y = math.random(300, 400),
     h = 64, w = 64,
     speedX = 200, speedY = 200,
@@ -60,6 +63,7 @@ stego = {}
 
 for i = 1, stegoCount do
   table.insert(stego, {
+    name = ("stego" .. i),
     x = math.random(700, 900), y = math.random(200, 400),
     h = 128, w = 64,
     speedX = 70, speedY = 70,
