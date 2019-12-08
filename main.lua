@@ -46,9 +46,9 @@ function love.load()
   changeTimer = 1
 
   -- player
-  player = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 64, h = 64,
-            speedX = 0, speedY = 0, maxSpeed = 300,
-            dir = 1, facing = 'right', dirX = 0, dirY = 0, idle = true }
+  world:add (player, player.x = SCREEN_X / 2, player.y = SCREEN_Y / 2, player.w = 64, player.h = 64,
+            player.speedX = 0, player.speedY = 0, player.maxSpeed = 300,
+            player.dir = 1, player.dirX = 0, player.dirY = 0, player.idle = true)
 
   spriteKnightRight = anim8.newGrid(64, 64, knightRightWalkImage:getWidth(), knightRightWalkImage:getHeight())
   spriteKnightLeft = anim8.newGrid(64, 64, knightLeftWalkImage:getWidth(), knightLeftWalkImage:getHeight())
@@ -71,7 +71,9 @@ function love.load()
             dir = 1, dirX = 0, dirY = 0}
 
   -- enemy
-  enemy = {x = 0, y = 0, w = 32, h = 32, speed = 100}
+  world:add(enemy, enemy.x = 0, enemy.y = 0, enemy.w = 32, enemy.h = 32, enemy.speed = 100, enemy.timer = 0.5, enemy.path = math.random(1, 6), enemy.state = 'patrol', enemy.angle = 0)
+
+
 
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
   love.graphics.setDefaultFilter('nearest', 'nearest')
@@ -118,7 +120,13 @@ function love.load()
     enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
     enemy.speedX = 0
     enemy.speedY = 0
+    enemy.timer = 0.5
+    enemy.path = math.random(1, 6)
+    enemy.state = 'patrol'
+    enemy.angle = 0
     enemiesShot = 0
+
+    distance = 250
 
     -- weapon stuff
     weapon.x = player.x + player.w / 2
@@ -147,6 +155,7 @@ function love.update(dt)
   -- timers
   timer = timer + dt
   weaponTimer = weaponTimer + dt
+  enemy.timer = enemy.timer - dt
 
   flux.update(dt)
 
@@ -158,6 +167,36 @@ function love.update(dt)
   knightWalkLeft:update(dt)
   knightWalkFront:update(dt)
   knightWalkBack:update(dt)
+
+  local detect = getDistance(player.x + player.w / 2, player.y + player.h / 2, enemy.x + enemy.w / 2, enemy.y + enemy.h / 2)
+  if detect <= distance then
+    enemy.state = 'charge'
+  else
+    enemy.state = 'patrol'
+  end
+
+  local dx, dy = 0, 0
+  if enemy.state == 'patrol' then
+    if enemy.timer <= 0 then
+      enemy.timer = 0.5
+      enemy.angle = math.random() * 2 * math.pi --random angle generation
+    end
+
+    dx = (dx + math.cos(enemy.angle) * 2 * enemy.speed * dt)
+    dy = (dy + math.sin(enemy.angle) * 2 * enemy.speed * dt)
+  end
+
+  if enemy.state == 'charge' then
+    enemy.angle = math.atan2(player.y - enemy.y, player.x - enemy.x)
+
+    dx = (dx + math.cos(enemy.angle) * 2 * enemy.speed * dt)
+    dy = (dy + math.sin(enemy.angle) * 2 * enemy.speed * dt)
+  end
+
+  if dx ~= 0 or dy ~= 0 then
+    local collisions
+    enemy.x, enemy.y, collisions, collision_length = world:move(enemy, enemy.x + dx, enemy.y + dy)
+  end
 
   if fadeLevel then
     changeTimer = changeTimer - dt
@@ -323,6 +362,11 @@ function love.draw()
 
       -- enemy
       love.graphics.setColor(1, 0, 0)
+      if enemy.state == 'patrol' then
+        love.graphics.setColor(1, 0, 0)
+      elseif enemy.state == 'charge' then
+        love.graphics.setColor(1, 1, 0)
+      end
       love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
 if level == 1 then
@@ -546,4 +590,9 @@ function love.keyreleased(key)
   if key == 'up' or key == 'down' or key == 'left' or key == 'right' then
     player.idle = true
   end
+end
+
+-- get distance for enemy
+function getDistance(x1,y1, x2,y2)
+  return ((x2-x1)^2+(y2-y1)^2)^0.5
 end
