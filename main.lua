@@ -372,6 +372,18 @@ function love.draw()
         elseif player.facing == 'down' then
           knight2WalkDown:draw(knight2WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
         end
+      elseif level == 3 then
+        if player.idle then
+          knight3IdleFront:draw(knight3WalkSprite, player.x, player.y)
+        elseif player.facing == 'right' then
+          knight3WalkRight:draw(knight3WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'left' then
+          knight3WalkLeft:draw(knight3WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'up' then
+          knight3WalkUp:draw(knight3WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'down' then
+          knight3WalkDown:draw(knight3WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        end
       end
 
       -- weapon
