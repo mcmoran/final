@@ -61,10 +61,7 @@ function love.load()
             speedX = 0, speedY = 0, maxSpeed = 600,
             dir = 1, dirX = 0, dirY = 0}
 
-  -- enemies
-  enemies = {}
-  enemy = {x = 0, y = 0, w = 32, h = 32, speed = 100,
-          timer = 0.5, path = math.random(1, 6), state = 'patrol', angle = 0}
+  enemiesShot = 0
 
   -- setting window mode
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
@@ -72,7 +69,6 @@ function love.load()
 
   -- adding player and testing enemy for bump
   world:add (player, player.x, player.y, player.w, player.h)
-  world:add (enemy, enemy.x, enemy.y, enemy.w, enemy.h)
 
   -- creating the level map based on what is in levels.lua
   for j = 1, #levelMap1 do
@@ -111,12 +107,6 @@ function love.load()
     player.speedY = 0
     player.dir = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
 
-    -- testing enemy reset
-    enemy.x = math.random(player.w, MAX_WINDOW_X - player.w)
-    enemy.y = math.random(player.h, MAX_WINDOW_Y - player.h)
-    enemy.state = 'patrol'
-    enemiesShot = 0
-
     distance = 250
 
     -- weapon stuff
@@ -145,7 +135,6 @@ function love.update(dt)
   -- timers
   timer = timer + dt
   weaponTimer = weaponTimer + dt
-  enemy.timer = enemy.timer - dt
 
   -- flux update
   flux.update(dt)
@@ -178,42 +167,6 @@ function love.update(dt)
     knight3IdleRight:update(dt)
     knight3IdleFront:update(dt)
     knight3IdleBack:update(dt)
-
-
-  -- checking the distance between the player and the testing enemy
-  local detect = getDistance(player.x + player.w / 2, player.y + player.h / 2, enemy.x + enemy.w / 2, enemy.y + enemy.h / 2)
-
-  -- enemy behavior based on distance
-  if detect <= distance then
-    enemy.state = 'charge'
-  else
-    enemy.state = 'patrol'
-  end
-
-  -- dx and dy?
-  local dx, dy = 0, 0
-  if enemy.state == 'patrol' then
-    if enemy.timer <= 0 then
-      enemy.timer = 0.5
-      enemy.angle = math.random() * 2 * math.pi --random angle generation
-    end
-
-    dx = (dx + math.cos(enemy.angle) * 2 * enemy.speed * dt)
-    dy = (dy + math.sin(enemy.angle) * 2 * enemy.speed * dt)
-  end
-
-  if enemy.state == 'charge' then
-    enemy.angle = math.atan2(player.y - enemy.y, player.x - enemy.x)
-
-    dx = (dx + math.cos(enemy.angle) * 2 * enemy.speed * dt)
-    dy = (dy + math.sin(enemy.angle) * 2 * enemy.speed * dt)
-  end
-
-  -- if the distance for x and y isn't zero then the enemy can move
-  if dx ~= 0 or dy ~= 0 then
-    local collisions
-    enemy.x, enemy.y, collisions, collision_length = world:move(enemy, enemy.x + dx, enemy.y + dy)
-  end
 
   -- fade level conditional
   if fadeLevel then
@@ -395,15 +348,6 @@ function love.draw()
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', shot.x, shot.y, weapon.w, weapon.h)
       end
-
-      -- test enemy
-      love.graphics.setColor(1, 0, 0)
-      if enemy.state == 'patrol' then
-        love.graphics.setColor(1, 0, 0)
-      elseif enemy.state == 'charge' then
-        love.graphics.setColor(1, 1, 0)
-      end
-      love.graphics.rectangle('fill', enemy.x, enemy.y, enemy.w, enemy.h)
 
 -- draw enemies for each level
 

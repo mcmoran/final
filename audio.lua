@@ -59,3 +59,7 @@ end
 function quiet3()
   bgMusic3:stop()
 end
+
+function allQuiet()
+  love.audio.stop( )
+end

@@ -25,8 +25,6 @@ function scoreText()
 
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(defaultFont)
-  love.graphics.print("Enemies Shot:", 20, 10)
-  love.graphics.print(enemiesShot, 120, 10)
   love.graphics.print("Current Level:", 20, 30)
   love.graphics.print(level, 120, 30)
   love.graphics.print("Player X: ", 20, 50)
