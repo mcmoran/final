@@ -8,6 +8,11 @@ gamestart = false
 function love.load()
 
 
+  -- 3rd party
+  anim8 = require 'anim8'
+  camera = require "camera" -- camera
+  moonshine = require 'moonshine' -- moonshine
+  flux = require "flux" -- flux
   bump = require "bump" -- bump
 
   -- requirements
@@ -18,12 +23,7 @@ function love.load()
   require "levels" -- levels.lua file
   require "boss" -- boss.lua file
   require "collision" -- collision.lua file
-
-  -- 3rd party
-  anim8 = require 'anim8'
-  camera = require "camera" -- camera
-  moonshine = require 'moonshine' -- moonshine
-  flux = require "flux" -- flux
+  require "sprites" -- sprites.lua
 
   -- world creation (bump)
   world = bump.newWorld()
@@ -54,17 +54,7 @@ function love.load()
             speedX = 0, speedY = 0, maxSpeed = 300,
             dir = 1, facing = ('right'), dirX = 0, dirY = 0, idle = true}
 
-  -- setting the knight sprite animation
-  spriteKnightRight = anim8.newGrid(64, 64, knightRightWalkImage:getWidth(), knightRightWalkImage:getHeight())
-  spriteKnightLeft = anim8.newGrid(64, 64, knightLeftWalkImage:getWidth(), knightLeftWalkImage:getHeight())
-  spriteKnightFront = anim8.newGrid(64, 64, knightFrontWalkImage:getWidth(), knightFrontWalkImage:getHeight())
-  spriteKnightBack = anim8.newGrid(64, 64, knightBackWalkImage:getWidth(), knightBackWalkImage:getHeight())
-
-  -- animating the knight walking
-  knightWalkRight = anim8.newAnimation(spriteKnightRight('1 - 9', 1), 0.05)
-  knightWalkLeft = anim8.newAnimation(spriteKnightLeft('1 - 9', 1), 0.05)
-  knightWalkBack = anim8.newAnimation(spriteKnightBack('1 - 3', 1), 0.1)
-  knightWalkFront = anim8.newAnimation(spriteKnightFront('1 - 3', 1), 0.1)
+  -- sprites for the knight have been moved to their lua file
 
   -- weapon
   weapon = {x = SCREEN_X / 2, y = SCREEN_Y / 2, w = 12, h = 12,
@@ -162,12 +152,33 @@ function love.update(dt)
 
   collision_length = 0
   updatePlayer(dt)
-  --playerIdle:update(dt) --updates the animations.
-  --playerWalk:update(dt)
-  knightWalkRight:update(dt)
-  knightWalkLeft:update(dt)
-  knightWalkFront:update(dt)
-  knightWalkBack:update(dt)
+
+  -- Animation Updates
+
+    -- level 1
+    knight1WalkLeft:update(dt)
+    knight1WalkRight:update(dt)
+    knight1WalkBack:update(dt)
+    knight1WalkFront:update(dt)
+    -- level 2
+    knight2WalkLeft:update(dt)
+    knight2WalkRight:update(dt)
+    knight2WalkUp:update(dt)
+    knight2WalkDown:update(dt)
+    knight2IdleLeft:update(dt)
+    knight2IdleRight:update(dt)
+    knight2IdleFront:update(dt)
+    knight2IdleBack:update(dt)
+    -- level 3
+    knight3WalkLeft:update(dt)
+    knight3WalkRight:update(dt)
+    knight3WalkUp:update(dt)
+    knight3WalkDown:update(dt)
+    knight3IdleLeft:update(dt)
+    knight3IdleRight:update(dt)
+    knight3IdleFront:update(dt)
+    knight3IdleBack:update(dt)
+
 
   -- checking the distance between the player and the testing enemy
   local detect = getDistance(player.x + player.w / 2, player.y + player.h / 2, enemy.x + enemy.w / 2, enemy.y + enemy.h / 2)
@@ -335,18 +346,32 @@ function love.draw()
       drawLevels()
 
       -- player walking animation and movement
-
       love.graphics.setColor(1, 1, 1)
-      if player.idle then
-        love.graphics.draw(knightStandImage, player.x, player.y)
-      elseif player.facing == 'right' then
-        knightWalkRight:draw(knightRightWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
-      elseif player.facing == 'left' then
-        knightWalkLeft:draw(knightLeftWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
-      elseif player.facing == 'up' then
-        knightWalkBack:draw(knightBackWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
-      elseif player.facing == 'down' then
-        knightWalkFront:draw(knightFrontWalkImage, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+      -- level 1
+      if level == 1 then
+        if player.idle then
+          love.graphics.draw(knight1IdleSprite, player.x, player.y)
+        elseif player.facing == 'right' then
+          knight1WalkRight:draw(knight1WalkRSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'left' then
+          knight1WalkLeft:draw(knight1WalkLSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'up' then
+          knight1WalkBack:draw(knight1WalkBSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'down' then
+          knight1WalkFront:draw(knight1WalkFSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        end
+      elseif level == 2 then
+        if player.idle then
+          knight2IdleFront:draw(knight2WalkSprite, player.x, player.y)
+        elseif player.facing == 'right' then
+          knight2WalkRight:draw(knight2WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'left' then
+          knight2WalkLeft:draw(knight2WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'up' then
+          knight2WalkUp:draw(knight2WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        elseif player.facing == 'down' then
+          knight2WalkDown:draw(knight2WalkSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+        end
       end
 
       -- weapon
@@ -617,4 +642,4 @@ end
 
 -- what happens when the game ends
 function gameOver()
-end 
+end

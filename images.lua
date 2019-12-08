@@ -82,21 +82,4 @@ ending = love.graphics.newVideo("videos/Ending Cinematic.ogg")
 ending:play()
 
 -- player images
---knightWalkImage = love.graphics.newImage("knight.png") -- the sprite for the knight
-knightRightWalkImage = love.graphics.newImage("images/knightRight.png")
-knightLeftWalkImage = love.graphics.newImage("images/knightLeft.png")
-knightBackWalkImage = love.graphics.newImage("images/knightBack.png")
-knightFrontWalkImage = love.graphics.newImage("images/knightFront.png")
-knightStandImage = love.graphics.newImage("images/knightStand.png")
-
---Stage 2 Knight
-knightLVL2Attack = love.graphics.newImage("images/KnightSpriteSheet Stage 2 Attack 88px.png")
-knightLVL2Walk = love.graphics.newImage("images/KnightSpriteSheet Stage 2 walking 64px.png")
-
---Stage 3 Knight
-knightLVL3Attack = love.graphics.newImage("images/KnightSpriteSheet Stage 3 Attack 88px.png")
-knightLVL3Walk = love.graphics.newImage("images/KnightSpriteSheet Stage 3 walking 88px.png")
-
--- from teacher's assets
-playerIdleImage = love.graphics.newImage('images/robotIdle.png') --the master sprite sheets of the animation.
-playerWalkImage = love.graphics.newImage('images/robotWalk.png')
+  -- sprite images has been moved to sprites.lua 
