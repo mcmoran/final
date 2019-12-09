@@ -16,6 +16,20 @@
   knight3AttackSprite = love.graphics.newImage("images/knightSprite3Attack.png")
   knight3WalkSprite = love.graphics.newImage("images/knightSprite3Walk.png")
 
+  -- ENEMY IMAGES --
+
+  -- level 1
+  wispSprite = love.graphics.newImage("images/Wisp.png")
+  -- level 2
+  raptorSprite = love.graphics.newImage("images/Raptor.png")
+  spinoSprite = love.graphics.newImage("images/Spino.png")
+  stegoSprite = love.graphics.newImage("images/Stego.png")
+  trexSprite = love.graphics.newImage("images/trex.png")
+  -- level 3
+  globSprite = love.graphics.newImage("images/Glob.png")
+  soldierSprite = love.graphics.newImage("images/Soldier.png")
+  ufoSprite = love.graphics.newImage("images/ufo.png")
+
 -- SETTING THE GRIDS
 
   -- setting the knight level 1 grids
@@ -29,6 +43,17 @@
   -- setting the knight level 3 grids
   knight3Walk = anim8.newGrid(64, 64, knight3WalkSprite:getWidth(), knight3WalkSprite:getHeight())
   knight3Attack = anim8.newGrid(88, 88, knight3AttackSprite:getWidth(), knight3AttackSprite:getHeight())
+  -- enemy level 1 grids
+
+  -- enemy level 2 GRIDS
+  raptorAnimation = anim8.newGrid(90, 90, raptorSprite:getWidth(), raptorSprite:getHeight())
+  spinoAnimation = anim8.newGrid(300, 300, spinoSprite:getWidth(), spinoSprite:getHeight())
+  stegoAnimation = anim8.newGrid(150, 150, stegoSprite:getWidth(), stegoSprite:getHeight())
+  trexAnimation = anim8.newGrid(300, 300, trexSprite:getWidth(), trexSprite:getHeight())
+  -- enemy level 3 grids
+  globAnimation = anim8.newGrid(100, 100, globSprite:getWidth(), globSprite:getHeight())
+  soldierAnimation = anim8.newGrid(200, 200, soldierSprite:getWidth(), soldierSprite:getHeight())
+  ufoAnimation = anim8.newGrid(300, 300, ufoSprite:getWidth(), ufoSprite:getHeight())
 
 -- SETTING THE ANIMATIONS
 

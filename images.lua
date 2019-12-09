@@ -82,4 +82,4 @@ ending = love.graphics.newVideo("videos/Ending Cinematic.ogg")
 ending:play()
 
 -- player images
-  -- sprite images has been moved to sprites.lua 
+  -- sprite images has been moved to sprites.lua

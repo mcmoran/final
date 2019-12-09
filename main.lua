@@ -17,6 +17,7 @@ function love.load()
 
   -- requirements
   require "images" -- images.lua file
+  require "video" -- video.lua file
   require "audio" -- audio.lua file
   require "text" -- text.lua file
   require "player" -- player.lua file
