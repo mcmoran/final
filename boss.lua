@@ -56,10 +56,11 @@ raptor = {}
 for i = 1, raptorCount do
   table.insert(raptor, {
     name = ("raptor" .. i),
-    x = math.random(1350, 1550), y = math.random(300, 400),
+    x = math.random(1900, 2200), y = math.random(100, 500),
     h = 90, w = 90,
-    speedX = 200, speedY = 200,
-    shotsToKill = 1})
+    speedX = 120, speedY = 120,
+    shotsToKill = 1,
+    angle = 0})
 end
 
 -- stegosaurus: Slow enemy, spread around the map, peaceful until hit. Take 3 hits to kill.

@@ -145,6 +145,14 @@ if (demon.x - player.x) < 500 then
   end
 end
 
+for i, raptor in ipairs(raptor) do
+if (raptor.x - raptor.x) < 500 then
+    raptor.angle = math.atan2(player.y - raptor.y, player.x - raptor.x)
+    raptor.x = (raptor.x + math.cos(raptor.angle) * 2 * raptor.speedX * dt)
+    raptor.y = (raptor.y + math.sin(raptor.angle) * 2 * raptor.speedY * dt)
+  end
+end
+
   -- library updates
   camera:update(dt)
   camera:follow(player.x, player.y)
