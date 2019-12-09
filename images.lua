@@ -41,19 +41,20 @@ swampshoreup = love.graphics.newImage("images/swampshoreup.jpg")
 swampshoredown = love.graphics.newImage("images/swampshoredown.jpg")
 swampshoreleft = love.graphics.newImage("images/swampshoreleft.jpg")
 swampshoreright = love.graphics.newImage("images/swampshoreright.jpg")
-swamp4 = love.graphics.newImage("images/swamp4.jpg")
-swamp5 = love.graphics.newImage("images/swamp5.jpg")
-swamp6 = love.graphics.newImage("images/swamp6.jpg")
-swamp7 = love.graphics.newImage("images/swamp7.jpg")
-swamp8 = love.graphics.newImage("images/swamp8.jpg")
-swamp9 = love.graphics.newImage("images/swamp9.jpg")
-swamp10 = love.graphics.newImage("images/swamp10.jpg")
-swamp11 = love.graphics.newImage("images/swamp11.jpg")
-swampclutter1 = love.graphics.newImage("images/swampclutter1.png")
-swampclutter2 = love.graphics.newImage("images/swampclutter2.png")
-swampclutter3 = love.graphics.newImage("images/swampclutter3.png")
-swampclutter4 = love.graphics.newImage("images/swampclutter4.png")
-swampclutter5 = love.graphics.newImage("images/swampclutter5.png")
+
+swampshoreupperright = love.graphics.newImage("images/swampshoreupperright.jpg")
+swampshoreupperleft = love.graphics.newImage("images/swampshoreupperleft.jpg")
+swampshorelowerright = love.graphics.newImage("images/swampshorelowerright.jpg")
+swampshorelowerleft = love.graphics.newImage("images/swampshorelowerleft.jpg")
+
+swampshoreIVupperright = love.graphics.newImage("images/swampshoreIVupperright.jpg")
+swampshoreIVupperleft = love.graphics.newImage("images/swampshoreIVupperleft.jpg")
+swampshoreIVlowerright = love.graphics.newImage("images/swampshoreIVlowerright.jpg")
+swampshoreIVlowerleft = love.graphics.newImage("images/swampshoreIVlowerleft.jpg")
+
+
+swamppebbles = love.graphics.newImage("images/swamppebbles.jpg")
+
 
 --level 3
 futureWall_a1 = love.graphics.newImage("images/future-wall_a1.png")
