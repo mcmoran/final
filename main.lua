@@ -137,6 +137,13 @@ function love.update(dt)
     wisp.y = (wisp.y + math.sin(wisp.angle) * 2 * wisp.speedX * dt)
 end
 
+for i, demon in ipairs(demon) do
+if (demon.x - player.x) < 500 then
+    demon.angle = math.atan2(player.y - demon.y, player.x - demon.x)
+    demon.x = (demon.x + math.cos(demon.angle) * 2 * demon.speedX * dt)
+    demon.y = (demon.y + math.sin(demon.angle) * 2 * demon.speedY * dt)
+  end
+end
 
   -- library updates
   camera:update(dt)
@@ -271,17 +278,17 @@ end
   collision(dt)
 
   -- level conditionals
-  if enemiesShot == 10 and level == 1 then
+  if enemiesShot == 2 and level == 1 then
     fadeLevel = true
     bgMusic1:stop()
   end
 
-  if enemiesShot == 10 and level == 2 then
+  if enemiesShot == 2 and level == 2 then
     bgMusic2:stop()
     fadeLevel = true
   end
 
-  if enemiesShot == 10 and level == 3 then
+  if enemiesShot == 2 and level == 3 then
     bgMusic3:stop()
     fadeLevel = true
   end

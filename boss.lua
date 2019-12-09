@@ -40,10 +40,11 @@ demon = {}
 for i = 1, demonCount do
   table.insert(demon, {
     name = ("demon" .. i),
-    x = math.random(3600, 3600), y = math.random(300, 300),
+    x = 3600, y = 300,
     h = 128, w = 128,
     speedX = 50, speedY = 50,
-    shotsToKill = 10})
+    shotsToKill = 10,
+    angle = 0})
 end
 
 -- DINOSAURS
