@@ -366,7 +366,7 @@ if level == 1 then
       for i = 1, #wisp do
         -- need to create behavior
         love.graphics.setColor(1, 0, 1)
-        love.graphics.rectangle('fill', wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
+        love.graphics.draw(wispImage, wisp[i].x, wisp[i].y)
         --world.add(wisp[i].name, wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
       end
 

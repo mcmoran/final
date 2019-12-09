@@ -8,6 +8,10 @@ image manipulations like sprites
 logo = love.graphics.newImage("images/logo.png")
 splash = love.graphics.newImage("images/splash960.png")
 
+-- static images (animated ones are in sprite.lua)
+
+wispImage = love.graphics.newImage("images/Wisp.png")
+
 -- BACKGROUND IMAGES --
 
 --level 1
@@ -76,7 +80,7 @@ futurePuddle2 = love.graphics.newImage("images/future-puddling.png")
 futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
 --Cinematics
--- moved to video.lua 
+-- moved to video.lua
 
 -- player images
   -- sprite images has been moved to sprites.lua
