@@ -299,7 +299,7 @@ end
   -- level conditionals
   if enemiesShot == 2 and level == 1 then
     fadeLevel = true
-    bgMusic1:stop()
+    --bgMusic1:stop()
   end
 
   if enemiesShot == 2 and level == 2 then
@@ -309,7 +309,7 @@ end
 
   if enemiesShot == 2 and level == 3 then
     fadeLevel = true
-    bgMusic3:stop()
+    --bgMusic3:stop()
   end
 
 end -- update
@@ -639,4 +639,5 @@ end
 
 -- what happens when the game ends
 function gameOver()
+  -- nothing yet
 end
