@@ -375,6 +375,7 @@ if level == 1 then
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
         love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
+
       end
 
 end
@@ -384,7 +385,8 @@ if level == 2 then
       for i = 1, #raptor do
         -- need to create behavior
         love.graphics.setColor(0, 0, 1)
-        love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+        raptorAttack:draw(raptorSprite, raptor[i].x, raptor[i].y, 0, raptor[i].dir, 1, raptor[i].w / 2, 0)
+        --love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
         --world.add(raptor[i].name, raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
       end
 
@@ -392,7 +394,8 @@ if level == 2 then
       for i = 1, #stego do
         -- need to create behavior
         love.graphics.setColor(0, 1, 1)
-        love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+        stegoAttack:draw(stegoSprite, stego[i].x, stego[i].y, 0, stego[i].dir, 1, stego[i].w / 2, 0)
+        --love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
         --world:add(stego[i].name, stego[i].x, stego[i].y, stego[i].h, stego[i].w)
       end
 
@@ -400,7 +403,8 @@ if level == 2 then
       for i = 1, #spino do
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
-        love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+        spinoAttack:draw(spinoSprite, spino[i].x, spino[i].y, 0, spino[i].dir, 1, spino[i].w / 2, 0)
+        --love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
         --world:add(spino[i], spino[i].x, spino[i].y, spino[i].h, spino[i].w)
       end
 
@@ -408,7 +412,8 @@ if level == 2 then
       for i = 1, #trex do
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
-        love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+        trexAttack:draw(trexSprite, trex[i].x, trex[i].y, 0, trex[i].dir, 1, trex[i].w / 2, 0)
+        --love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
         --world:add(trex[i], trex[i].x, trex[i].y, trex[i].h, trex[i].w)
       end
 
@@ -419,7 +424,8 @@ if level == 3 then
       for i = 1, #soldier do
         -- need to create behavior
         love.graphics.setColor(0, 1, 0)
-        love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
+        soldierAttack:draw(soldierSprite, soldier[i].x, soldier[i].y, 0, soldier[i].dir, 1, soldier[i].w / 2, 0)
+        --love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
         --world:add(soldier[i], soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
       end
 
@@ -427,7 +433,8 @@ if level == 3 then
       for i = 1, #fodder do
         -- need to create behavior
         love.graphics.setColor(0, 1, 0)
-        love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
+        globAttack:draw(globSprite, glob[i].x, glob[i].y, 0, glob[i].dir, 1, glob[i].w / 2, 0)
+        --love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
         --world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
       end
 
@@ -435,7 +442,8 @@ if level == 3 then
       for i = 1, #alien do
         -- need to create behavior
         love.graphics.setColor(0, 0, 0)
-        love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
+        ufoAttack:draw(ufoSprite, alien[i].x, alien[i].y, 0, alien[i].dir, 1, alien[i].w / 2, 0)
+        --love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
         --world:add(alien[i], alien[i].x, alien[i].y, alien[i].h, alien[i].w)
       end
 end

@@ -56,7 +56,6 @@
   ufoAnimation = anim8.newGrid(300, 300, ufoSprite:getWidth(), ufoSprite:getHeight())
 
 -- SETTING THE ANIMATIONS
-
   -- animating the knight walking
   knight1WalkRight = anim8.newAnimation(knight1WalkR('1 - 9', 1), 0.05)
   knight1WalkLeft = anim8.newAnimation(knight1WalkL('1 - 9', 1), 0.05)
@@ -80,3 +79,12 @@
   knight3IdleBack = anim8.newAnimation(knight3Walk('2 - 1', 1), 5)
   knight3IdleLeft = anim8.newAnimation(knight3Walk('3 - 3', 1), 5)
   knight3IdleRight = anim8.newAnimation(knight3Walk('4 - 4', 1), 5)
+
+  -- testing the enemies
+  raptorAttack = anim8.newAnimation(raptorAnimation('1 - 3', 1), 0.1)
+  spinoAttack = anim8.newAnimation(spinoAnimation('1 - 3', 1), 0.1)
+  stegoAttack = anim8.newAnimation(stegoAnimation('1 - 3', 1), 0.1)
+  trexAttack = anim8.newAnimation(trexAnimation('1 - 3', 1), 0.1)
+  globAttack = anim8.newAnimation(globAnimation('1 - 2', 1), 0.1)
+  soldierAttack = anim8.newAnimation(soldierAnimation('1 - 2', 1), 0.1)
+  ufoAttack = anim8.newAnimation(ufoAnimation('1 - 2', 1), 0.1)
