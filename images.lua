@@ -76,10 +76,7 @@ futurePuddle2 = love.graphics.newImage("images/future-puddling.png")
 futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
 --Cinematics
-opening = love.graphics.newVideo("videos/Opening Cinematic.ogg")
-opening:play()
-ending = love.graphics.newVideo("videos/Ending Cinematic.ogg")
-ending:play()
+-- moved to video.lua 
 
 -- player images
   -- sprite images has been moved to sprites.lua
