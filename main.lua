@@ -433,7 +433,7 @@ if level == 3 then
       for i = 1, #fodder do
         -- need to create behavior
         love.graphics.setColor(0, 1, 0)
-        globAttack:draw(globSprite, glob[i].x, glob[i].y, 0, glob[i].dir, 1, glob[i].w / 2, 0)
+        globAttack:draw(globSprite, fodder[i].x, fodder[i].y, 0, fodder[i].dir, 1, fodder[i].w / 2, 0)
         --love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
         --world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
       end
