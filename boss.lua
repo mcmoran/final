@@ -22,11 +22,15 @@ wisp = {}
 for i = 1, wispCount do
   table.insert(wisp, {
     name = ("wisp" .. i),
-    x = math.random(1000, 2600),
+    x = math.random(1200, 2800),
     y = math.random(64, 544),
-    h = 32, w = 32,
+    h = 50, w = 50,
     speedX = 100, speedY = 100,
-    shotsToKill = 1})
+    shotsToKill = 1,
+    path = math.random(1, 6),
+    state = 'patrol',
+    angle = 0,
+    timer = 0.5})
 end
 
 -- demon knight: Very slow enemy, has slash attacks like the player does but reaches a farther area. Shoots at the player occasionally but not a lot.
