@@ -112,10 +112,12 @@ function love.load()
     -- weapon stuff
     weapon.x = player.x + player.w / 2
     weapon.y = player.y + player.h / 2
-    weaponTimer = 0
+    weaponTimer = 1
     shots = {}
 
     timer = 0
+
+    distance = 250
 
   end -- reset
 
@@ -127,6 +129,13 @@ end -- load
   LOVE.UPDATE
 --------------------------------------------------------------------]]
 function love.update(dt)
+
+  for i, wisp in ipairs(wisp) do
+    wisp.angle = math.random() * 2 * math.pi
+    wisp.x = (wisp.x + math.cos(wisp.angle) * 2 * wisp.speedX * dt)
+    wisp.y = (wisp.y + math.sin(wisp.angle) * 2 * wisp.speedX * dt)
+end
+
 
   -- library updates
   camera:update(dt)
