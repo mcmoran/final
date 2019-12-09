@@ -1,15 +1,15 @@
 -- how many of each are there?
 
-wispCount = 4
+wispCount = 20
 demonCount = 1
 
-raptorCount = 3
-stegoCount = 1
-spinoCount = 1
+raptorCount = 5
+stegoCount = 2
+spinoCount = 2
 trexCount = 1
 
-soldierCount = 4
-fodderCount = 4
+soldierCount = 3
+fodderCount = 10
 alienCount = 1
 
 
@@ -24,7 +24,7 @@ for i = 1, wispCount do
     name = ("wisp" .. i),
     x = math.random(1200, 2800),
     y = math.random(64, 544),
-    h = 50, w = 50,
+    h = 64, w = 64,
     speedX = 100, speedY = 100,
     shotsToKill = 1,
     path = math.random(1, 6),
@@ -56,7 +56,7 @@ for i = 1, raptorCount do
   table.insert(raptor, {
     name = ("raptor" .. i),
     x = math.random(1350, 1550), y = math.random(300, 400),
-    h = 64, w = 64,
+    h = 90, w = 90,
     speedX = 200, speedY = 200,
     shotsToKill = 1})
 end
@@ -69,7 +69,7 @@ for i = 1, stegoCount do
   table.insert(stego, {
     name = ("stego" .. i),
     x = math.random(700, 900), y = math.random(200, 400),
-    h = 128, w = 64,
+    h = 150, w = 150,
     speedX = 70, speedY = 70,
     shotsToKill = 3})
 end
@@ -81,7 +81,7 @@ spino = {}
 for i = 1, spinoCount do
   table.insert(spino, {
     x = math.random(1900, 2100), y = math.random(200, 400),
-    h = 128, w = 64,
+    h = 300, w = 300,
     speedX = 50, speedY = 50,
     shotsToKill = 3})
 end
@@ -93,7 +93,7 @@ trex = {}
 for i = 1, trexCount do
   table.insert(trex, {
     x = math.random(3000, 3000), y = math.random(300, 300),
-    h = 192, w = 128,
+    h = 300, w = 300,
     speedX = 50, speedY = 50,
     shotsToKill = 10})
 end
@@ -107,7 +107,7 @@ soldier = {}
 for i = 1, soldierCount do
   table.insert(soldier, {
     x = math.random(300, 2100), y = math.random(200, 500),
-    h = 64, w = 32,
+    h = 200, w = 200,
     speedX = 0, speedY = 0,
     shotsToKill = 1})
 end
@@ -117,9 +117,9 @@ end
 fodder = {}
 
 for i = 1, fodderCount do
-  table.insert(soldier, {
+  table.insert(fodder, {
     x = math.random(300, 2100), y = math.random(200, 500),
-    h = 32, w = 32,
+    h = 100, w = 100,
     speedX = 150, speedY = 150,
     shotsToKill = 1})
 end
@@ -132,7 +132,7 @@ alien = {}
 for i = 1, alienCount do
   table.insert(alien, {
     x = math.random(3300, 3300), y = math.random(300, 300),
-    h = 64, w = 128,
+    h = 300, w = 300,
     speedX = 50, speedY = 50,
     shotsToKill = 10})
 end
