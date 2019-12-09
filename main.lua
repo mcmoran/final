@@ -192,6 +192,14 @@ end
     knight3IdleRight:update(dt)
     knight3IdleFront:update(dt)
     knight3IdleBack:update(dt)
+    -- enemy Updates
+    raptorAttack:update(dt)
+    stegoAttack:update(dt)
+    spinoAttack:update(dt)
+    trexAttack:update(dt)
+    globAttack:update(dt)
+    soldierAttack:update(dt)
+    ufoAttack:update(dt)
 
   -- fade level conditional
   if fadeLevel then
