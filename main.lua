@@ -131,6 +131,7 @@ end -- load
 --------------------------------------------------------------------]]
 function love.update(dt)
 
+if level == 1 then
   for i, wisp in ipairs(wisp) do
     wisp.angle = math.random() * 2 * math.pi
     wisp.x = (wisp.x + math.cos(wisp.angle) * 2 * wisp.speedX * dt)
@@ -142,17 +143,20 @@ if (demon.x - player.x) < 500 then
     demon.angle = math.atan2(player.y - demon.y, player.x - demon.x)
     demon.x = (demon.x + math.cos(demon.angle) * 2 * demon.speedX * dt)
     demon.y = (demon.y + math.sin(demon.angle) * 2 * demon.speedY * dt)
+    end
   end
 end
 
+if level == 2 then
 for i, raptor in ipairs(raptor) do
-if (raptor.x - raptor.x) < 500 then
+if (raptor.x - raptor.x) < 50 then
     raptor.angle = math.atan2(player.y - raptor.y, player.x - raptor.x)
     raptor.x = (raptor.x + math.cos(raptor.angle) * 2 * raptor.speedX * dt)
     raptor.y = (raptor.y + math.sin(raptor.angle) * 2 * raptor.speedY * dt)
   end
 end
 
+end
   -- library updates
   camera:update(dt)
   camera:follow(player.x, player.y)
