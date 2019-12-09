@@ -25,11 +25,11 @@ function scoreText()
 
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(defaultFont)
-  love.graphics.print("Current Level:", 20, 30)
-  love.graphics.print(level, 120, 30)
-  love.graphics.print("Player X: ", 20, 50)
-  love.graphics.print(player.x, 120, 50)
-  love.graphics.print("Player Y: ", 20, 70)
-  love.graphics.print(player.y, 120, 70)
+  love.graphics.print("Current Level:", 40, 130)
+  love.graphics.print(level, 140, 130)
+  love.graphics.print("Player X: ", 40, 150)
+  love.graphics.print(player.x, 140, 150)
+  love.graphics.print("Player Y: ", 40, 170)
+  love.graphics.print(player.y, 140, 170)
 
 end

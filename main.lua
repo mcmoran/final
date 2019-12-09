@@ -82,9 +82,6 @@ function love.load()
     end
   end
 
-  -- grabbing sounds from audio.lua
-  levelOneSounds()
-
   -- camera parameters
   camera = camera(player.x, player.y, SCREEN_X, SCREEN_Y)
   camera:setFollowStyle('SCREEN_BY_SCREEN')
@@ -94,6 +91,8 @@ function love.load()
 
   -- resetting things for new games
   function reset()
+    love.audio.stop( )
+    levelOneSounds()
 
     -- because we always need a randomseed ...
     math.randomseed(os.time())
@@ -304,17 +303,14 @@ end
   end
 
   if enemiesShot == 2 and level == 2 then
-    bgMusic2:stop()
     fadeLevel = true
+    --bgMusic2:stop()
   end
 
   if enemiesShot == 2 and level == 3 then
-    bgMusic3:stop()
     fadeLevel = true
+    bgMusic3:stop()
   end
-
-
-
 
 end -- update
 
@@ -389,90 +385,87 @@ function love.draw()
 -- draw enemies for each level
 
 if level == 1 then
-      --wisp
-      for i = 1, #wisp do
-        -- need to create behavior
-        love.graphics.setColor(1, 0, 1)
-        love.graphics.draw(wispImage, wisp[i].x, wisp[i].y)
-        --world.add(wisp[i].name, wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
-      end
+  --wisp
+  for i = 1, #wisp do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(wispImage, wisp[i].x, wisp[i].y)
+    --world.add(wisp[i].name, wisp[i].x, wisp[i].y, wisp[i].h, wisp[i].w)
+  end
 
-      --demon knight
-      for i = 1, #demon do
-        -- need to create behavior
-        love.graphics.setColor(0, 0, 0)
-        love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
+  --demon knight
+  for i = 1, #demon do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
 
-      end
+  end
 
 end
 
 if level == 2 then
-      --raptor
-      for i = 1, #raptor do
-        -- need to create behavior
-        love.graphics.setColor(0, 0, 1)
-        raptorAttack:draw(raptorSprite, raptor[i].x, raptor[i].y, 0, raptor[i].dir, 1, raptor[i].w / 2, 0)
-        --love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
-        --world.add(raptor[i].name, raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
-      end
+  --raptor
+  for i = 1, #raptor do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    raptorAttack:draw(raptorSprite, raptor[i].x, raptor[i].y, 0, raptor[i].dir, 1, raptor[i].w / 2, 0)
+    --love.graphics.rectangle('fill', raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+    --world.add(raptor[i].name, raptor[i].x, raptor[i].y, raptor[i].h, raptor[i].w)
+  end
 
-      --stegosaurus
-      for i = 1, #stego do
-        -- need to create behavior
-        love.graphics.setColor(0, 1, 1)
-        stegoAttack:draw(stegoSprite, stego[i].x, stego[i].y, 0, stego[i].dir, 1, stego[i].w / 2, 0)
-        --love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
-        --world:add(stego[i].name, stego[i].x, stego[i].y, stego[i].h, stego[i].w)
-      end
+  --stegosaurus
+  for i = 1, #stego do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    stegoAttack:draw(stegoSprite, stego[i].x, stego[i].y, 0, stego[i].dir, 1, stego[i].w / 2, 0)
+    --love.graphics.rectangle('fill', stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+    --world:add(stego[i].name, stego[i].x, stego[i].y, stego[i].h, stego[i].w)
+  end
 
-      --spinosaurus
-      for i = 1, #spino do
-        -- need to create behavior
-        love.graphics.setColor(0, 0, 0)
-        spinoAttack:draw(spinoSprite, spino[i].x, spino[i].y, 0, spino[i].dir, 1, spino[i].w / 2, 0)
-        --love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
-        --world:add(spino[i], spino[i].x, spino[i].y, spino[i].h, spino[i].w)
-      end
+  --spinosaurus
+  for i = 1, #spino do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    spinoAttack:draw(spinoSprite, spino[i].x, spino[i].y, 0, spino[i].dir, 1, spino[i].w / 2, 0)
+    --love.graphics.rectangle('fill', spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+    --world:add(spino[i], spino[i].x, spino[i].y, spino[i].h, spino[i].w)
+  end
 
-      --T-Rex
-      for i = 1, #trex do
-        -- need to create behavior
-        love.graphics.setColor(0, 0, 0)
-        trexAttack:draw(trexSprite, trex[i].x, trex[i].y, 0, trex[i].dir, 1, trex[i].w / 2, 0)
-        --love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
-        --world:add(trex[i], trex[i].x, trex[i].y, trex[i].h, trex[i].w)
-      end
+  --T-Rex
+  for i = 1, #trex do
+    -- need to create behavior
+    love.graphics.setColor(0, 0, 0)
+    trexAttack:draw(trexSprite, trex[i].x, trex[i].y, 0, trex[i].dir, 1, trex[i].w / 2, 0)
+    --love.graphics.rectangle('fill', trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+    --world:add(trex[i], trex[i].x, trex[i].y, trex[i].h, trex[i].w)
+  end
 
 end
 
 if level == 3 then
-      --alien soldier
-      for i = 1, #soldier do
-        -- need to create behavior
-        love.graphics.setColor(0, 1, 0)
-        soldierAttack:draw(soldierSprite, soldier[i].x, soldier[i].y, 0, soldier[i].dir, 1, soldier[i].w / 2, 0)
-        --love.graphics.rectangle('fill', soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
-        --world:add(soldier[i], soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
-      end
+  --alien soldier
+  for i = 1, #soldier do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    soldierAttack:draw(soldierSprite, soldier[i].x, soldier[i].y, 0, soldier[i].dir, 1, soldier[i].w / 2, 0)
+    --world:add(soldier[i], soldier[i].x, soldier[i].y, soldier[i].h, soldier[i].w)
+  end
 
-      --alien fodder
-      for i = 1, #fodder do
-        -- need to create behavior
-        love.graphics.setColor(0, 1, 0)
-        globAttack:draw(globSprite, fodder[i].x, fodder[i].y, 0, fodder[i].dir, 1, fodder[i].w / 2, 0)
-        --love.graphics.rectangle('fill', fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
-        --world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
-      end
+  --alien fodder
+  for i = 1, #fodder do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    globAttack:draw(globSprite, fodder[i].x, fodder[i].y, 0, fodder[i].dir, 1, fodder[i].w / 2, 0)
+    --world:add(fodder[i], fodder[i].x, fodder[i].y, fodder[i].h, fodder[i].w)
+  end
 
-      --UFO/Big Alien
-      for i = 1, #alien do
-        -- need to create behavior
-        love.graphics.setColor(0, 0, 0)
-        ufoAttack:draw(ufoSprite, alien[i].x, alien[i].y, 0, alien[i].dir, 1, alien[i].w / 2, 0)
-        --love.graphics.rectangle('fill', alien[i].x, alien[i].y, alien[i].h, alien[i].w)
-        --world:add(alien[i], alien[i].x, alien[i].y, alien[i].h, alien[i].w)
-      end
+  --UFO/Big Alien
+  for i = 1, #alien do
+    -- need to create behavior
+    love.graphics.setColor(1, 1, 1)
+    ufoAttack:draw(ufoSprite, alien[i].x, alien[i].y, 0, alien[i].dir, 1, alien[i].w / 2, 0)
+    --world:add(alien[i], alien[i].x, alien[i].y, alien[i].h, alien[i].w)
+  end
 end
 
     camera:detach()
@@ -496,14 +489,17 @@ function levelReset()
   weapon.x = player.x + player.w / 2
   weapon.y = player.y + player.h / 2
   enemiesShot = 0
-  if level < 4 then
-    level = level + 1
-  end
+
   if level == 2 then
     levelTwoSounds()
   elseif level == 3 then
     levelThreeSounds()
   end
+
+  if level < 4 then
+    level = level + 1
+  end
+
 end
 -- player drawing
 function updatePlayer(dt)
