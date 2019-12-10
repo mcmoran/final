@@ -36,7 +36,7 @@ function love.load()
 
   -- videos
   openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogv" )
-  endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogg" )
+  endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogv" )
   openingVideo:play()
   endingVideo:play()
 
