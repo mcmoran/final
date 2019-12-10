@@ -34,6 +34,12 @@ function love.load()
   blocks2 = {}
   blocks3 = {}
 
+  -- videos
+  openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogg" )
+  endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogg" )
+  openingVideo:play()
+  endingVideo:play()
+
   -- gamescreen constants
   SCREEN_X = 960
   SCREEN_Y = 640
@@ -129,6 +135,8 @@ end -- load
   LOVE.UPDATE
 --------------------------------------------------------------------]]
 function love.update(dt)
+
+
 
 if level == 1 then
   for i, wisp in ipairs(wisp) do
@@ -245,7 +253,7 @@ end
     for j = 1, #levelMap2 do
       local row = levelMap2[j]
       for k = 1, #row do
-        if levelMap2[j][k] >= 20 or levelMap2[j][k] <= 32 then -- if the tile is a 1 then we add it to the bump world in this example.
+        if levelMap2[j][k] == 1 or levelMap2[j][k] == 2 or (levelMap2[j][k] >= 20 and levelMap2[j][k] <= 32) then -- if the tile is a 1 then we add it to the bump world in this example.
           --love tables start at 1 but the window dimensions start at 0, so we minus 1 to start at 0. it's weird but that's how it goes.
           addBlock((k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
         end
@@ -320,10 +328,14 @@ end -- update
 --------------------------------------------------------------------]]
 function love.draw()
 
+  love.graphics.draw(openingVideo, 0, 0)
+
+
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
       splashText();
+
 
   -- if the game has started, then do all this
   elseif gamestart then
