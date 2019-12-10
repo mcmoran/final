@@ -15,6 +15,7 @@ wispImage = love.graphics.newImage("images/Wisp.png")
 -- BACKGROUND IMAGES --
 
 --level 1
+
 grass = love.graphics.newImage("images/grass base.png")
 grassv1 = love.graphics.newImage("images/bg-grass.png")
 bridge = love.graphics.newImage("images/bridge.png")

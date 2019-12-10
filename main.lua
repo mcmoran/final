@@ -68,7 +68,7 @@ function love.load()
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
   love.graphics.setDefaultFilter('nearest', 'nearest')
 
-  -- adding player and testing enemy for bump
+  -- adding player for bump
   world:add (player, player.x, player.y, player.w, player.h)
 
   -- creating the level map based on what is in levels.lua

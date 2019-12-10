@@ -104,6 +104,8 @@ levelMap4 = { { 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 02, 
             }
 -- line are here ---------------------------------------------------------------------------------------------------------------------00----------------------------------------------------------------------------------------------------------------------00----------------------------------------------------------------------------------------------------------------------00--------------------------------------------------------------------------------------------------------------------00
 
+barriers = {name = ""}
+
 function drawLevels()
 
   if level == 1 then
@@ -117,6 +119,8 @@ function drawLevels()
         elseif levelMap1[j][k] == 2 then --if the tile is 2 it's black.
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(rockwall, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+          --barriers[i][j][k].name = ("barrier_"..j.."_"..k)
+          --world:add(barriers[i][j][k].name, (k-1) * TILE_SIZE, (j-1) * TILE_SIZE, TILE_SIZE, TILE_SIZE)
         elseif levelMap1[j][k] == 0 then --if the tile is 0 it's green.
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(grass, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
