@@ -35,7 +35,7 @@ function love.load()
   blocks3 = {}
 
   -- videos
-  openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogg" )
+  openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogv" )
   endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogg" )
   openingVideo:play()
   endingVideo:play()
