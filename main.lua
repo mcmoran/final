@@ -34,6 +34,12 @@ function love.load()
   blocks2 = {}
   blocks3 = {}
 
+  -- videos
+  openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogg" )
+  endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogg" )
+  openingVideo:play()
+  endingVideo:play()
+
   -- gamescreen constants
   SCREEN_X = 960
   SCREEN_Y = 640
@@ -129,6 +135,8 @@ end -- load
   LOVE.UPDATE
 --------------------------------------------------------------------]]
 function love.update(dt)
+
+
 
 if level == 1 then
   for i, wisp in ipairs(wisp) do
@@ -320,10 +328,14 @@ end -- update
 --------------------------------------------------------------------]]
 function love.draw()
 
+  love.graphics.draw(openingVideo, 0, 0)
+
+
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
       splashText();
+
 
   -- if the game has started, then do all this
   elseif gamestart then
