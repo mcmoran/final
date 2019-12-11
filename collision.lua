@@ -25,7 +25,7 @@ function shooting (dt)
 end
 
 function collision (dt)
-  
+
   -- COLLISION FOR ENEMIES
 if level == 1 then
   -- collision detection for wisps
@@ -39,6 +39,7 @@ if level == 1 then
     -- check weapon vs. wisps
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, wisp[i].x, wisp[i].y, wisp[i].w, wisp[i].h) then
       table.remove(wisp, i)
+      score = score + 1
       break
     end
     -- check shot vs. wisps
@@ -47,6 +48,7 @@ if level == 1 then
         table.remove(wisp, i)
         table.remove(shots, j)
         enemiesShot = enemiesShot + 1
+        score = score + 1
         break
       end
     end
@@ -62,6 +64,7 @@ if level == 1 then
     -- check weapon vs. demon
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, demon[i].x, demon[i].y, demon[i].w, demon[i].h) then
       table.remove(demon, i)
+      score = score + 1
       break
     end
     -- check shot vs. demon
@@ -70,6 +73,7 @@ if level == 1 then
         table.remove(demon, i)
         table.remove(shots, j)
         enemiesShot = enemiesShot + 1
+        score = score + 1
         break
       end
     end
@@ -87,6 +91,7 @@ for i = #raptor, 1, -1 do
     -- check weapon vs. raptor
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, raptor[i].x, raptor[i].y, raptor[i].w, raptor[i].h) then
       table.remove(wisp, i)
+      score = score + 1
       break
     end
     -- check shot vs. raptor
@@ -94,6 +99,7 @@ for i = #raptor, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, raptor[i].x, raptor[i].y, raptor[i].w, raptor[i].h) then
         table.remove(raptor, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end
@@ -109,6 +115,7 @@ for i = #raptor, 1, -1 do
     -- check weapon vs. stego
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, stego[i].x, stego[i].y, stego[i].w, stego[i].h) then
       table.remove(stego, i)
+      score = score + 1
       break
     end
     -- check shot vs. stego
@@ -116,6 +123,7 @@ for i = #raptor, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, stego[i].x, stego[i].y, stego[i].w, stego[i].h) then
         table.remove(stego, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end
@@ -132,6 +140,7 @@ for i = #raptor, 1, -1 do
     -- check weapon vs. spino
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, spino[i].x, spino[i].y, spino[i].w, spino[i].h) then
       table.remove(spino, i)
+      score = score + 1
       break
     end
     -- check shot vs. spino
@@ -139,6 +148,7 @@ for i = #raptor, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, spino[i].x, spino[i].y, spino[i].w, spino[i].h) then
         table.remove(spino, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end
@@ -155,6 +165,7 @@ for i = #raptor, 1, -1 do
     -- check weapon vs. trex
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, trex[i].x, trex[i].y, trex[i].w, trex[i].h) then
       table.remove(trex, i)
+      score = score + 1
       break
     end
     -- check shot vs. trex
@@ -162,6 +173,7 @@ for i = #raptor, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, trex[i].x, trex[i].y, trex[i].w, trex[i].h) then
         table.remove(trex, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end
@@ -179,6 +191,7 @@ for i = #soldier, 1, -1 do
     -- check weapon vs. soldier
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
       table.remove(soldier, i)
+      score = score + 1
       break
     end
     -- check shot vs. soldier
@@ -186,6 +199,7 @@ for i = #soldier, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
         table.remove(soldier, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end
@@ -202,6 +216,7 @@ for i = #soldier, 1, -1 do
     -- check weapon vs. fodder
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, fodder[i].x, fodder[i].y, fodder[i].w, fodder[i].h) then
       table.remove(fodder, i)
+      score = score + 1
       break
     end
     -- check shot vs. fodder
@@ -209,6 +224,7 @@ for i = #soldier, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, fodder[i].x, fodder[i].y, fodder[i].w, fodder[i].h) then
         table.remove(fodder, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end
@@ -225,6 +241,7 @@ for i = #soldier, 1, -1 do
     -- check weapon vs. alien
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, alien[i].x, alien[i].y, alien[i].w, alien[i].h) then
       table.remove(alien, i)
+      score = score + 1
       break
     end
     -- check shot vs. alien
@@ -232,6 +249,7 @@ for i = #soldier, 1, -1 do
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, alien[i].x, alien[i].y, alien[i].w, alien[i].h) then
         table.remove(alien, i)
         table.remove(shots, j)
+        score = score + 1
         enemiesShot = enemiesShot + 1
         break
       end

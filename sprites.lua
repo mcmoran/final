@@ -62,7 +62,7 @@
   knight1WalkBack = anim8.newAnimation(knight1WalkB('1 - 3', 1), 0.1)
   knight1WalkFront = anim8.newAnimation(knight1WalkF('1 - 3', 1), 0.1)
   -- level 2 knight animations
-  knight2WalkRight = anim8.newAnimation(knight2Walk('18 - 26', 1), 0.05)
+  knight2WalkRight = anim8.newAnimation(knight2Walk('18 - 26', 1), 0.1)
   knight2WalkLeft = anim8.newAnimation(knight2Walk('9 - 17', 1), 0.05)
   knight2WalkUp = anim8.newAnimation(knight2Walk('7 - 8', 1), 0.1)
   knight2WalkDown = anim8.newAnimation(knight2Walk('5 - 6', 1), 0.1)
@@ -71,7 +71,7 @@
   knight2IdleLeft = anim8.newAnimation(knight2Walk('3 - 3', 1), 5)
   knight2IdleRight = anim8.newAnimation(knight2Walk('4 - 4', 1), 5)
   -- level 3 knight animations
-  knight3WalkRight = anim8.newAnimation(knight3Walk('18 - 26', 1), 0.05)
+  knight3WalkRight = anim8.newAnimation(knight3Walk('18 - 26', 1), 0.1)
   knight3WalkLeft = anim8.newAnimation(knight3Walk('9 - 17', 1), 0.05)
   knight3WalkUp = anim8.newAnimation(knight3Walk('7 - 8', 1), 0.1)
   knight3WalkDown = anim8.newAnimation(knight3Walk('5 - 6', 1), 0.1)

@@ -1,6 +1,7 @@
 
 -- GAME START STATES --------------------------------------------------
 gamestart = false
+videoPlay = true
 
 --[[----------------------------------------------------------------
   LOVE.LOAD
@@ -35,6 +36,7 @@ function love.load()
   blocks3 = {}
 
   -- videos
+
   openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogv" )
   endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogv" )
   openingVideo:play()
@@ -50,6 +52,7 @@ function love.load()
   TILE_SIZE = 32
 
   --level setting
+  score = 0
   level = 1
   change = false
   fadeLevel = false
@@ -328,14 +331,18 @@ end -- update
 --------------------------------------------------------------------]]
 function love.draw()
 
-  love.graphics.draw(openingVideo, 0, 0)
-
-
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
-      splashText();
 
+    if videoPlay then
+      love.graphics.draw(openingVideo, 0, 0)
+      -- wait until the video is done
+      --videoTimer = 1
+      --videoPlay = false
+    else
+      splashText();
+    end
 
   -- if the game has started, then do all this
   elseif gamestart then
@@ -628,13 +635,17 @@ function love.keypressed(key)
 
   -- starts game with "return" key
   if key == "return" then
-    camera:fade(1, {0, 0, 0, 1})
-    gamestart = true
-    camera:fade(1, {0, 0, 0, 0})
+    if videoPlay then
+      gamestart = true
+      videoPlay = false
+    end
   end
 
   if key == "f" then
     level = level + 1
+    if level == 4 then
+      level = 1
+    end
   end
 
 end -- keypressed
