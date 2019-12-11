@@ -1,6 +1,27 @@
 function shooting (dt)
 
   -- weapon shoots
+if level == 1 then
+  if love.keyboard.isDown('space') then
+    arrowShot:play()
+    if weaponTimer >= 0.5 then
+      weaponTimer = 0
+      table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
+    end
+  end
+end
+
+if level == 2 then
+  if love.keyboard.isDown('space') then
+    arrowShot:play()
+    if weaponTimer >= 0.5 then
+      weaponTimer = 0
+      table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
+    end
+  end
+end
+
+if level == 3 then
   if love.keyboard.isDown('space') then
     retroLazerShot:play()
     if weaponTimer >= 0.5 then
@@ -8,7 +29,7 @@ function shooting (dt)
       table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
     end
   end
-
+end
   -- shot location & collision detection
   for shotsIndex = #shots, 1, -1 do
     local shot = shots[shotsIndex]
@@ -21,6 +42,9 @@ function shooting (dt)
       shot.y = (shot.y + shot.dirY * weapon.maxSpeed * dt)
     end
     if shot.x > (player.x + 500) then
+      table.remove(shots, shotsIndex)
+    end
+    if shot.x < (player.x - 500) then
       table.remove(shots, shotsIndex)
     end
   end
