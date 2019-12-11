@@ -58,7 +58,7 @@ for i = 1, raptorCount do
     name = ("raptor" .. i),
     x = math.random(2000, 2200), y = math.random(100, 500),
     h = 90, w = 90,
-    speedX = 90, speedY = 90,
+    speedX = 0, speedY = 0,
     shotsToKill = 1,
     angle = 0})
 end
@@ -98,7 +98,12 @@ for i = 1, trexCount do
     x = math.random(3500, 3500), y = math.random(200, 300),
     h = 300, w = 300,
     speedX = 50, speedY = 50,
-    shotsToKill = 10})
+    shotsToKill = 10,
+    angle = 0,
+    chargeTimer = 3,
+    timer = 0.5,
+    state = 'idle',
+    path = math.random(1, 6)})
 end
 
 -- ALIENS

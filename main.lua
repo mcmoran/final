@@ -177,11 +177,54 @@ if level == 2 then
       spino.y = (spino.y + math.sin(spino.angle) * 2 * spino.speedY * dt)
       end
     end
+
+  for i, trex in ipairs(trex) do
+    trex.timer = trex.timer - dt
+
+    if player.speedX == 0 and player.speedY == 0
+    and (trex.x - player.x) < 500
+    and trex.chargeTimer > 0 then
+      trex.chargeTimer = trex.chargeTimer - dt
+    end
+
+    if trex.chargeTimer <= 0 then --if timer is 0 or less
+      trex.angle = math.atan2(player.y - trex.y, player.x - trex.x)
+      trex.chargeTimer = 3 --reset timer for another charge
+      trex.state = 'charge' --set enemy state
+    end
+
+    if trex.state == 'charge' then
+      trex.angle = math.atan2(player.y - trex.y, player.x - trex.x)
+      trex.x = (trex.x + math.cos(trex.angle) * 4 * trex.speedX * dt)
+      trex.y = (trex.y + math.sin(trex.angle) * 4 * trex.speedY * dt)
+    end
+
+    if trex.state == 'idle' then
+      if trex.timer <= 0 then
+        trex.path = math.random(1, 6)
+        trex.timer = 0.75
+      end
+      if trex.path == 1 then
+        trex.x = trex.x + 20 * dt
+      elseif trex.path == 2 then
+        trex.x = trex.x - 20 * dt
+      elseif trex.path == 3 then
+        trex.x, trex.y = trex.x + 0, trex.y + 0
+      elseif trex.path == 4 then
+        trex.y = trex.y + 20 * dt
+      elseif trex.path == 5 then
+        trex.y = trex.y - 20 * dt
+      elseif trex.path == 6 then
+        trex.x, trex.y = trex.x + 0, trex.y + 0
+      end
+    end
+  end
+
 end
 
 if level == 3 then
   for i, fodder in ipairs(fodder) do
-    if (fodder.x - player.x) < 500 then
+    if (fodder.x - player.x) < 300 then
         fodder.angle = math.atan2(player.y - fodder.y, player.x - fodder.x)
         fodder.x = (fodder.x + math.cos(fodder.angle) * 2 * fodder.speedX * dt)
         fodder.y = (fodder.y + math.sin(fodder.angle) * 2 * fodder.speedY * dt)
@@ -189,11 +232,20 @@ if level == 3 then
     end
 
     for i, soldier in ipairs(soldier) do
-    if (soldier.x - player.x) < 300 then
+    if (soldier.x - player.x) < 500 then
       soldier.angle = math.atan2(player.y - soldier.y, player.x - soldier.x)
         soldier.y = (soldier.y + math.sin(soldier.angle) * 2 * soldier.speedY * dt)
         end
       end
+
+    for i, alien in ipairs(trex) do
+      if (alien.x - player.x) < 300 then
+        alien.angle = math.atan2(player.y - alien.y, player.x - alien.x)
+        alien.x = (alien.x + math.cos(alien.angle) * 2 * alien.speedX * dt)
+        alien.y = (alien.y + math.sin(alien.angle) * 2 * alien.speedY * dt)
+
+      end
+    end
   end
 
   -- library updates

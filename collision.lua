@@ -93,6 +93,7 @@ if level == 1 then
     if AABB(weapon.x, weapon.y, weapon.w, weapon.h, demon[i].x, demon[i].y, demon[i].w, demon[i].h) then
       table.remove(demon, i)
       score = score + 1
+      enemiesShot = true
       break
     end
     -- check shot vs. demon
