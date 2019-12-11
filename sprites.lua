@@ -80,11 +80,29 @@
   knight3IdleLeft = anim8.newAnimation(knight3Walk('3 - 3', 1), 5)
   knight3IdleRight = anim8.newAnimation(knight3Walk('4 - 4', 1), 5)
 
-  -- testing the enemies
-  raptorAttack = anim8.newAnimation(raptorAnimation('1 - 3', 1), 0.1)
-  spinoAttack = anim8.newAnimation(spinoAnimation('1 - 3', 1), 0.1)
-  stegoAttack = anim8.newAnimation(stegoAnimation('1 - 3', 1), 0.1)
-  trexAttack = anim8.newAnimation(trexAnimation('1 - 3', 1), 0.1)
-  globAttack = anim8.newAnimation(globAnimation('1 - 2', 1), 0.1)
-  soldierAttack = anim8.newAnimation(soldierAnimation('1 - 2', 1), 0.1)
-  ufoAttack = anim8.newAnimation(ufoAnimation('1 - 2', 1), 0.1)
+  -- Idle enemies
+  raptorIdle = anim8.newAnimation(raptorAnimation('1 - 1', 1), 0.1)
+  spinoIdle = anim8.newAnimation(spinoAnimation('1 - 1', 1), 0.1)
+  stegoIdle = anim8.newAnimation(stegoAnimation('1 - 1', 1), 0.1)
+  trexIdle = anim8.newAnimation(trexAnimation('1 - 1', 1), 0.1)
+  globIdle = anim8.newAnimation(globAnimation('1 - 1', 1), 0.1)
+  soldierIdle = anim8.newAnimation(soldierAnimation('1 - 1', 1), 0.1)
+  ufoIdle = anim8.newAnimation(ufoAnimation('1 - 1', 1), 0.1)
+
+  -- attacking enemies
+  raptorAttack = anim8.newAnimation(raptorAnimation('2 - 2', 1), 0.1)
+  spinoAttack = anim8.newAnimation(spinoAnimation('2 - 2', 1), 0.1)
+  stegoAttack = anim8.newAnimation(stegoAnimation('2 - 2', 1), 0.1)
+  trexAttack = anim8.newAnimation(trexAnimation('2 - 2', 1), 0.1)
+  globAttack = anim8.newAnimation(globAnimation('2 - 2', 1), 0.1)
+  soldierAttack = anim8.newAnimation(soldierAnimation('2 - 2', 1), 0.1)
+  ufoAttack = anim8.newAnimation(ufoAnimation('2 - 2', 1), 0.1)
+
+  -- attacking enemies
+  raptorDie = anim8.newAnimation(raptorAnimation('3 - 3', 1), 0.1)
+  spinoDie = anim8.newAnimation(spinoAnimation('3 - 3', 1), 0.1)
+  stegoDie = anim8.newAnimation(stegoAnimation('3 - 3', 1), 0.1)
+  trexDie = anim8.newAnimation(trexAnimation('3 - 3', 1), 0.1)
+  globDie = anim8.newAnimation(globAnimation('3 - 3', 1), 0.1)
+  soldierDie = anim8.newAnimation(soldierAnimation('3 - 3', 1), 0.1)
+  ufoDie = anim8.newAnimation(ufoAnimation('3 - 3', 1), 0.1)
