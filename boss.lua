@@ -58,7 +58,7 @@ for i = 1, raptorCount do
     name = ("raptor" .. i),
     x = math.random(2000, 2200), y = math.random(100, 500),
     h = 90, w = 90,
-    speedX = 120, speedY = 120,
+    speedX = 90, speedY = 90,
     shotsToKill = 1,
     angle = 0})
 end
@@ -85,7 +85,8 @@ for i = 1, spinoCount do
     x = math.random(2400, 2600), y = math.random(50, 200),
     h = 300, w = 300,
     speedX = 50, speedY = 50,
-    shotsToKill = 3})
+    shotsToKill = 3,
+    angle = 0})
 end
 
 -- trex: Very big and slow enemy, charges in a straight line at a the player's position.
@@ -110,8 +111,9 @@ for i = 1, soldierCount do
   table.insert(soldier, {
     x = math.random(300, 2100), y = math.random(200, 500),
     h = 200, w = 200,
-    speedX = 0, speedY = 0,
-    shotsToKill = 1})
+    speedX = 0, speedY = 50,
+    shotsToKill = 1,
+    angle = 0})
 end
 
 -- Fodder: Spread around the map, chases down the player. Take 1 shot/hit to kill.

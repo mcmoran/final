@@ -162,13 +162,21 @@ if (demon.x - player.x) < 500 then
 end
 
 if level == 2 then
-for i, raptor in ipairs(raptor) do
-if (raptor.x - player.x) < 900 then
-    raptor.angle = math.atan2(player.y - raptor.y, player.x - raptor.x)
-    raptor.x = (raptor.x + math.cos(raptor.angle) * 2 * raptor.speedX * dt)
-    raptor.y = (raptor.y + math.sin(raptor.angle) * 2 * raptor.speedY * dt)
+  for i, raptor in ipairs(raptor) do
+  if (raptor.x - player.x) < 900 then
+      raptor.angle = math.atan2(player.y - raptor.y, player.x - raptor.x)
+      raptor.x = (raptor.x + math.cos(raptor.angle) * 2 * raptor.speedX * dt)
+      raptor.y = (raptor.y + math.sin(raptor.angle) * 2 * raptor.speedY * dt)
+      end
     end
-  end
+
+  for i, spino in ipairs(spino) do
+  if (spino.x - player.x) < 500 then
+      spino.angle = math.atan2(player.y - spino.y, player.x - spino.x)
+      spino.x = (spino.x + math.cos(spino.angle) * 2 * spino.speedX * dt)
+      spino.y = (spino.y + math.sin(spino.angle) * 2 * spino.speedY * dt)
+      end
+    end
 end
 
 if level == 3 then
@@ -179,6 +187,13 @@ if level == 3 then
         fodder.y = (fodder.y + math.sin(fodder.angle) * 2 * fodder.speedY * dt)
       end
     end
+
+    for i, soldier in ipairs(soldier) do
+    if (soldier.x - player.x) < 300 then
+      soldier.angle = math.atan2(player.y - soldier.y, player.x - soldier.x)
+        soldier.y = (soldier.y + math.sin(soldier.angle) * 2 * soldier.speedY * dt)
+        end
+      end
   end
 
   -- library updates
