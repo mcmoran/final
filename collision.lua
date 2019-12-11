@@ -20,6 +20,9 @@ function shooting (dt)
       shot.x = (shot.x + shot.dirX * weapon.maxSpeed * dt)
       shot.y = (shot.y + shot.dirY * weapon.maxSpeed * dt)
     end
+    if shot.x > (player.x + 500) then
+      table.remove(shots, shotsIndex)
+    end
   end
 
 end
