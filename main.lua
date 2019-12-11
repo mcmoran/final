@@ -262,6 +262,7 @@ if level == 3 then
 
   -- timers
   timer = timer + dt
+  videoTimer = videoTimer + 1 * dt
   weaponTimer = weaponTimer + dt
 
   -- flux update
@@ -430,10 +431,14 @@ function love.draw()
     if videoPlay == false then
       splashText();
     elseif videoPlay == true then
-      love.graphics.draw(openingVideo, 0, 0)
-      -- wait until the video is done
-      videoTimer = 1000
-      videoPlay = false
+      local videoPlayTime = 300 -- length of the video to play
+      love.graphics.draw(openingVideo, 0, 0) -- play the video
+      if pauseTime > videoPlayTime then
+        videoPlay = false
+        pauseTime = 0
+      else
+        pauseTime = pauseTime + 1
+      end
     end
 
   -- if the game has started, then do all this
