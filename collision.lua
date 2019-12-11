@@ -4,7 +4,7 @@ function shooting (dt)
 if level == 1 then
   if love.keyboard.isDown('space') then
     arrowShot:play()
-    if weaponTimer >= 0.5 then
+    if weaponTimer >= 1.4 then
       weaponTimer = 0
       table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
     end
@@ -14,7 +14,7 @@ end
 if level == 2 then
   if love.keyboard.isDown('space') then
     arrowShot:play()
-    if weaponTimer >= 0.5 then
+    if weaponTimer >= 1.4 then
       weaponTimer = 0
       table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
     end
@@ -24,7 +24,7 @@ end
 if level == 3 then
   if love.keyboard.isDown('space') then
     retroLazerShot:play()
-    if weaponTimer >= 0.5 then
+    if weaponTimer >= 1 then
       weaponTimer = 0
       table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
     end
