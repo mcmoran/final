@@ -427,9 +427,9 @@ function love.draw()
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
-    if videoPlay == false then
-      splashText();
-    elseif videoPlay == true then
+    if not videoPlay then
+      splashText()
+    elseif videoPlay then 
       local videoPlayTime = 130 -- length of the video to play
       love.graphics.draw(openingVideo, 100, 100) -- play the video
       if pauseTime > videoPlayTime then
