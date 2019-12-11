@@ -58,7 +58,7 @@ for i = 1, raptorCount do
     name = ("raptor" .. i),
     x = math.random(2000, 2200), y = math.random(100, 500),
     h = 90, w = 90,
-    speedX = 0, speedY = 0,
+    speedX = 90, speedY = 90,
     shotsToKill = 1,
     angle = 0})
 end

@@ -195,8 +195,8 @@ if level == 2 then
 
     if trex.state == 'charge' then
       trex.angle = math.atan2(player.y - trex.y, player.x - trex.x)
-      trex.x = (trex.x + math.cos(trex.angle) * 4 * trex.speedX * dt)
-      trex.y = (trex.y + math.sin(trex.angle) * 4 * trex.speedY * dt)
+      trex.x = (trex.x + math.cos(trex.angle) * 6 * trex.speedX * dt)
+      trex.y = (trex.y + math.sin(trex.angle) * 6 * trex.speedY * dt)
     end
 
     if trex.state == 'idle' then
