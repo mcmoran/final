@@ -415,19 +415,91 @@ function love.draw()
         -- no attached weapon
       elseif level == 2 then
         love.graphics.setColor(1, 1, 1, 0.5)
-        love.graphics.rectangle('fill', weapon.x, weapon.y, weapon.w, weapon.h)
+        if player.facing == "right" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(arrowRight, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "left" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(arrowLeft, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "up" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(arrowUp, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "down" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(arrowDown, shot.x, shot.y)
+          end
+        end
       elseif level == 3 then
         love.graphics.setColor(1, 1, 0, 1)
-        love.graphics.circle('fill', weapon.x, weapon.y, weapon.w/2)
+        if player.facing == "right" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballRight, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "left" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballLeft, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "up" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballUp, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "down" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballDown, shot.x, shot.y)
+          end
+        end
       elseif level == 4 then
         love.graphics.setColor(1, 0, 0, 1)
-        love.graphics.circle('fill', weapon.x, weapon.y, weapon.w/2)
-      end
+        if player.facing == "right" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballRight, shot.x, shot.y)
+          end
+        end
 
-      -- shots
-      for shotIndex, shot in ipairs(shots) do
-        love.graphics.setColor(1, 1, 1)
-        love.graphics.draw(arrow, shot.x, shot.y)
+        if player.facing == "left" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballLeft, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "up" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballUp, shot.x, shot.y)
+          end
+        end
+
+        if player.facing == "down" then
+          for shotIndex, shot in ipairs(shots) do
+            love.graphics.setColor(1, 1, 1)
+            love.graphics.draw(fireballDown, shot.x, shot.y)
+          end
+        end
       end
 
 -- draw enemies for each level

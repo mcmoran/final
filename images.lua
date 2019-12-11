@@ -84,7 +84,16 @@ futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
 hole = love.graphics.newImage("images/hole.png")
 
-arrow = love.graphics.newImage("images/arrow.png")
+arrowUp = love.graphics.newImage("images/arrow-up.png")
+arrowDown = love.graphics.newImage("images/arrow-down.png")
+arrowLeft = love.graphics.newImage("images/arrow-left.png")
+arrowRight = love.graphics.newImage("images/arrow-right.png")
+
+fireballUp = love.graphics.newImage("images/fireball-up.png")
+fireballDown = love.graphics.newImage("images/fireball-down.png")
+fireballLeft = love.graphics.newImage("images/fireball-left.png")
+fireballRight = love.graphics.newImage("images/fireball-right.png")
+
 
 futureCeilingNOpen = love.graphics.newImage("images/wall-edge1-1.png")
 futureCeilingNSOpen = love.graphics.newImage("images/wall-edge1-2.png")
