@@ -102,7 +102,7 @@ function love.load()
 
   -- camera parameters
   camera = camera(player.x, player.y, SCREEN_X, SCREEN_Y)
-  camera:setFollowStyle('LOCKON')
+  camera:setFollowStyle('SCREEN_BY_SCREEN')
   camera:setFollowLerp(0.2)
   camera:setFollowLead(0)
   camera:setBounds(0, 0, MAX_WINDOW_X, MAX_WINDOW_Y)
@@ -427,12 +427,11 @@ function love.draw()
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
-
     if videoPlay == false then
       splashText();
     elseif videoPlay == true then
-      local videoPlayTime = 300 -- length of the video to play
-      love.graphics.draw(openingVideo, 0, 0) -- play the video
+      local videoPlayTime = 130 -- length of the video to play
+      love.graphics.draw(openingVideo, 100, 100) -- play the video
       if pauseTime > videoPlayTime then
         videoPlay = false
         pauseTime = 0
