@@ -1,6 +1,6 @@
 -- how many of each are there?
 
-wispCount = 20
+wispCount = 30
 demonCount = 1
 
 raptorCount = 5
@@ -22,7 +22,7 @@ wisp = {}
 for i = 1, wispCount do
   table.insert(wisp, {
     name = ("wisp" .. i),
-    x = math.random(800, 2800),
+    x = math.random(400, 2800),
     y = math.random(64, 544),
     h = 64, w = 64,
     speedX = 100, speedY = 100,
