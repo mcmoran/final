@@ -39,8 +39,16 @@ function love.load()
 
   openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogv" )
   endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogv" )
+  futureVideo = love.graphics.newVideo( "videos/future-cinematic.ogv" )
+  swampVideo = love.graphics.newVideo( "videos/swamp-cinematic.ogv" )
+
   openingVideo:play()
   endingVideo:play()
+  futureVideo:play()
+  swampVideo:play()
+
+  videoTimer = 0
+  pauseTime = 0
 
   -- gamescreen constants
   SCREEN_X = 960
@@ -101,7 +109,7 @@ function love.load()
 
   -- resetting things for new games
   function reset()
-    love.audio.stop( )
+    --love.audio.stop( )
     if lives == 0 then
       love.event.quit("restart")
     end
@@ -419,13 +427,13 @@ function love.draw()
   if not gamestart then
 
 
-    if videoPlay then
+    if videoPlay == false then
+      splashText();
+    elseif videoPlay == true then
       love.graphics.draw(openingVideo, 0, 0)
       -- wait until the video is done
-      --videoTimer = 1
-      --videoPlay = false
-    else
-      splashText();
+      videoTimer = 1000
+      videoPlay = false
     end
 
   -- if the game has started, then do all this
@@ -802,10 +810,11 @@ function love.keypressed(key)
 
   -- starts game with "return" key
   if key == "return" then
-    if videoPlay then
+    videoPlay = true
+--    if videoPlay then
       gamestart = true
-      videoPlay = false
-    end
+  --    videoPlay = false
+    --end
   end
 
   if key == "f" then
