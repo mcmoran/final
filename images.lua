@@ -84,6 +84,8 @@ futurePit = love.graphics.newImage("images/futuristic-pit.png")
 
 hole = love.graphics.newImage("images/hole.png")
 
+arrow = love.graphics.newImage("images/arrow.png")
+
 futureCeilingNOpen = love.graphics.newImage("images/wall-edge1-1.png")
 futureCeilingNSOpen = love.graphics.newImage("images/wall-edge1-2.png")
 futureCeilingSOpen = love.graphics.newImage("images/wall-edge1-3.png")

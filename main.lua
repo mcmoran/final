@@ -415,8 +415,8 @@ function love.draw()
 
       -- shots
       for shotIndex, shot in ipairs(shots) do
-        love.graphics.setColor(0, 0, 0)
-        love.graphics.rectangle('fill', shot.x, shot.y, weapon.w, weapon.h)
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.draw(arrow, shot.x, shot.y)
       end
 
 -- draw enemies for each level
