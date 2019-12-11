@@ -102,7 +102,7 @@ function love.load()
 
   -- camera parameters
   camera = camera(player.x, player.y, SCREEN_X, SCREEN_Y)
-  camera:setFollowStyle('SCREEN_BY_SCREEN')
+  camera:setFollowStyle('LOCKON')
   camera:setFollowLerp(0.2)
   camera:setFollowLead(0)
   camera:setBounds(0, 0, MAX_WINDOW_X, MAX_WINDOW_Y)
