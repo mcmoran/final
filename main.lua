@@ -410,8 +410,19 @@ function love.draw()
       end
 
       -- weapon
-      love.graphics.setColor(0, 0, 0)
-      love.graphics.rectangle('fill', weapon.x, weapon.y, weapon.w, weapon.h)
+      if level == 1 then
+        love.graphics.setColor(0, 0, 0, 0)
+        -- no attached weapon
+      elseif level == 2 then
+        love.graphics.setColor(1, 1, 1, 0.5)
+        love.graphics.rectangle('fill', weapon.x, weapon.y, weapon.w, weapon.h)
+      elseif level == 3 then
+        love.graphics.setColor(1, 1, 0, 1)
+        love.graphics.circle('fill', weapon.x, weapon.y, weapon.w/2)
+      elseif level == 4 then
+        love.graphics.setColor(1, 0, 0, 1)
+        love.graphics.circle('fill', weapon.x, weapon.y, weapon.w/2)
+      end
 
       -- shots
       for shotIndex, shot in ipairs(shots) do
