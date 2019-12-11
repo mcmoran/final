@@ -429,15 +429,9 @@ function love.draw()
 
     if not videoPlay then
       splashText()
-    elseif videoPlay then 
-      local videoPlayTime = 130 -- length of the video to play
-      love.graphics.draw(openingVideo, 100, 100) -- play the video
-      if pauseTime > videoPlayTime then
-        videoPlay = false
-        pauseTime = 0
-      else
-        pauseTime = pauseTime + 1
-      end
+    elseif videoPlay then
+      videoPlayer(openingVideo, 150)
+      videoPlay = false
     end
 
   -- if the game has started, then do all this
@@ -844,4 +838,14 @@ end
 -- what happens when the game ends
 function gameOver()
   -- nothing yet
+end
+
+-- video play function
+function videoPlayer(video, time)
+  local videoPlayTime = 130 -- length of the video to play
+  love.graphics.draw(video, 100, 100) -- play the video
+    while pauseTime > time do
+      pauseTime = pauseTime + 1
+    end
+    pauseTime = 0
 end
