@@ -159,14 +159,24 @@ end
 
 if level == 2 then
 for i, raptor in ipairs(raptor) do
-if (raptor.x - raptor.x) < 50 then
+if (raptor.x - player.x) < 900 then
     raptor.angle = math.atan2(player.y - raptor.y, player.x - raptor.x)
     raptor.x = (raptor.x + math.cos(raptor.angle) * 2 * raptor.speedX * dt)
     raptor.y = (raptor.y + math.sin(raptor.angle) * 2 * raptor.speedY * dt)
+    end
   end
 end
 
-end
+if level == 3 then
+  for i, fodder in ipairs(fodder) do
+    if (fodder.x - player.x) < 500 then
+        fodder.angle = math.atan2(player.y - fodder.y, player.x - fodder.x)
+        fodder.x = (fodder.x + math.cos(fodder.angle) * 2 * fodder.speedX * dt)
+        fodder.y = (fodder.y + math.sin(fodder.angle) * 2 * fodder.speedY * dt)
+      end
+    end
+  end
+
   -- library updates
   camera:update(dt)
   camera:follow(player.x, player.y)

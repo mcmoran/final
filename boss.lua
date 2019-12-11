@@ -120,10 +120,12 @@ fodder = {}
 
 for i = 1, fodderCount do
   table.insert(fodder, {
-    x = math.random(300, 2100), y = math.random(200, 500),
+    name = ("fodder" .. i),
+    x = math.random(500, 2800), y = math.random(200, 500),
     h = 100, w = 100,
-    speedX = 150, speedY = 150,
-    shotsToKill = 1})
+    speedX = 80, speedY = 80,
+    shotsToKill = 1,
+    angle = 0})
 end
 
 
