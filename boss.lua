@@ -95,7 +95,7 @@ trex = {}
 
 for i = 1, trexCount do
   table.insert(trex, {
-    x = math.random(3500, 3500), y = math.random(200, 300),
+    x = math.random(3500, 3500), y = math.random(100, 200),
     h = 300, w = 300,
     speedX = 50, speedY = 50,
     shotsToKill = 10,
