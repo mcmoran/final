@@ -60,7 +60,7 @@ function love.load()
 
   -- player specs
   test = {}
-  player = {x = (SCREEN_X / 2), y = (SCREEN_Y / 2), w = (TILE_SIZE * 2), h = (TILE_SIZE * 2),
+  player = {x = 100, y = (SCREEN_Y / 2), w = (TILE_SIZE * 2), h = (TILE_SIZE * 2),
             speedX = 0, speedY = 0, maxSpeed = 300,
             dir = 1, facing = ('right'), dirX = 0, dirY = 0, idle = true}
 
@@ -110,7 +110,7 @@ function love.load()
     --level = 1
 
     -- player resets
-    player.x = SCREEN_X / 2
+    player.x = 100
     player.y = SCREEN_Y / 2
     player.speedX = 0
     player.speedY = 0
