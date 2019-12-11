@@ -74,12 +74,33 @@ futurefloor5 = love.graphics.newImage("images/futurefloora5.png")
 futurefloor6 = love.graphics.newImage("images/futurefloorb1.png")
 futurefloor7 = love.graphics.newImage("images/futurefloorb2.png")
 futurefloor8 = love.graphics.newImage("images/futurefloorb3.png")
+futurefloor9 = love.graphics.newImage("images/floor-extra.png")
 
 futurePool1 = love.graphics.newImage("images/future-PuddleEdge.png")
 futurePool2 = love.graphics.newImage("images/future-PuddlePool.png")
 futurePuddle1 = love.graphics.newImage("images/future-puddle.png")
 futurePuddle2 = love.graphics.newImage("images/future-puddling.png")
 futurePit = love.graphics.newImage("images/futuristic-pit.png")
+
+hole = love.graphics.newImage("images/hole.png")
+
+futureCeilingNOpen = love.graphics.newImage("images/wall-edge1-1.png")
+futureCeilingNSOpen = love.graphics.newImage("images/wall-edge1-2.png")
+futureCeilingSOpen = love.graphics.newImage("images/wall-edge1-3.png")
+futureCeilingWOpen = love.graphics.newImage("images/wall-edge2-1.png")
+futureCeilingEWOpen = love.graphics.newImage("images/wall-edge2-2.png")
+futureCeilingEOpen = love.graphics.newImage("images/wall-edge2-3.png")
+
+futureCeilingWClosed = love.graphics.newImage("images/wall-edge4-1.png")
+futureCeilingNClosed = love.graphics.newImage("images/wall-edge4-2.png")
+futureCeilingEClosed = love.graphics.newImage("images/wall-edge4-3.png")
+futureCeilingSClosed = love.graphics.newImage("images/wall-edge4-4.png")
+
+futureCeilingCornerNEOpen = love.graphics.newImage("images/wall-corner1-1.png")
+futureCeilingCornerSEOpen = love.graphics.newImage("images/wall-corner1-2.png")
+futureCeilingCornerSWOpen = love.graphics.newImage("images/wall-corner1-3.png")
+futureCeilingCornerNWOpen = love.graphics.newImage("images/wall-corner1-4.png")
+
 
 --Cinematics
 -- moved to video.lua
