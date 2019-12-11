@@ -47,7 +47,6 @@ if level == 1 then
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, wisp[i].x, wisp[i].y, wisp[i].w, wisp[i].h) then
         table.remove(wisp, i)
         table.remove(shots, j)
-        enemiesShot = enemiesShot + 1
         score = score + 1
         break
       end
@@ -72,7 +71,7 @@ if level == 1 then
       if AABB(shots[j].x, shots[j].y, shots[j].w, shots[j].h, demon[i].x, demon[i].y, demon[i].w, demon[i].h) then
         table.remove(demon, i)
         table.remove(shots, j)
-        enemiesShot = enemiesShot + 1
+        enemiesShot = true
         score = score + 1
         break
       end
@@ -100,7 +99,6 @@ for i = #raptor, 1, -1 do
         table.remove(raptor, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
         break
       end
     end
@@ -124,7 +122,6 @@ for i = #raptor, 1, -1 do
         table.remove(stego, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
         break
       end
     end
@@ -149,7 +146,6 @@ for i = #raptor, 1, -1 do
         table.remove(spino, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
         break
       end
     end
@@ -174,7 +170,7 @@ for i = #raptor, 1, -1 do
         table.remove(trex, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
+        enemiesShot = true
         break
       end
     end
@@ -200,7 +196,6 @@ for i = #soldier, 1, -1 do
         table.remove(soldier, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
         break
       end
     end
@@ -225,7 +220,6 @@ for i = #soldier, 1, -1 do
         table.remove(fodder, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
         break
       end
     end
@@ -250,7 +244,7 @@ for i = #soldier, 1, -1 do
         table.remove(alien, i)
         table.remove(shots, j)
         score = score + 1
-        enemiesShot = enemiesShot + 1
+        enemiesShot = true
         break
       end
     end

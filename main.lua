@@ -71,7 +71,7 @@ function love.load()
             speedX = 0, speedY = 0, maxSpeed = 600,
             dir = 1, dirX = 0, dirY = 0}
 
-  enemiesShot = 0
+  enemiesShot = false
 
   -- setting window mode
   love.window.setMode(SCREEN_X, SCREEN_Y, {fullscreen = false})
@@ -319,18 +319,21 @@ if level == 3 then
   collision(dt)
 
   -- level conditionals
-  if enemiesShot == 10 and level == 1 then
+  if enemiesShot == true and level == 1 then
     fadeLevel = true
+    enemiesShot = false
     --bgMusic1:stop()
   end
 
-  if enemiesShot == 10 and level == 2 then
+  if enemiesShot == true and level == 2 then
     fadeLevel = true
+    enemiesShot = false
     --bgMusic2:stop()
   end
 
-  if enemiesShot == 10 and level == 3 then
+  if enemiesShot == true and level == 3 then
     fadeLevel = true
+    enemiesShot = false
     --bgMusic3:stop()
   end
 
@@ -518,7 +521,7 @@ function levelReset()
   player.y = 100
   weapon.x = player.x + player.w / 2
   weapon.y = player.y + player.h / 2
-  enemiesShot = 0
+  enemiesShot = false
 
   if level == 2 then
     levelTwoSounds()
