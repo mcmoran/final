@@ -82,7 +82,7 @@ spino = {}
 
 for i = 1, spinoCount do
   table.insert(spino, {
-    x = math.random(1900, 2100), y = math.random(200, 400),
+    x = math.random(2400, 2600), y = math.random(50, 200),
     h = 300, w = 300,
     speedX = 50, speedY = 50,
     shotsToKill = 3})
@@ -94,7 +94,7 @@ trex = {}
 
 for i = 1, trexCount do
   table.insert(trex, {
-    x = math.random(3000, 3000), y = math.random(300, 300),
+    x = math.random(3500, 3500), y = math.random(200, 300),
     h = 300, w = 300,
     speedX = 50, speedY = 50,
     shotsToKill = 10})
