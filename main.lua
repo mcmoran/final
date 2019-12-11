@@ -53,6 +53,7 @@ function love.load()
 
   --level setting
   score = 0
+  lives = 5
   level = 1
   change = false
   fadeLevel = false
@@ -101,6 +102,9 @@ function love.load()
   -- resetting things for new games
   function reset()
     love.audio.stop( )
+    if lives == 0 then
+      love.event.quit("restart")
+    end
     levelOneSounds()
 
     -- because we always need a randomseed ...

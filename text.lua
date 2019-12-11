@@ -43,8 +43,11 @@ function scoreText()
   end
   love.graphics.print(worldName, 115, 10)
 
-  love.graphics.print("Score:", 750, 10)
-  love.graphics.print(score, 850, 10)
+  love.graphics.print("Lives:", 450, 10)
+  love.graphics.print(lives, 530, 10)
+
+  love.graphics.print("Score:", 770, 10)
+  love.graphics.print(score, 860, 10)
   --love.graphics.print("Player X: ", 40, 150)
   --love.graphics.print(player.x, 140, 150)
   --love.graphics.print("Player Y: ", 40, 170)

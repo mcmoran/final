@@ -61,6 +61,7 @@ if level == 1 then
     if AABB(player.x, player.y, player.w, player.h, wisp[i].x, wisp[i].y, wisp[i].w, wisp[i].h) then
       --gamestart = false
       gameOver()
+      lives = lives - 1
       reset()
     end
     -- check weapon vs. wisps
@@ -85,6 +86,7 @@ if level == 1 then
     if AABB(player.x, player.y, player.w, player.h, demon[i].x, demon[i].y, demon[i].w, demon[i].h) then
       --gamestart = false
       gameOver()
+      lives = lives - 1
       reset()
     end
     -- check weapon vs. demon
@@ -112,6 +114,7 @@ for i = #raptor, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, raptor[i].x, raptor[i].y, raptor[i].w, raptor[i].h) then
       --gamestart = false
       gameOver()
+      lives = lives - 1
       reset()
     end
     -- check weapon vs. raptor
@@ -135,6 +138,7 @@ for i = #raptor, 1, -1 do
   for i = #stego, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, stego[i].x, stego[i].y, stego[i].w, stego[i].h) then
       --gamestart = false
+      lives = lives - 1
       reset()
     end
     -- check weapon vs. stego
@@ -158,6 +162,7 @@ for i = #raptor, 1, -1 do
   for i = #spino, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, spino[i].x, spino[i].y, spino[i].w, spino[i].h) then
       --gamestart = false
+      lives = lives - 1
       gameOver()
       reset()
     end
@@ -182,6 +187,7 @@ for i = #raptor, 1, -1 do
   for i = #trex, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, trex[i].x, trex[i].y, trex[i].w, trex[i].h) then
       --gamestart = false
+      lives = lives - 1
       gameOver()
       reset()
     end
@@ -208,6 +214,7 @@ if level == 3 then
 for i = #soldier, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
       --gamestart = false
+      lives = lives - 1
       gameOver()
       reset()
     end
@@ -232,6 +239,7 @@ for i = #soldier, 1, -1 do
   for i = #fodder, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, fodder[i].x, fodder[i].y, fodder[i].w, fodder[i].h) then
     --gamestart = false
+    lives = lives - 1
     gameOver()
     reset()
     end
@@ -256,6 +264,7 @@ for i = #soldier, 1, -1 do
   for i = #alien, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, alien[i].x, alien[i].y, alien[i].w, alien[i].h) then
     --gamestart = false
+    lives = lives - 1
     gameOver()
     reset()
     end
