@@ -37,8 +37,8 @@ function love.load()
 
   -- videos
 
-  openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogv" )
-  endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogv" )
+  openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogg" )
+  endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogg" )
   futureVideo = love.graphics.newVideo( "videos/future-cinematic.ogv" )
   swampVideo = love.graphics.newVideo( "videos/swamp-cinematic.ogv" )
 
