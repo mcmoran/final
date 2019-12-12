@@ -246,11 +246,11 @@ if level == 3 then
     for i, soldier in ipairs(soldier) do
     if (soldier.x - player.x) < 500 then
       soldier.angle = math.atan2(player.y - soldier.y, player.x - soldier.x)
-        soldier.y = (soldier.y + math.sin(soldier.angle) * 2 * soldier.speedY * dt)
+        soldier.y = (soldier.y + math.sin(soldier.angle) * 5 * soldier.speedY * dt)
         end
       end
 
-    for i, alien in ipairs(trex) do
+    for i, alien in ipairs(alien) do
       if (alien.x - player.x) < 300 then
         alien.angle = math.atan2(player.y - alien.y, player.x - alien.x)
         alien.x = (alien.x + math.cos(alien.angle) * 2 * alien.speedX * dt)
