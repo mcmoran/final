@@ -49,6 +49,7 @@ function love.load()
 
   videoTimer = 0
   pauseTime = 0
+  videoplay = 'off'
 
   -- gamescreen constants
   SCREEN_X = 960
@@ -150,8 +151,6 @@ end -- load
   LOVE.UPDATE
 --------------------------------------------------------------------]]
 function love.update(dt)
-
-
 
 if level == 1 then
   for i, wisp in ipairs(wisp) do
@@ -427,17 +426,21 @@ function love.draw()
   -- if the game hasn't started, show the splash screen text
   if not gamestart then
 
-    if not videoPlay then
+    -- show the splash screen\
       splashText()
-    elseif videoPlay then
-      videoPlayer(openingVideo, 150)
-      videoPlay = false
-    end
 
   -- if the game has started, then do all this
   elseif gamestart then
 
     camera:attach()
+
+    --if videoplay = true then
+      --love.graphics.draw(openingVideo)
+      --while openingVideo:isPlaying() do
+        -- wait for it to end
+      --end
+      --videoplay = false
+    --end
 
       drawLevels()
 
@@ -808,11 +811,9 @@ function love.keypressed(key)
 
   -- starts game with "return" key
   if key == "return" then
-    videoPlay = true
---    if videoPlay then
       gamestart = true
-  --    videoPlay = false
-    --end
+      --videoplay = true
+      --video = 'none'
   end
 
   if key == "f" then
@@ -841,11 +842,9 @@ function gameOver()
 end
 
 -- video play function
-function videoPlayer(video, time)
-  local videoPlayTime = 130 -- length of the video to play
-  love.graphics.draw(video, 100, 100) -- play the video
-    while pauseTime > time do
-      pauseTime = pauseTime + 1
-    end
-    pauseTime = 0
+function videoPlayer(video)
+  -- play the video specified and pause everything until it is done
+  while video:isPlaying() do
+     -- nothing
+   end
 end
