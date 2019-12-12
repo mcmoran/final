@@ -251,6 +251,11 @@ if level == 3 then
         alien.x = (alien.x + math.cos(alien.angle) * 2 * alien.speedX * dt)
         alien.y = (alien.y + math.sin(alien.angle) * 2 * alien.speedY * dt)
 
+      if (alien.x - player.x) > 300 then
+          alien.angle = math.atan2(player.y + alien.y, player.x + alien.x)
+          alien.x = (alien.x + math.cos(alien.angle) * 2 * alien.speedX * dt)
+          alien.y = (alien.y + math.sin(alien.angle) * 2 * alien.speedY * dt)
+        end
       end
     end
   end
