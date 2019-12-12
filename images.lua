@@ -56,6 +56,14 @@ swampshoreIVupperleft = love.graphics.newImage("images/swampshoreIVupperleft.jpg
 swampshoreIVlowerright = love.graphics.newImage("images/swampshoreIVlowerright.jpg")
 swampshoreIVlowerleft = love.graphics.newImage("images/swampshoreIVlowerleft.jpg")
 
+swampCeiling0 = love.graphics.newImage("images/swampCeiling0.jpg")
+swampCeiling1 = love.graphics.newImage("images/swampCeiling1.jpg")
+swampCeiling2 = love.graphics.newImage("images/swampCeiling2.jpg")
+swampCeiling3 = love.graphics.newImage("images/swampCeiling3.jpg")
+swampCeiling4 = love.graphics.newImage("images/swampCeiling4.jpg")
+
+swampTreeWall = love.graphics.newImage("images/swampTreeWall.jpg")
+
 
 swamppebbles = love.graphics.newImage("images/swamppebbles.jpg")
 
