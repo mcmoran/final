@@ -593,7 +593,7 @@ if level == 1 then
   for i = 1, #demon do
     -- need to create behavior
     love.graphics.setColor(1, 1, 1)
-    love.graphics.rectangle('fill', demon[i].x, demon[i].y, demon[i].h, demon[i].w)
+    love.graphics.draw(demonImage, demon[i].x, demon[i].y)
 
   end
 

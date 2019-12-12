@@ -41,7 +41,7 @@ for i = 1, demonCount do
   table.insert(demon, {
     name = ("demon" .. i),
     x = 3600, y = 300,
-    h = 128, w = 128,
+    h = 342, w = 390,
     speedX = 50, speedY = 50,
     shotsToKill = 10,
     angle = 0})
