@@ -142,7 +142,7 @@ function love.load()
 
     -- player resets
     player.x = 100
-    player.y = SCREEN_Y / 2
+    player.y = 320
     player.speedX = 0
     player.speedY = 0
     player.dir = 1 -- 1 = up, 2 = right, 3 = down, 4 = left
@@ -329,8 +329,11 @@ if level == 3 then
 
   -- fade level conditional
   if fadeLevel then
-    changeTimer = changeTimer - dt
-    camera:fade(0.25, {0, 0, 0, 1})
+    fadeLevel = false
+    change = true
+    levelReset()
+    --changeTimer = changeTimer - dt
+    --camera:fade(0.25, {0, 0, 0, 1})
   end
 
   -- helping with the level fade and reset
@@ -339,7 +342,7 @@ if level == 3 then
     camera:fade(1, {0, 0, 0, 0})
     fadeLevel = false
     change = true
-    levelReset()
+    --levelReset()
   end
 
   --[[ draw level 1
@@ -375,8 +378,8 @@ if level == 3 then
       end
     end
     change = false
-    player.x = SCREEN_X / 2
-    player.y = SCREEN_Y / 2
+    player.x = 100
+    player.y = 300
   end
 
   -- draw level 3
@@ -393,8 +396,8 @@ if level == 3 then
       end
     end
     change = false
-    player.x = SCREEN_X / 2
-    player.y = SCREEN_Y / 2
+    player.x = 100
+    player.y = 300
   end
 
   -- draw level 4
@@ -412,8 +415,9 @@ if level == 3 then
     end
     change = false
     love.graphics.draw(endingVideo, love.graphics.getWidth()/8, love.graphics.getHeight()/8)
-    player.x = SCREEN_X / 2
-    player.y = SCREEN_Y / 2
+
+    player.x = 100
+    player.y = 300
   end
 
   -- game play functions
@@ -704,18 +708,20 @@ end -- draw
 
 function levelReset()
   player.x = 100
-  player.y = 100
+  player.y = 300
   weapon.x = player.x + player.w / 2
   weapon.y = player.y + player.h / 2
   enemiesShot = false
 
-
   quiet()
-  playMusic()
 
   if level < 4 then
     level = level + 1
+  elseif level == 4 then
+    level = 1
   end
+
+  playMusic()
 
 end
 -- player drawing
