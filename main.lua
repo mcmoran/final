@@ -48,10 +48,10 @@ function love.load()
   futureVideo:play()
   swampVideo:play()
 
-  openingVideoTime = 100
-  endingVideoTime = 100
-  futureVideoTime = 100
-  swampVideoTime = 100
+  openingVideoTime = 150
+  endingVideoTime = 150
+  futureVideoTime = 150
+  swampVideoTime = 150
 
   videoTimer = 0
   videoPlay = true
@@ -854,6 +854,6 @@ function playVideo(name, length)
   videoTimer = 0
   while videoTimer < length do
     love.graphics.draw(name, 0, 0)
-    videoTimer = videoTimer + 100
+    videoTimer = videoTimer + 1
   end
 end
