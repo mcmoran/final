@@ -94,13 +94,13 @@
   ufoIdle = anim8.newAnimation(ufoAnimation('1 - 1', 1), 0.1)
 
   -- attacking enemies
-  raptorAttack = anim8.newAnimation(raptorAnimation('2 - 2', 1), 0.1)
-  spinoAttack = anim8.newAnimation(spinoAnimation('2 - 2', 1), 0.1)
-  stegoAttack = anim8.newAnimation(stegoAnimation('2 - 2', 1), 0.1)
-  trexAttack = anim8.newAnimation(trexAnimation('2 - 2', 1), 0.1)
-  globAttack = anim8.newAnimation(globAnimation('2 - 2', 1), 0.1)
-  soldierAttack = anim8.newAnimation(soldierAnimation('2 - 2', 1), 0.1)
-  ufoAttack = anim8.newAnimation(ufoAnimation('2 - 2', 1), 0.1)
+  raptorAttack = anim8.newAnimation(raptorAnimation('1 - 2', 1), 0.1)
+  spinoAttack = anim8.newAnimation(spinoAnimation('1 - 2', 1), 0.1)
+  stegoAttack = anim8.newAnimation(stegoAnimation('1 - 2', 1), 0.1)
+  trexAttack = anim8.newAnimation(trexAnimation('1 - 2', 1), 0.1)
+  globAttack = anim8.newAnimation(globAnimation('1 - 2', 1), 0.1)
+  soldierAttack = anim8.newAnimation(soldierAnimation('1 - 2', 1), 0.1)
+  ufoAttack = anim8.newAnimation(ufoAnimation('1 - 2', 1), 0.1)
 
   -- attacking enemies
   raptorDie = anim8.newAnimation(raptorAnimation('3 - 3', 1), 0.1)
