@@ -84,6 +84,7 @@ function love.load()
   lives = 5
   level = 1
   change = false
+  levelChange = false -- replacing fadeLevel
   fadeLevel = false
   changeTimer = 1
 
@@ -327,8 +328,14 @@ if level == 3 then
     soldierAttack:update(dt)
     ufoAttack:update(dt)
 
-  -- fade level conditional
-  if fadeLevel then
+    if levelChange then
+      change = true -- changes the level layout
+      levelChange = false
+      levelReset()
+    end
+
+  -- change level conditional
+  --[[if fadeLevel then
     fadeLevel = false
     change = true
     levelReset()
@@ -343,7 +350,7 @@ if level == 3 then
     fadeLevel = false
     change = true
     --levelReset()
-  end
+  end ]]--
 
   --[[ draw level 1
   if level == 1 and change then
@@ -414,7 +421,7 @@ if level == 3 then
       end
     end
     change = false
-    love.graphics.draw(endingVideo, love.graphics.getWidth()/8, love.graphics.getHeight()/8)
+    --love.graphics.draw(endingVideo, love.graphics.getWidth()/8, love.graphics.getHeight()/8)
 
     player.x = 100
     player.y = 300
@@ -427,19 +434,19 @@ if level == 3 then
 
   -- level conditionals
   if enemiesShot == true and level == 1 then
-    fadeLevel = true
+    levelChange = true
     enemiesShot = false
     --bgMusic1:stop()
   end
 
   if enemiesShot == true and level == 2 then
-    fadeLevel = true
+    levelChange = true
     enemiesShot = false
     --bgMusic2:stop()
   end
 
   if enemiesShot == true and level == 3 then
-    fadeLevel = true
+    levelChange = true
     enemiesShot = false
     --bgMusic3:stop()
   end
