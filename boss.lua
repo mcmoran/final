@@ -116,7 +116,7 @@ for i = 1, soldierCount do
   table.insert(soldier, {
     x = math.random(300, 2100), y = math.random(200, 500),
     h = 200, w = 200,
-    speedX = 0, speedY = 50,
+    speedX = 0, speedY = 100,
     shotsToKill = 1,
     angle = 0})
 end
