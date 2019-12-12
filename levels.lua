@@ -190,6 +190,22 @@ function drawLevels()
         elseif levelMap2[j][k] == 5 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(swamppebbles, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap2[j][k] == 6 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(swamp4, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap2[j][k] == 7 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(swampclutter1, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap2[j][k] == 8 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(swampclutter2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap2[j][k] == 9 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(swampclutter3, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+        elseif levelMap2[j][k] == 10 then --if the tile is .
+          love.graphics.setColor(1, 1, 1)
+          love.graphics.draw(swampclutter5, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
+
 
 
           -- Level 2 Water

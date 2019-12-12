@@ -68,6 +68,13 @@ swampTreeWallLeft = love.graphics.newImage("images/swampTreeWallLeft.jpg")
 swampTreeWallRight = love.graphics.newImage("images/swampTreeWallRight.jpg")
 
 swamppebbles = love.graphics.newImage("images/swamppebbles.jpg")
+swamp4 = love.graphics.newImage("images/swamp4.jpg")
+swampclutter1 = love.graphics.newImage("images/swampclutter1.jpg")
+swampclutter2 = love.graphics.newImage("images/swampclutter2.jpg")
+swampclutter3 = love.graphics.newImage("images/swampclutter3.jpg")
+swampclutter5 = love.graphics.newImage("images/swampclutter5.jpg")
+
+
 
 
 --level 3
