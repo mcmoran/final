@@ -9,7 +9,7 @@ logo = love.graphics.newImage("images/logo.png")
 splash = love.graphics.newImage("images/splash960.png")
 
 -- static images (animated ones are in sprite.lua)
-demonImage = love.graphics.newImage("images/demon-actual.png")
+
 wispImage = love.graphics.newImage("images/Wisp.png")
 
 -- BACKGROUND IMAGES --
@@ -31,8 +31,10 @@ dirtpath3 = love.graphics.newImage("images/dirtpath3.jpg")
 dirtpath4 = love.graphics.newImage("images/dirtpath4.jpg")
 dirtpath5 = love.graphics.newImage("images/dirtpath5.jpg")
 dirtpath6 = love.graphics.newImage("images/dirtpath6.jpg")
-dirtpathedge = love.graphics.newImage("images/dirtpathedge.jpg")
-
+dirtpathedge1 = love.graphics.newImage("images/dirtpathedge1.jpg")
+dirtpathedge2 = love.graphics.newImage("images/dirtpathedge2.jpg")
+dirtpathedge3 = love.graphics.newImage("images/dirtpathedge3.jpg")
+dirtpathedge4 = love.graphics.newImage("images/dirtpathedge4.jpg")
 
 --level 2
 swamp1 = love.graphics.newImage("images/swamp1.jpg")
