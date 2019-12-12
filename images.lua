@@ -64,7 +64,8 @@ swampCeiling3 = love.graphics.newImage("images/swampCeiling3.jpg")
 swampCeiling4 = love.graphics.newImage("images/swampCeiling4.jpg")
 
 swampTreeWall = love.graphics.newImage("images/swampTreeWall.jpg")
-
+swampTreeWallLeft = love.graphics.newImage("images/swampTreeWallLeft.jpg")
+swampTreeWallRight = love.graphics.newImage("images/swampTreeWallRight.jpg")
 
 swamppebbles = love.graphics.newImage("images/swamppebbles.jpg")
 
