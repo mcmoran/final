@@ -35,6 +35,7 @@ function love.load()
   blocks2 = {}
   blocks3 = {}
 
+
   -- videos
 
   openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogg" )
@@ -47,9 +48,13 @@ function love.load()
   futureVideo:play()
   swampVideo:play()
 
+  openingVideoTime = 300
+  endingVideoTime = 300
+  futureVideoTime = 300
+  swampVideoTime = 300
+
   videoTimer = 0
-  pauseTime = 0
-  videoplay = 'off'
+  videoPlay = true
 
   -- gamescreen constants
   SCREEN_X = 960
@@ -261,8 +266,8 @@ if level == 3 then
 
   -- timers
   timer = timer + dt
-  videoTimer = videoTimer + 1 * dt
   weaponTimer = weaponTimer + dt
+  videoTimer = videoTimer + 1 * dt
 
   -- flux update
   flux.update(dt)
@@ -308,6 +313,7 @@ if level == 3 then
   if fadeLevel then
     changeTimer = changeTimer - dt
     camera:fade(0.25, {0, 0, 0, 1})
+    print(openingVideo:isPlaying())
   end
 
   -- helping with the level fade and reset
@@ -388,6 +394,7 @@ if level == 3 then
       end
     end
     change = false
+    love.graphics.draw(endingVideo, love.graphics.getWidth()/8, love.graphics.getHeight()/8)
     player.x = SCREEN_X / 2
     player.y = SCREEN_Y / 2
   end
@@ -427,20 +434,16 @@ function love.draw()
   if not gamestart then
 
     -- show the splash screen\
-      splashText()
+
+      playVideo(openingVideo, openingVideoLengh)
+
+      --splashText()
 
   -- if the game has started, then do all this
   elseif gamestart then
 
     camera:attach()
 
-    --if videoplay = true then
-      --love.graphics.draw(openingVideo)
-      --while openingVideo:isPlaying() do
-        -- wait for it to end
-      --end
-      --videoplay = false
-    --end
 
       drawLevels()
 
@@ -842,9 +845,10 @@ function gameOver()
 end
 
 -- video play function
-function videoPlayer(video)
-  -- play the video specified and pause everything until it is done
-  while video:isPlaying() do
-     -- nothing
-   end
+function playVideo(name, length)
+  videoTimer = 0
+  while videoTimer < length do
+    love.graphics.draw(name, love.graphics.getWidth()/8, love.graphics.getHeight()/8)
+    videoTimer = videoTimer + 1
+  end
 end
