@@ -38,6 +38,20 @@ function love.load()
 
   -- videos
 
+  demonGif = love.graphics.newImage( "videos/1_demon.gif")
+  trexGif = love.graphics.newImage( "videos/2_trex.gif")
+  alienGif = love.graphics.newImage( "videos/3_alien.gif")
+  conclusionGif = love.graphics.newImage( "videos/4_conclusion.gif")
+
+    -- video play function
+    function playVideo(name, length)
+      --videoTimer = 0
+      if name:isPlaying() then
+      --while videoTimer < length do
+        love.graphics.draw(name, 0, 0)
+        --videoTimer = videoTimer + 1
+      end
+    end
   openingVideo = love.graphics.newVideo( "videos/opening-cinematic.ogg" )
   endingVideo = love.graphics.newVideo( "videos/ending-cinematic.ogg" )
   futureVideo = love.graphics.newVideo( "videos/future-cinematic.ogv" )
@@ -317,8 +331,13 @@ if level == 3 then
   -- fade level conditional
   if fadeLevel then
     changeTimer = changeTimer - dt
+    local timer = 0
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(levelOneAnim, 0, 0)
+    while timer < 100 do
+      timer = timer + 1
+    end
     camera:fade(0.25, {0, 0, 0, 1})
-    print(openingVideo:isPlaying())
   end
 
   -- helping with the level fade and reset
@@ -439,18 +458,12 @@ function love.draw()
   if not gamestart then
 
     -- show the splash screen\
-
-
-
-
-      playVideo(openingVideo, openingVideoTime)
       splashText()
 
   -- if the game has started, then do all this
   elseif gamestart then
 
     camera:attach()
-
 
       drawLevels()
 
