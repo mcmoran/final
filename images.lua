@@ -33,6 +33,8 @@ dirtpath5 = love.graphics.newImage("images/dirtpath5.jpg")
 dirtpath6 = love.graphics.newImage("images/dirtpath6.jpg")
 dirtpathedge = love.graphics.newImage("images/dirtpathedge.jpg")
 
+demon = love.graphics.newImage("images/demon-actual.png")
+
 --level 2
 swamp1 = love.graphics.newImage("images/swamp1.jpg")
 swamp2 = love.graphics.newImage("images/swamp2.jpg")
