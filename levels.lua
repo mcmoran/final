@@ -185,8 +185,6 @@ function drawLevels()
           love.graphics.draw(swampground, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
 
           -- Level 2 Ground
-
-
         elseif levelMap2[j][k] == 5 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(swamppebbles, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
@@ -206,8 +204,6 @@ function drawLevels()
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(swampclutter5, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
 
-
-
           -- Level 2 Water
         elseif levelMap2[j][k] == 20 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
@@ -224,7 +220,6 @@ function drawLevels()
         elseif levelMap2[j][k] == 24 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(swampshoreright, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-
         elseif levelMap2[j][k] == 25 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(swampshoreupperright, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
@@ -281,8 +276,6 @@ function drawLevels()
         elseif levelMap2[j][k] == 54 then --if the tile is .
           love.graphics.setColor(1, 1, 1)
           love.graphics.draw(swampCeiling4, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-
-
         end -- if
       end -- for
     end -- for
@@ -355,7 +348,6 @@ function drawLevels()
           elseif levelMap3[j][k] == 18 then --if the tile is .
             love.graphics.setColor(1, 1, 1)
             love.graphics.draw(futurePool2, (k - 1) * TILE_SIZE, (j - 1) * TILE_SIZE)
-
 
             --Level 3 Ceiling
           elseif levelMap3[j][k] == 30 then --if the tile is .
