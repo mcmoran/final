@@ -39,10 +39,10 @@
   knight1WalkB  = anim8.newGrid(64, 64, knight1WalkBSprite:getWidth(), knight1WalkBSprite:getHeight())
   -- setting the knight level 2 grids
   knight2Walk = anim8.newGrid(64, 64, knight2WalkSprite:getWidth(), knight2WalkSprite:getHeight())
-  knight2Attack = anim8.newGrid(88, 88, knight2AttackSprite:getWidth(), knight2AttackSprite:getHeight())
+  knight2Attack = anim8.newGrid(87, 87, knight2AttackSprite:getWidth(), knight2AttackSprite:getHeight())
   -- setting the knight level 3 grids
   knight3Walk = anim8.newGrid(64, 64, knight3WalkSprite:getWidth(), knight3WalkSprite:getHeight())
-  knight3Attack = anim8.newGrid(88, 88, knight3AttackSprite:getWidth(), knight3AttackSprite:getHeight())
+  knight3Attack = anim8.newGrid(87, 87, knight3AttackSprite:getWidth(), knight3AttackSprite:getHeight())
   -- enemy level 1 grids
 
   -- enemy level 2 GRIDS
@@ -70,6 +70,10 @@
   knight2IdleBack = anim8.newAnimation(knight2Walk('2 - 1', 1), 5)
   knight2IdleLeft = anim8.newAnimation(knight2Walk('3 - 3', 1), 5)
   knight2IdleRight = anim8.newAnimation(knight2Walk('4 - 4', 1), 5)
+  knight2AttackFront = anim8.newAnimation(knight2Attack('3 - 4', 1), 5)
+  knight2AttackBack = anim8.newAnimation(knight2Attack('1 - 2', 1), 5)
+  knight2AttackLeft = anim8.newAnimation(knight2Attack('5 - 6', 1), 5)
+  knight2AttackRight = anim8.newAnimation(knight2Attack('7 - 8', 1), 5)
   -- level 3 knight animations
   knight3WalkRight = anim8.newAnimation(knight3Walk('18 - 26', 1), 0.1)
   knight3WalkLeft = anim8.newAnimation(knight3Walk('9 - 17', 1), 0.05)

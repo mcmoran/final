@@ -19,7 +19,7 @@ retroSynthMusic = love.audio.newSource("audio/retro-synth-music.wav", "static")
 retroTune = love.audio.newSource("audio/retro-tune.wav", "static")
 retroZap = love.audio.newSource("audio/retro-zap.wav", "static")
 
-
+swordSlash = love.audio.newSource("audio/sword-slash.mp3", "static")
 arrowShot = love.audio.newSource("audio/arrow-shooting.wav", "static")
 
 -- all the level one sounds can be put in this function

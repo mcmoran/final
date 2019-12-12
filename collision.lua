@@ -1,12 +1,19 @@
+
+
 function shooting (dt)
 
   -- weapon shoots
 if level == 1 then
   if love.keyboard.isDown('space') then
-    arrowShot:play()
-    if weaponTimer >= 1.4 then
+    swordSlash:play()
+    if player.facing == 'right' or player.facing == 'up' then
+      knight2AttackRight:draw(knight2AttackSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+    elseif player.facing == 'left' or player.facing == 'down' then
+      knight2AttackLeft:draw(knight2AttackSprite, player.x + player.w / 2, player.y, 0, player.dir, 1, player.w / 2, 0)
+    end
+    if weaponTimer >= 1 then
       weaponTimer = 0
-      table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 4})
+      table.insert(shots, {x = weapon.x, y = weapon.y, w = weapon.w, h = weapon.h, dirX = weapon.dirX, dirY = weapon.dirY, timeLeft = 0.05})
     end
   end
 end
@@ -62,6 +69,7 @@ if level == 1 then
       --gamestart = false
       gameOver()
       lives = lives - 1
+      quiet1()
       reset()
     end
     -- check weapon vs. wisps
@@ -116,6 +124,7 @@ for i = #raptor, 1, -1 do
       --gamestart = false
       gameOver()
       lives = lives - 1
+      quiet2()
       reset()
     end
     -- check weapon vs. raptor
@@ -165,6 +174,7 @@ for i = #raptor, 1, -1 do
       --gamestart = false
       lives = lives - 1
       gameOver()
+      quiet2()
       reset()
     end
     -- check weapon vs. spino
@@ -216,6 +226,7 @@ for i = #soldier, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
       --gamestart = false
       lives = lives - 1
+      quiet2()
       gameOver()
       reset()
     end
@@ -241,6 +252,7 @@ for i = #soldier, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, fodder[i].x, fodder[i].y, fodder[i].w, fodder[i].h) then
     --gamestart = false
     lives = lives - 1
+    quiet2()
     gameOver()
     reset()
     end
