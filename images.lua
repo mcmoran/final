@@ -11,7 +11,6 @@ splash = love.graphics.newImage("images/splash960.png")
 -- static images (animated ones are in sprite.lua)
 
 wispImage = love.graphics.newImage("images/Wisp.png")
-demonImage = love.graphics.newImage("images/demon-actual.png")
 
 -- BACKGROUND IMAGES --
 
