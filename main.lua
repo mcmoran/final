@@ -440,9 +440,11 @@ function love.draw()
 
     -- show the splash screen\
 
-      playVideo(openingVideo, openingVideoTime)
 
-      --splashText()
+
+
+      playVideo(openingVideo, openingVideoTime)
+      splashText()
 
   -- if the game has started, then do all this
   elseif gamestart then
@@ -851,9 +853,10 @@ end
 
 -- video play function
 function playVideo(name, length)
-  videoTimer = 0
-  while videoTimer < length do
+  --videoTimer = 0
+  if name:isPlaying() then
+  --while videoTimer < length do
     love.graphics.draw(name, 0, 0)
-    videoTimer = videoTimer + 1
+    --videoTimer = videoTimer + 1
   end
 end
