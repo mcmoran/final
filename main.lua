@@ -38,10 +38,10 @@ function love.load()
 
   -- videos
 
-  demonGif = love.graphics.newImage( "videos/1_demon.gif")
-  trexGif = love.graphics.newImage( "videos/2_trex.gif")
-  alienGif = love.graphics.newImage( "videos/3_alien.gif")
-  conclusionGif = love.graphics.newImage( "videos/4_conclusion.gif")
+  --demonGif = love.graphics.newImage( "videos/1_demon.gif")
+  --trexGif = love.graphics.newImage( "videos/2_trex.gif")
+  --alienGif = love.graphics.newImage( "videos/3_alien.gif")
+  --conclusionGif = love.graphics.newImage( "videos/4_conclusion.gif")
 
     -- video play function
     function playVideo(name, length)
@@ -331,12 +331,6 @@ if level == 3 then
   -- fade level conditional
   if fadeLevel then
     changeTimer = changeTimer - dt
-    local timer = 0
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(levelOneAnim, 0, 0)
-    while timer < 100 do
-      timer = timer + 1
-    end
     camera:fade(0.25, {0, 0, 0, 1})
   end
 
@@ -458,6 +452,13 @@ function love.draw()
   if not gamestart then
 
     -- show the splash screen\
+
+    --local timer = 0
+    --love.graphics.setColor(1, 1, 1)
+    --levelOneAnim:draw(spriteOne, 0, 0)
+    --while timer < 100 do
+      --timer = timer + 1
+    --end
       splashText()
 
   -- if the game has started, then do all this
@@ -837,6 +838,14 @@ function love.keypressed(key)
       gamestart = true
       --videoplay = true
       --video = 'none'
+  end
+
+  if key == 'tab' then
+    player.x = 3300
+    player.y = 100
+    player.speedX = 0
+    player.speedY = 0
+    player.dir = 1
   end
 
   if key == "f" then

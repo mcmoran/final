@@ -3,13 +3,8 @@
 
 
 -- CREATING IMAGE VARIABLES FROM SPRITES
-
-  levelOneSprite = love.graphics.newImage("images/level1_spritesheet.png")
-
--- SETTING THE GRIDS
-
-  levelOneGrid = anim8.newGrid(640, 480, 3200, 12480)
+  local spriteOne = love.graphics.newImage("images/level1_ss.png")
+  local gridOne = anim8.newGrid(640, 480, spriteOne:getWidth(), spriteOne:getHeight())
 
 -- SETTING THE ANIMATIONS
-  -- animating the knight walking
-  levelOneAnim = anim8.newAnimation(levelOneGrid('1 - 127', 1), 0.05)
+  levelOneAnim = anim8.newAnimation(gridOne('1 - 5', 1), 0.05)
