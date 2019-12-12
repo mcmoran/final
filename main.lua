@@ -48,10 +48,10 @@ function love.load()
   futureVideo:play()
   swampVideo:play()
 
-  openingVideoTime = 300
-  endingVideoTime = 300
-  futureVideoTime = 300
-  swampVideoTime = 300
+  openingVideoTime = 100
+  endingVideoTime = 100
+  futureVideoTime = 100
+  swampVideoTime = 100
 
   videoTimer = 0
   videoPlay = true
@@ -435,7 +435,7 @@ function love.draw()
 
     -- show the splash screen\
 
-      playVideo(openingVideo, openingVideoLengh)
+      playVideo(openingVideo, openingVideoTime)
 
       --splashText()
 
@@ -848,7 +848,7 @@ end
 function playVideo(name, length)
   videoTimer = 0
   while videoTimer < length do
-    love.graphics.draw(name, love.graphics.getWidth()/8, love.graphics.getHeight()/8)
-    videoTimer = videoTimer + 1
+    love.graphics.draw(name, 0, 0)
+    videoTimer = videoTimer + 100
   end
 end
