@@ -69,7 +69,6 @@ if level == 1 then
       --gamestart = false
       gameOver()
       lives = lives - 1
-      quiet1()
       reset()
     end
     -- check weapon vs. wisps
@@ -124,7 +123,6 @@ for i = #raptor, 1, -1 do
       --gamestart = false
       gameOver()
       lives = lives - 1
-      quiet2()
       reset()
     end
     -- check weapon vs. raptor
@@ -174,7 +172,6 @@ for i = #raptor, 1, -1 do
       --gamestart = false
       lives = lives - 1
       gameOver()
-      quiet2()
       reset()
     end
     -- check weapon vs. spino
@@ -226,7 +223,6 @@ for i = #soldier, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, soldier[i].x, soldier[i].y, soldier[i].w, soldier[i].h) then
       --gamestart = false
       lives = lives - 1
-      quiet2()
       gameOver()
       reset()
     end
@@ -252,7 +248,6 @@ for i = #soldier, 1, -1 do
     if AABB(player.x, player.y, player.w, player.h, fodder[i].x, fodder[i].y, fodder[i].w, fodder[i].h) then
     --gamestart = false
     lives = lives - 1
-    quiet2()
     gameOver()
     reset()
     end

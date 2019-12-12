@@ -110,6 +110,7 @@ function love.load()
   world:add (player, player.x, player.y, player.w, player.h)
 
   -- creating the level map based on what is in levels.lua
+
   for j = 1, #levelMap1 do
     local row = levelMap1[j]
     for k = 1, #row do
@@ -133,13 +134,11 @@ function love.load()
     if lives == 0 then
       love.event.quit("restart")
     end
-    levelOneSounds()
+    quiet()
+    playMusic()
 
     -- because we always need a randomseed ...
     math.randomseed(os.time())
-
-    -- game resets
-    --level = 1
 
     -- player resets
     player.x = 100
@@ -710,11 +709,9 @@ function levelReset()
   weapon.y = player.y + player.h / 2
   enemiesShot = false
 
-  if level == 2 then
-    levelTwoSounds()
-  elseif level == 3 then
-    levelThreeSounds()
-  end
+
+  quiet()
+  playMusic()
 
   if level < 4 then
     level = level + 1
@@ -838,14 +835,6 @@ function love.keypressed(key)
       gamestart = true
       --videoplay = true
       --video = 'none'
-  end
-
-  if key == 'tab' then
-    player.x = 3300
-    player.y = 100
-    player.speedX = 0
-    player.speedY = 0
-    player.dir = 1
   end
 
   if key == "f" then
